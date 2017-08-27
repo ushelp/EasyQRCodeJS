@@ -10,7 +10,7 @@
 	"directories": {
 		"dist": "dist",
 		"src": "src",
-		"demo","demo"
+		"demo": "demo"
 	},
 	"repository": {
 		"type": "git",
