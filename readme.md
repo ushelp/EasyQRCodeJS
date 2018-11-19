@@ -94,7 +94,7 @@ or with some options
 	//	logoWidth:80, // widht. default is automatic width
 	//	logoHeight:80 // height. default is automatic height
 	//	logoBgColor:'#fffff', // Logo backgroud color, Invalid when `logBgTransparent` is true; default is '#ffffff'
-    //  logoBgTransparent:false, // Whether use transparent image, default is false
+	//	logoBgTransparent:false, // Whether use transparent image, default is false
 					
 	});
 </script>
