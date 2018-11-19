@@ -3,7 +3,7 @@
  * 
  * Cross-browser QRCode generator for pure javascript. Supports title, subtitle and Logo image settings.
  * 
- * Version 2.0.0
+ * Version 2.1.0
  * 
  * @author [ inthinkcolor@gmail.com ]
  * 
@@ -503,6 +503,24 @@ var QRCode;
 //				var img=document.createElement('img');
 				var _this=this;
 				
+				
+//				function drawImageTransparent(ctx, image , x  , y , alpha)
+//				{
+//					// 绘制图片
+//					ctx.drawImage(image , x , y);
+//					// 获取从x、y开始，宽为image.width、高为image.height的图片数据
+//					// 也就是获取绘制的图片数据
+//					var imgData = ctx.getImageData(x , y , image.width , image.height);
+//					for (var i = 0 , len = imgData.data.length ; i < len ; i += 4 )
+//					{
+//						// 改变每个像素的透明度
+//						imgData.data[i + 3] = imgData.data[i + 3] * alpha;
+//					}
+//					// 将获取的图片数据放回去。
+//					ctx.putImageData(imgData , x , y);
+//				}
+
+				
 				function genratorImg(){
 					var imgW=_htOption.width/3.5;
 					var imgH=_htOption.height/3.5;
@@ -515,11 +533,20 @@ var QRCode;
 					}
 					if(_htOption.logoHeight){
 						imgH=_htOption.logoHeight;
-					}
+					}	
 					
-					_oContext.fillStyle='#ffffff';
-					_oContext.fillRect((_htOption.width-imgW)/2-1,(_htOption.height+_htOption.titleHeight-imgH)/2-1,imgW+1,imgW+1);
+
+					// Did Not Use Transparent Logo Image
+					if(!_htOption.logoBgTransparent){	
+						if(!_htOption.logoBgColor){
+							_htOption.logoBgColor='#ffffff';
+						}
+						_oContext.fillStyle=_htOption.logoBgColor;
+						_oContext.fillRect((_htOption.width-imgW)/2-1,(_htOption.height+_htOption.titleHeight-imgH)/2-1,imgW+1,imgW+1);
+					}
+
 					_oContext.drawImage(img,(_htOption.width-imgW)/2, (_htOption.height+_htOption.titleHeight-imgH)/2,imgW,imgH);
+					
 					_this._bIsPainted = true;
 					_this.makeImage();
 				}
@@ -639,17 +666,17 @@ var QRCode;
 	 * @class QRCode
 	 * @constructor
 	 * @example 
-	 * new QRCode(document.getElementById("test"), "http://jindo.dev.naver.com/collie");
+	 * new QRCode(document.getElementById("test"), "QRCode");
 	 *
 	 * @example
 	 * var oQRCode = new QRCode("test", {
-	 *    text : "http://naver.com",
+	 *    text : "QRCode",
 	 *    width : 128,
 	 *    height : 128
 	 * });
 	 * 
 	 * oQRCode.clear(); // Clear the QRCode.
-	 * oQRCode.makeCode("http://map.naver.com"); // Re-create the QRCode.
+	 * oQRCode.makeCode("QRCode"); // Re-create the QRCode.
 	 *
 	 * @param {HTMLElement|String} el target element or 'id' attribute of element.
 	 * @param {Object|String} vOption

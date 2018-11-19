@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>C:\Users\Administrator\Documents\HBuilderProject\easy-qrcodejs\.readme.md.html</title>
+<title>C:\Users\think\AppData\Roaming\HBuilder\userprofiles\in.think@163.com\easy-qrcodejs\.readme.md.html</title>
 
 
 <style type="text/css">
@@ -639,100 +639,6 @@ function setDocumentScrollTop(ypos)
 
 </head>
 <body class="markdown-body">
-<h1> <a id="easyqrcodejs" class="anchor" href="#easyqrcodejs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>EasyQRCodeJS</h1> 
-<p>EasyQRCodeJS 是一个基于 <a href="https://github.com/davidshimjs/qrcodejs" title="QRCodeJS">QRCodeJS</a> 的跨浏览器的纯 JavaScript QRCode 生成库。并支持二维码图片标题，副标题生成，Logo 图片生成。</p> 
-<p>EasyQRCodeJS is a Cross-Browser pure JavaScript QRCode generation library based on <a href="https://github.com/davidshimjs/qrcodejs" title="QRCodeJS">QRCodeJS</a>. And support two-dimensional code picture title, subtitle generation, Logo image generation.</p> 
-<h2> <a id="feature特点" class="anchor" href="#feature%E7%89%B9%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Feature/特点</h2> 
-<ul> 
- <li> <p><strong>中文</strong></p> 
-  <ul> 
-   <li> <p>跨浏览器，支持基于 HTML5 Canvas 和 table 的二维码生成。</p> </li> 
-   <li> <p>支持为二维码生成设置标题，副标题</p> </li> 
-   <li> <p>支持为二维码生成添加 Logo 图片</p> </li> 
-   <li> <p>不依赖任何第三方</p> </li> 
-  </ul> </li> 
- <li> <p><strong>English</strong></p> 
-  <ul> 
-   <li> <p>Cross-Browser that supports HTML5 Canvas and table.</p> </li> 
-   <li> <p>Support for setting the title and subtitle</p> </li> 
-   <li> <p>Supports adding Logo images</p> </li> 
-   <li> <p>Has no dependencies.</p> </li> 
-  </ul> </li> 
-</ul> 
-<h2> <a id="demo示例" class="anchor" href="#demo%E7%A4%BA%E4%BE%8B" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Demo/示例</h2> 
-<p><a href="doc/images/demo.png" target="_blank"><img src="doc/images/demo.png" alt="Demo" style="max-width:100%;" /></a></p> 
-<h2> <a id="installation安装" class="anchor" href="#installation%E5%AE%89%E8%A3%85" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation/安装</h2> 
-<ul> 
- <li> <p>Download install/下载安装</p> 
-  <div class="highlight highlight-text-html-basic">
-   <pre> &lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>dist/easy.qrcode.min.js<span class="pl-pds">&quot;</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span> <span class="pl-e">charset</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>utf-8<span class="pl-pds">&quot;</span></span>&gt;<span class="pl-s1">&lt;</span>/<span class="pl-ent">script</span>&gt;
- </pre>
-  </div> </li> 
- <li> <p>Npm install/Npm 安装</p> 
-  <div class="highlight highlight-source-shell">
-   <pre> npm install easyqrcodejs</pre>
-  </div> </li> 
-</ul> 
-<h2> <a id="basic-usages" class="anchor" href="#basic-usages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Basic Usages</h2> 
-<div class="highlight highlight-text-html-basic">
- <pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>qrcode<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;
-&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span>&gt;<span class="pl-s1"></span>
-<span class="pl-s1">	<span class="pl-k">new</span> <span class="pl-en">QRCode</span>(<span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>qrcode<span class="pl-pds">&quot;</span></span>), <span class="pl-s"><span class="pl-pds">&quot;</span>https://github.com/ushelp/EasyQRCodeJS<span class="pl-pds">&quot;</span></span>);</span>
-<span class="pl-s1"></span><span class="pl-s1">&lt;</span>/<span class="pl-ent">script</span>&gt;</pre>
-</div> 
-<p>or with some options</p> 
-<div class="highlight highlight-source-js">
- <pre><span class="pl-k">&lt;</span>div id<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>qrcode<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span>
-<span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
-	<span class="pl-k">var</span> qrcode <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">QRCode</span>(<span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>qrcode<span class="pl-pds">&quot;</span></span>), {
-		text<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">&quot;</span>https://github.com/ushelp/EasyQRCodeJS<span class="pl-pds">&quot;</span></span>,
-		width<span class="pl-k">:</span> <span class="pl-c1">256</span>,
-		height<span class="pl-k">:</span> <span class="pl-c1">256</span>,
-		colorDark <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#000000<span class="pl-pds">&quot;</span></span>,
-		colorLight <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#ffffff<span class="pl-pds">&quot;</span></span>,
-		correctLevel <span class="pl-k">:</span> <span class="pl-smi">QRCode</span>.<span class="pl-smi">CorrectLevel</span>.<span class="pl-c1">H</span>,
-		
-		<span class="pl-c"><span class="pl-c">//</span> ==== Title</span>
-		title<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>QR Title<span class="pl-pds">'</span></span>, <span class="pl-c"><span class="pl-c">//</span> content </span>
-		titleFont<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">&quot;</span>bold 18px Arial<span class="pl-pds">&quot;</span></span>, <span class="pl-c"><span class="pl-c">//</span>font. default is &quot;bold 16px Arial&quot;</span>
-		titleColor<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#004284<span class="pl-pds">&quot;</span></span>, <span class="pl-c"><span class="pl-c">//</span> color. default is &quot;#000&quot;</span>
-		titleBgColor<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#fff<span class="pl-pds">&quot;</span></span>, <span class="pl-c"><span class="pl-c">//</span> background color. default is &quot;#fff&quot;</span>
-		titleHeight<span class="pl-k">:</span> <span class="pl-c1">70</span>, <span class="pl-c"><span class="pl-c">//</span> height, including subTitle. default is 50</span>
-		titleTop<span class="pl-k">:</span> <span class="pl-c1">25</span>, <span class="pl-c"><span class="pl-c">//</span> draws y coordinates. default is 30</span>
-		
-		<span class="pl-c"><span class="pl-c">//</span> ==== SubTitle</span>
-		subTitle<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>QR subTitle<span class="pl-pds">'</span></span>, <span class="pl-c"><span class="pl-c">//</span> content</span>
-		subTitleFont<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">&quot;</span>14px Arial<span class="pl-pds">&quot;</span></span>, <span class="pl-c"><span class="pl-c">//</span> font. default is &quot;14px Arial&quot;</span>
-		subTitleColor<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#004284<span class="pl-pds">&quot;</span></span>, <span class="pl-c"><span class="pl-c">//</span> color. default is &quot;gray&quot;</span>
-		subTitleTop<span class="pl-k">:</span> <span class="pl-c1">40</span>, <span class="pl-c"><span class="pl-c">//</span> draws y coordinates. default is 50</span>
-		
-		<span class="pl-c"><span class="pl-c">//</span> ==== Logo</span>
-		logo<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">&quot;</span>../demo/logo.png<span class="pl-pds">&quot;</span></span>, <span class="pl-c"><span class="pl-c">//</span> Relative address, relative to `easy.qrcode.min.js`</span>
-	<span class="pl-c"><span class="pl-c">//</span>	logo:&quot;http://127.0.0.1:8020/easy-qrcodejs/demo/logo.png&quot;, </span>
-	<span class="pl-c"><span class="pl-c">//</span>	logoWidth:80, // widht. default is automatic width</span>
-	<span class="pl-c"><span class="pl-c">//</span>	logoHeight:80 // height. default is automatic height</span>
-	
-	});
-<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span></pre>
-</div> 
-<p>and you can use some methods</p> 
-<div class="highlight highlight-source-js">
- <pre><span class="pl-smi">qrcode</span>.<span class="pl-c1">clear</span>(); <span class="pl-c"><span class="pl-c">//</span> clear the code.</span>
-<span class="pl-smi">qrcode</span>.<span class="pl-en">makeCode</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>http://naver.com<span class="pl-pds">&quot;</span></span>); <span class="pl-c"><span class="pl-c">//</span> make another code.</span></pre>
-</div> 
-<h2> <a id="browser-compatibility" class="anchor" href="#browser-compatibility" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Browser Compatibility</h2> 
-<p>IE6~10, Chrome, Firefox, Safari, Opera, Mobile Safari, Android, Windows Mobile, ETC.</p> 
-<h2> <a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2> 
-<p>MIT License</p> 
-<h2> <a id="end" class="anchor" href="#end" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>End</h2> 
-<p>Email：<a href="mailto:inthinkcolor@gmail.com">inthinkcolor@gmail.com</a></p> 
-<p><a href="http://www.easyproject.cn" title="EasyProject Home">http://www.easyproject.cn</a></p> 
-<p><strong>支付宝钱包扫一扫捐助：</strong></p> 
-<p>我们相信，每个人的点滴贡献，都将是推动产生更多、更好免费开源产品的一大步。</p> 
-<p><strong>感谢慷慨捐助，以支持服务器运行和鼓励更多社区成员。</strong></p> 
-<p><a href="https://camo.githubusercontent.com/0079923bf4bc9ed15a8be36a117559592e024d1b/687474703a2f2f7777772e6561737970726f6a6563742e636e2f696d616765732f732e706e67" target="_blank"><img alt="支付宝钱包扫一扫捐助" src="https://camo.githubusercontent.com/0079923bf4bc9ed15a8be36a117559592e024d1b/687474703a2f2f7777772e6561737970726f6a6563742e636e2f696d616765732f732e706e67" title="支付宝钱包扫一扫捐助" height="256" width="256" data-canonical-src="http://www.easyproject.cn/images/s.png" style="max-width:100%;" /></a></p> 
-<p>We believe that the contribution of each bit by bit, will be driven to produce more and better free and open source products a big step.</p> 
-<p><strong>Thank you donation to support the server running and encourage more community members.</strong></p> 
-<p><a href="https://www.paypal.me/easyproject/10" title="Make payments with PayPal - it's fast, free and secure!"><img src="https://camo.githubusercontent.com/25fd45a9c199091fd684c9f11b37c386b4301087/687474703a2f2f7777772e6561737970726f6a6563742e636e2f696d616765732f70617970616c646f6e6174696f6e352e6a7067" alt="PayPal" data-canonical-src="http://www.easyproject.cn/images/paypaldonation5.jpg" style="max-width:100%;" /></a></p>
+
 </body>
 </html>

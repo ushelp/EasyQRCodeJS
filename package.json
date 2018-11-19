@@ -1,6 +1,6 @@
 {
   "name": "easyqrcodejs",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Cross-browser QRCode generator for pure javascript. Supports title, subtitle and Logo image settings.",
   "main": "dist/easy.qrcode.min.js",
   "scripts": {

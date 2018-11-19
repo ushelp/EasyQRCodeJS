@@ -16,6 +16,8 @@ EasyQRCodeJS is a Cross-Browser pure JavaScript QRCode generation library based 
 	
 	- 支持为二维码生成添加 Logo 图片
 	
+	- 支持背景透明的 PNG 图片
+	
 	- 不依赖任何第三方
 
 
@@ -26,6 +28,8 @@ EasyQRCodeJS is a Cross-Browser pure JavaScript QRCode generation library based 
 	- Support for setting the title and subtitle 
 	
 	- Supports adding Logo images 
+	
+	- Support for transparent PNG images
 	
 	- Has no dependencies.
 
@@ -89,7 +93,9 @@ or with some options
 	//	logo:"http://127.0.0.1:8020/easy-qrcodejs/demo/logo.png", 
 	//	logoWidth:80, // widht. default is automatic width
 	//	logoHeight:80 // height. default is automatic height
-	
+	//	logoBgColor:'#fffff', // Logo backgroud color, Invalid when `logBgTransparent` is true; default is '#ffffff'
+    //  logoBgTransparent:false, // Use transparent image, default is false
+					
 	});
 </script>
 ```
@@ -98,7 +104,7 @@ and you can use some methods
 
 ```JS
 qrcode.clear(); // clear the code.
-qrcode.makeCode("http://naver.com"); // make another code.
+qrcode.makeCode("https://github.com/ushelp/EasyQRCodeJS"); // make another code.
 ```
 
 ## Browser Compatibility
