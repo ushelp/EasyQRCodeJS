@@ -8,17 +8,27 @@
 	
 		<style type="text/css">
 			*{text-align: center; font-family: helvetica;}
-			img,table,#qrcode{
-				margin: 10px auto !important;
-				text-align: center;
+			.container{
+				width: 1000px;
+				margin: 10px auto;
 			}
+			.imgblock{
+				margin: 10px 0;
+				text-align: center;
+				float: left;
+			}
+			
+			.qr table{
+				margin: 0 auto;
+			}
+			
 			.title{
 				font-size: 20px; 
 				font-weight: bold;
-				color: red;
-				text-align: left;
-				width: 300px;
-				margin: 10px auto;
+				color: #e1622f;  
+				text-align: center;
+				width: 330px;
+				margin: 10px auto; 
 			}
 			body{margin: 0; padding: 0;}
 			h1{
@@ -31,6 +41,7 @@
 				margin-top: 20px;
 				border-top: 1px solid gainsboro;
 				line-height: 40px;
+				clear: both;
 			}
 			#footer a{
 				color: #0084C6;
@@ -41,79 +52,107 @@
 
 	<body>
 		<h1>EasyQRCodeJS demo</h1>
-		<div class="title">Title + SubTitle + Logo</div>
-		<div id="qrcode"></div>
 		
-		<br />
-		<br />
-		<div class="title">Title</div>
-		<div id="qrcode2"></div>
-		
-		<br />
-		<br />
-		<div class="title">No title</div>
-		<div id="qrcode3"></div>
-
+		<div class="container">
+			
+			<div class="imgblock">
+				<div class="title">Title + SubTitle + Logo + Eye Color</div>
+				<div id="qrcode" class="qr"></div>
+			</div>
+			
+			<div class="imgblock">
+				<div class="title">Title</div>
+				<div id="qrcode2" class="qr"></div>
+			</div>
+			
+			<div class="imgblock">
+				<div class="title">No title</div>
+				<div id="qrcode3" class="qr"></div>
+			</div>
+		</div>
 
 		<script type="text/javascript">
-
 			function showQr() {
 				new QRCode(document.getElementById("qrcode"), {
-					text: "hello EasyQRCodeJS", // 内容
-					width: 200, // 宽度
-					height: 200, // 高度，包含标题高 50px
-					colorDark: "#000000", // 深色
-					colorLight: "#ffffff", // 浅色
+					text: "Hello EasyQRCodeJS", // Content
 					
-					title: 'QR Title', // 标题
-					titleFont: "bold 18px Arial", // 标题字体
-					titleColor: "#004284", // 标题颜色
-					titleBgColor: "#fff", // 标题背景
-					titleHeight: 70, // 标题高度，包含 subTitle
-					titleTop: 25, // 标题绘制 y 坐标
+					width: 220, // Widht
+					height: 220, // Height
+					colorDark: "#000000", // Dark color
+					colorLight: "#ffffff", // Light color
+					
+					// === Title
+					title: 'QR Title', // Title
+					titleFont: "bold 18px Arial", // Title font
+					titleColor: "#004284", // Title Color
+					titleBgColor: "#fff", // Title Background
+					titleHeight: 70, // Title height, include subTitle
+					titleTop: 25, // Title draw position(Y coordinate), default is 30
 
-					subTitle: 'QR subTitle', // 副标题内容
-					subTitleFont: "14px Arial", // 副标题字体
-					subTitleColor: "#004284", // 副标题颜色
-					subTitleTop: 40, // 副标题绘制 y 坐标
 
+					// === SubTitle
+					subTitle: 'QR subTitle', // Subtitle content
+					subTitleFont: "14px Arial", // Subtitle font
+					subTitleColor: "#004284", // Subtitle color
+					subTitleTop: 40, // Subtitle drwa position(Y coordinate), default is 50
+
+
+					// === Logo
 					logo:"../demo/logo-transparent.png", // LOGO
-//					logo:"http://127.0.0.1:8020/easy-qrcodejs/demo/logo.png", 
-//					logoWidth:80, // 
+//					logo:"http://127.0.0.1:8020/easy-qrcodejs/demo/logo.png",  
+//					logoWidth:80, 
 //					logoHeight:80,
 					logoBgColor:'#ffffff', // Logo backgroud color, Invalid when `logBgTransparent` is true; default is '#ffffff'
-//					logoBgTransparent:false, // Whether use transparent image, default is false
+					logoBgTransparent:false, // Whether use transparent image, default is false
 					
-					correctLevel: QRCode.CorrectLevel.H // 纠错级别， L, M, Q, H
+					// === Eye Color
+					EO: '#e1622f', // Global Eye Outer color, if not set, the defaut is `colorDark`
+					EI: '#aa5b71', // Global Eye Inner color, if not set, the defaut is `colorLight`
+//					EO_TL:'', // Eye Outer - Top Left 
+					EI_TL:'#b7d28d', // Eye Inner - Top Left 
+					EO_TR:'#aa5b71', // Eye Outer - Top Right 
+					EI_TR:'#c17e61', // Eye Inner - Top Right 
+//					EO_BL:'', // Eye Outer - Bottom Left 
+//					EI_BL:'' // Eye Inner - Bottom Left 
+					
+					correctLevel: QRCode.CorrectLevel.H // L, M, Q, H
 				});
 			}
 			
 			function showQr2() {
 				new QRCode(document.getElementById("qrcode2"), {
-					text: "hello EasyQRCodeJS2", // 内容
-
-					title: 'QR Title', // 标题
-					titleFont: "bold 18px Arial", // 标题字体
-					titleColor: "#fff", // 标题颜色
-					titleBgColor: "#3074B4", // 标题背景
-					titleHeight: 40, // 标题高度，包含 subTitle
-					titleTop: 25, // 标题绘制 y 坐标
-					width: 200, // 宽度
-					height: 200, // 高度，包含标题高 50px
-					colorDark: "#000000", // 深色
-					colorLight: "#ffffff", // 浅色
-					correctLevel: QRCode.CorrectLevel.H // 纠错级别， L, M, Q, H
+					text: "Hello EasyQRCodeJS2", 
+					width: 220,
+					height: 220, 
+					
+					title: 'QR Title', 
+					titleFont: "bold 18px Arial", 
+					titleColor: "#fff",
+					titleBgColor: "#3074B4", 
+					titleHeight: 40, 
+					titleTop: 25, 
+					
+					colorDark: "#000000", 
+					colorLight: "#ffffff", 
+					
+					correctLevel: QRCode.CorrectLevel.H //  L, M, Q, H
 				});
 			}
 			
 			function showQr3() {
 				new QRCode(document.getElementById("qrcode3"), {
-					text: "hello EasyQRCodeJS3", // 内容
-					width: 200, // 宽度
-					height: 200, // 高度，包含标题高 50px
-					colorDark: "#000000", // 深色
-					colorLight: "#ffffff", // 浅色
-					correctLevel: QRCode.CorrectLevel.H // 纠错级别， L, M, Q, H
+					text: "Hello EasyQRCodeJS3", 
+					
+					width: 220, 
+					height: 220, 
+					colorDark: "#000000", 
+					colorLight: "#ffffff", 
+					
+					EI: '#f55066',
+					
+					correctLevel: QRCode.CorrectLevel.H // L, M, Q, H
+					
+					
 				});
 			}
 			

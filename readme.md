@@ -17,6 +17,8 @@ EasyQRCodeJS is a Cross-Browser pure JavaScript QRCode generation library based 
 	- 支持为二维码生成添加 Logo 图片
 	
 	- 支持背景透明的 PNG 图片
+
+    - 支持自定义定位图案的内填充和外边框颜色
 	
 	- 不依赖任何第三方
 
@@ -30,6 +32,8 @@ EasyQRCodeJS is a Cross-Browser pure JavaScript QRCode generation library based 
 	- Supports adding Logo images 
 	
 	- Support for transparent PNG images
+
+    - Support setting position patterns color(Eye inner and outer)
 	
 	- Has no dependencies.
 
@@ -72,7 +76,7 @@ or with some options
 		height: 256,
 		colorDark : "#000000",
 		colorLight : "#ffffff",
-		correctLevel : QRCode.CorrectLevel.H,
+		correctLevel : QRCode.CorrectLevel.H, // L, M, Q, H
 		
 		// ==== Title
 		title: 'QR Title', // content 
@@ -96,6 +100,16 @@ or with some options
 	//	logoBgColor:'#fffff', // Logo backgroud color, Invalid when `logBgTransparent` is true; default is '#ffffff'
 	//	logoBgTransparent:false, // Whether use transparent image, default is false
 					
+		// === Position pattern Color(Eye Color)
+	//	EO: '#e1622f', // Global Eye Outer color, if not set, the defaut is `colorDark`
+	//	EI: '#aa5b71', // Global Eye Inner color, if not set, the defaut is `colorLight`
+	//	EO_TL:'', // Eye Outer color - Top Left 
+	//	EI_TL:'', // Eye Inner color - Top Left 
+	//	EO_TR:'', // Eye Outer color - Top Right 
+	//	EI_TR:'', // Eye Inner color - Top Right 
+	//	EO_BL:'', // Eye Outer color - Bottom Left 
+	//	EI_BL:'' // Eye Inner color - Bottom Left 
+		
 	});
 </script>
 ```
