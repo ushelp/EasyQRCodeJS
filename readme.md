@@ -1,9 +1,9 @@
 # EasyQRCodeJS
 
-EasyQRCodeJS 是一个基于 [QRCodeJS](https://github.com/davidshimjs/qrcodejs "QRCodeJS") 的跨浏览器的纯 JavaScript QRCode 生成库。并支持二维码图片标题，副标题生成，Logo 图片生成。
+EasyQRCodeJS 是一个基于 [QRCodeJS](https://github.com/davidshimjs/qrcodejs "QRCodeJS") 的跨浏览器的纯 JavaScript QRCode 生成库。并支持二维码图片标题，副标题，自定义定位图案颜色，Logo 图片生成。
 
 
-EasyQRCodeJS is a Cross-Browser pure JavaScript QRCode generation library based on [QRCodeJS](https://github.com/davidshimjs/qrcodejs "QRCodeJS"). And support two-dimensional code picture title, subtitle generation, Logo image generation.
+EasyQRCodeJS is a Cross-Browser pure JavaScript QRCode generation library based on [QRCodeJS](https://github.com/davidshimjs/qrcodejs "QRCodeJS"). And support two-dimensional code picture title, subtitle generation, Custom position pattern color, Logo image generation.
 
 
 ## Feature/特点
