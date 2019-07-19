@@ -1600,8 +1600,8 @@ var QRCode;
 			logoBgTransparent: false,
 			
 			// === Eye Color
-			EO: undefined, // Global Eye Outer color, if not set, the defaut is `colorDark`
-			EI: undefined, // Global Eye Inner color, if not set, the defaut is `colorLight`
+			EO: undefined, // Global Eye Outer color. if not set, the defaut is `colorDark`
+			EI: undefined, // Global Eye Inner color. if not set, the defaut is `colorDark`
 			EO_TL:undefined, // Eye Outer - Top Left 
 			EI_TL:undefined, // Eye Inner - Top Left 
 			EO_TR:undefined, // Eye Outer - Top Right 

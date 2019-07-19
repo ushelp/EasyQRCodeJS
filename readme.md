@@ -101,8 +101,8 @@ or with some options
 	//	logoBgTransparent:false, // Whether use transparent image, default is false
 					
 		// === Position pattern Color(Eye Color)
-	//	EO: '#e1622f', // Global Eye Outer color, if not set, the defaut is `colorDark`
-	//	EI: '#aa5b71', // Global Eye Inner color, if not set, the defaut is `colorLight`
+	//	EO: '#e1622f', // Global Eye Outer color. if not set, the defaut is `colorDark`
+	//	EI: '#aa5b71', // Global Eye Inner color. if not set, the defaut is `colorDark`
 	//	EO_TL:'', // Eye Outer color - Top Left 
 	//	EI_TL:'', // Eye Inner color - Top Left 
 	//	EO_TR:'', // Eye Outer color - Top Right 
