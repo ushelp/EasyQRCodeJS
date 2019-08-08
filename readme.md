@@ -241,7 +241,7 @@ Email：<inthinkcolor@gmail.com>
 
 
 <img alt="
-支付宝/微信/QQ/云闪付/PayPal 扫码支付" src="http://www.easyproject.cn/thanks/donation.png"  title="支付宝/微信/QQ/云闪付/PayPal 扫码支付"  height="256" width="256"></img>
+支付宝/微信/QQ/云闪付/PayPal 扫码支付" src="http://www.easyproject.cn/thanks/donation.png"  title="支付宝/微信/QQ/云闪付/PayPal 扫码支付"  height="320" width="320"></img>
 <div>支付宝/微信/QQ/云闪付/PayPal</div>
 
 <br/>
