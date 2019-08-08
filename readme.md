@@ -54,7 +54,7 @@ EasyQRCodeJS is a feature-rich cross-browser pure JavaScript QRCode generation l
 
 ## Demo preview
 
-![Demmo preview](doc/images/demo.png)
+![Demo preview](doc/images/demo.png)
 
 ## QR Code Structure
 
@@ -70,7 +70,7 @@ EasyQRCodeJS is a feature-rich cross-browser pure JavaScript QRCode generation l
 	
 	```
 
-- Npm install/Npm 安装
+- Npm install
 
 	```BASH
 	npm install easyqrcodejs
@@ -166,7 +166,7 @@ var qrcode = new QRCode(DOM_object, options_object);
 ```
 
 | Option | Required | Type | Defaults | Description | Compatibility |
-| --- | --- |--- | --- |--- | 
+| --- | --- |--- | --- |--- | --- |
 | Basic options| --- | ---|---|---|---|
 | **text** | Y | String |`''` |  Text | &nbsp; |
 | **width** | N | Number | `256` |  Width |  &nbsp; |
@@ -175,13 +175,13 @@ var qrcode = new QRCode(DOM_object, options_object);
 | **colorLight** | N | String | `#ffffff` | Light CSS color |  &nbsp; |
 | **correctLevel** | N | Enum | `QRCode.CorrectLevel.H` | `QRCode.CorrectLevel.H`<br/>`QRCode.CorrectLevel.Q` <br/> `QRCode.CorrectLevel.M` <br/> `QRCode.CorrectLevel.L`|  &nbsp; |
 | **dotScale** | N | Number | `1.0` |Dot style required Patterns. Ranges: `0-1.0` | IE9+ |
-| Logo options| --- | ---|---|---|---|`
+| Logo options| --- | ---|---|---|---|
 | **logo** | N | String | `undefined` | Logo Image Path. If use relative address, relative to `easy.qrcode.min.js` |  &nbsp; |
 | **logoWidth** | N | Number | `undefined` |  Height |  &nbsp; |
 | **logoHeight** | N | Number | `undefined` |  Width |  &nbsp; |
 | **logoBackgroundTransparent** | N | Boolean | `false` |  Whether the background transparent image shows transparency |  &nbsp; |
 | **logoBackgroundColor** | N | String | `#ffffff` |  Set Background CSS Color when image background transparent |  &nbsp; |
-| Backgroud Image options|  ---|--- |---|---|---  |
+| Backgroud Image options|  ---|--- |---|---|---|
 | **backgroundImage** | N | String | `undefined` | Background Image Path. If use relative address, relative to `easy.qrcode.min.js` |  IE9+ |
 | **backgroundImageAlpha** | N | Number | `1.0` |  Background image transparency. Ranges: `0-1.0`  |  IE9+ |
 | **autoColor** | N | Boolean | `false` |  Automatic color adjustment |  IE9+ |
