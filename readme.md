@@ -212,7 +212,7 @@ var qrcode = new QRCode(DOM_object, options_object);
 | **subTitle** | N | String | `''` |  |  &nbsp; |
 | **subTitleFont** | N | String | `14px Arial` | CSS Font |  &nbsp; |
 | **subTitleColor** | N | String | `#4F4F4F` | CSS color |  &nbsp; |
-| **subTitleTop** | N | String | `0` | draws y coordinates. default is 0|  &nbsp; |
+| **subTitleTop** | N | Number | `0` | draws y coordinates. default is 0|  &nbsp; |
 
 
 
