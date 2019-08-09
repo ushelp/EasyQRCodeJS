@@ -33,7 +33,7 @@
 				margin: 10px 0;
 				text-align: center;
 				float: left;
-				height: 420px;
+				min-height: 420px;
 				border-bottom: 1px solid #B4B7B4;
 			}
 
@@ -111,6 +111,7 @@
 
 						width: 240,
 						height: 240,
+						quietZone: 0,
 						colorDark: "#000000",
 						colorLight: "#ffffff",
 
@@ -146,7 +147,7 @@
 				
 						correctLevel: QRCode.CorrectLevel.H, // L, M, Q, H
 				
-						// IE9+ Only
+						
 						dotScale: 0.4
 					}
 				
@@ -192,7 +193,7 @@
 				
 						correctLevel: QRCode.CorrectLevel.H, // L, M, Q, H
 				
-						// IE9+ Only
+						
 						dotScale: 0.5
 					}
 				
@@ -217,7 +218,7 @@
 
 						correctLevel: QRCode.CorrectLevel.H, //  L, M, Q, H
 
-						// IE9+ Only
+						
 						dotScale: 0.4
 
 					}
@@ -239,7 +240,7 @@
 						backgroundImageAlpha: 1,
 						autoColor: false,
 
-						// IE9+ Only
+						
 						dotScale: 1
 
 					}
@@ -262,7 +263,7 @@
 						backgroundImage: 'logo.png',
 						autoColor: true,
 						
-						// IE9+ Only
+						
 						dotScale: 0.5
 					}
 				
@@ -285,7 +286,7 @@
 						backgroundImageAlpha: 0.3,
 						autoColor: true,
 				
-						// IE9+ Only
+						
 						dotScale: 0.5,
 						
 						binarize: true
@@ -294,7 +295,6 @@
 					}
 				
 				},
-				
 				
 				{
 					title: "Logo",
@@ -309,7 +309,7 @@
 
 
 						// === Logo
-						logo: "../demo/logo-transparent.png", // LOGO
+						logo: "logo-transparent.png", // LOGO
 						//					logo:"http://127.0.0.1:8020/easy-qrcodejs/demo/logo.png",  
 						//					logoWidth:80, 
 						//					logoHeight:80,
@@ -335,7 +335,7 @@
 				
 				
 						// === Logo
-						logo: "../demo/logo-transparent.png", // LOGO
+						logo: "logo-transparent.png", // LOGO
 						//					logo:"http://127.0.0.1:8020/easy-qrcodejs/demo/logo.png",  
 						//					logoWidth:80, 
 						//					logoHeight:80,
@@ -348,12 +348,11 @@
 				
 						correctLevel: QRCode.CorrectLevel.H, // L, M, Q, H
 				
-						// IE9+ Only
+						
 						dotScale: 0.5
 					}
 				
 				},
-				// All
 				{
 					title: "Logo + Colorful",
 					config: {
@@ -365,7 +364,7 @@
 						colorLight: "#FFF8DC", // Light color
 				
 						// === Logo
-						logo: "../demo/logo-transparent.png", // LOGO
+						logo: "logo-transparent.png", // LOGO
 						//					logo:"http://127.0.0.1:8020/easy-qrcodejs/demo/logo.png",  
 						//					logoWidth:80, 
 						//					logoHeight:80,
@@ -392,24 +391,24 @@
 				
 						correctLevel: QRCode.CorrectLevel.H, // L, M, Q, H
 				
-						// IE9+ Only
+						
 						dotScale: 0.5
 					}
 				
 				},
-				// All
 				{
-					title: "Logo + Background",
+					title: "QuietZone + Logo + Background",
 					config: {
 						text: "www.easyproject.cn/donation", // Content
 				
 						width: 240, // Widht
 						height: 240, // Height
+						quietZone: 20, 
 						colorDark: "#27408B", // Dark color
 						colorLight: "#FFF8DC", // Light color
 				
 						// === Logo
-						logo: "../demo/logo-transparent.png", // LOGO
+						logo: "https://avatars1.githubusercontent.com/u/4082017?s=160&v=4", // LOGO
 						//					logo:"http://127.0.0.1:8020/easy-qrcodejs/demo/logo.png",  
 						//					logoWidth:80, 
 						//					logoHeight:80,
@@ -441,7 +440,7 @@
 				
 						correctLevel: QRCode.CorrectLevel.H, // L, M, Q, H
 				
-						// IE9+ Only
+						
 						dotScale: 0.5
 					}
 				
@@ -469,7 +468,7 @@
 
 						correctLevel: QRCode.CorrectLevel.H, //  L, M, Q, H
 
-						// IE9+ Only
+						
 						dotScale: 0.4
 					}
 
@@ -485,6 +484,7 @@
 
 						width: 240, // Widht
 						height: 240, // Height
+						quietZone: 0,
 						colorDark: "#000000", // Dark color
 						colorLight: "#FFFACD", // Light color
 
@@ -505,7 +505,7 @@
 
 
 						// === Logo
-						logo: "../demo/hamburger.png", // LOGO
+						logo: "hamburger.png", // LOGO
 						//					logo:"http://127.0.0.1:8020/easy-qrcodejs/demo/logo.png",  
 						//					logoWidth:80, 
 						//					logoHeight:80,
@@ -535,7 +535,7 @@
 
 						correctLevel: QRCode.CorrectLevel.H, // L, M, Q, H
 
-						// IE9+ Only
+						
 						dotScale: 0.5
 					}
 

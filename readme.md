@@ -13,6 +13,8 @@ EasyQRCodeJS is a feature-rich cross-browser pure JavaScript QRCode generation l
 
     - 支持点形风格的 Required Patterns
 
+	- 支持 Quiet Zone 设置
+	
     - 支持自定义 Position Pattern 内填充和外边框颜色
 	
     - 支持自定义 Alignment Pattern 内填充和外边框颜色
@@ -33,7 +35,9 @@ EasyQRCodeJS is a feature-rich cross-browser pure JavaScript QRCode generation l
 	- Cross-browser support for QR code generation based on HTML5 Canvas and Table
 
     - Required Patterns that support dot style
-
+ 
+	- Support for Quiet Zone settings
+	
     - Support custom Position Pattern inner fill and outer border color
 
     - Support custom Alignment Pattern inner fill and outer border color
@@ -95,7 +99,7 @@ EasyQRCodeJS is a feature-rich cross-browser pure JavaScript QRCode generation l
 
 ## QRCode API
 
-### Object 
+### Object
 
 ```JS
 var qrcode = new QRCode(DOM_object, options_object);
@@ -110,6 +114,7 @@ var qrcode = new QRCode(DOM_object, options_object);
 		text: "https://github.com/ushelp/EasyQRCodeJS",
 		width: 256,
 		height: 256,
+		quietZone: 0,
 		colorDark : "#000000",
 		colorLight : "#ffffff",
 		correctLevel : QRCode.CorrectLevel.H, // L, M, Q, H
@@ -162,6 +167,9 @@ var qrcode = new QRCode(DOM_object, options_object);
 		//	subTitleFont: "14px Arial", // font. default is "14px Arial"
 		//	subTitleColor: "#004284", // color. default is "4F4F4F"
 		//	subTitleTop: 40, // draws y coordinates. default is 0
+		
+		// ===== Event Handler
+		//	onRender: undefined
 }
 ```
 
@@ -171,10 +179,11 @@ var qrcode = new QRCode(DOM_object, options_object);
 | **text** | Y | String |`''` |  Text | &nbsp; |
 | **width** | N | Number | `256` |  Width |  &nbsp; |
 | **height** | N | Number | `256` |  Height |  &nbsp; |
+| **quietZone** | N | Number | `0` |  Quiet Zone size |  &nbsp; |
 | **colorDark** | N | String | `#000000` | Dark CSS color |  &nbsp; |
 | **colorLight** | N | String | `#ffffff` | Light CSS color |  &nbsp; |
 | **correctLevel** | N | Enum | `QRCode.CorrectLevel.H` | `QRCode.CorrectLevel.H`<br/>`QRCode.CorrectLevel.Q` <br/> `QRCode.CorrectLevel.M` <br/> `QRCode.CorrectLevel.L`|  &nbsp; |
-| **dotScale** | N | Number | `1.0` |Dot style required Patterns. Ranges: `0-1.0` | IE9+ |
+| **dotScale** | N | Number | `1.0` |Dot style required Patterns. Ranges: `0-1.0` | &nbsp; |
 | Logo options| --- | ---|---|---|---|
 | **logo** | N | String | `undefined` | Logo Image Path. If use relative address, relative to `easy.qrcode.min.js` |  &nbsp; |
 | **logoWidth** | N | Number | `undefined` |  Height |  &nbsp; |
@@ -182,9 +191,9 @@ var qrcode = new QRCode(DOM_object, options_object);
 | **logoBackgroundTransparent** | N | Boolean | `false` |  Whether the background transparent image shows transparency |  &nbsp; |
 | **logoBackgroundColor** | N | String | `#ffffff` |  Set Background CSS Color when image background transparent |  &nbsp; |
 | Backgroud Image options|  ---|--- |---|---|---|
-| **backgroundImage** | N | String | `undefined` | Background Image Path. If use relative address, relative to `easy.qrcode.min.js` |  IE9+ |
-| **backgroundImageAlpha** | N | Number | `1.0` |  Background image transparency. Ranges: `0-1.0`  |  IE9+ |
-| **autoColor** | N | Boolean | `false` |  Automatic color adjustment |  IE9+ |
+| **backgroundImage** | N | String | `undefined` | Background Image Path. If use relative address, relative to `easy.qrcode.min.js` |  &nbsp; |
+| **backgroundImageAlpha** | N | Number | `1.0` |  Background image transparency. Ranges: `0-1.0`  |  &nbsp; |
+| **autoColor** | N | Boolean | `false` |  Automatic color adjustment |  &nbsp; |
 | Posotion Pattern Color options| --- | ---|---|---|---|
 | **PO** | N | String | `undefined` | Global Posotion Outer CSS color. if not set, the defaut is `colorDark` |  &nbsp; |
 | **PI** | N | String | `undefined` | Global Posotion Inner CSS color. if not set, the defaut is `colorDark` |  &nbsp; |
@@ -213,6 +222,9 @@ var qrcode = new QRCode(DOM_object, options_object);
 | **subTitleFont** | N | String | `14px Arial` | CSS Font |  &nbsp; |
 | **subTitleColor** | N | String | `#4F4F4F` | CSS color |  &nbsp; |
 | **subTitleTop** | N | Number | `0` | draws y coordinates. default is 0|  &nbsp; |
+| Event Handler options| --- | ---|---|---|---|
+| **onRender** | N | Function | `undefined` | Callback function when rendering. can use to hide loading state or handling.  |  &nbsp; |
+
 
 
 

@@ -1074,31 +1074,64 @@ var QRCode;
 			var _htOption = this._htOption;
 			var _el = this._el;
 			var nCount = oQRCode.getModuleCount();
-			var nWidth = Math.floor(_htOption.width / nCount);
-			var nHeight = Math.floor((_htOption.height - _htOption.titleHeight) / nCount);
-
+			var nWidth = Math.round(_htOption.width / nCount);
+			var nHeight = Math.round((_htOption.height - _htOption.titleHeight) / nCount);
+			
+			this._htOption.width = nWidth*nCount; 
+			this._htOption.height = nHeight*nCount + _htOption.titleHeight;
+			
+			this._htOption.quietZone = Math.round(this._htOption.quietZone);
+			
 
 			var aHTML = [];
 			
-
-			aHTML.push('<table  style="border:0;border-collapse:collapse; margin-top:0;">');
-			aHTML.push('<tr><td style="border:0;border-collapse:collapse;margin:0;padding:0" colspan="' + nCount + '">')
+			var divStyle='';
+			
+			var drawWidth=Math.round(nWidth*_htOption.dotScale);
+			var drawHeight=Math.round(nHeight*_htOption.dotScale);
+			if(drawWidth<4){
+				drawWidth=4;
+				drawHeight=4;
+			}
+		
+			 var nonRequiredColorDark=_htOption.colorDark;
+			 var nonRequiredcolorLight=_htOption.colorLight;
+			if(_htOption.backgroundImage){
+				 if(_htOption.autoColor){
+					 _htOption.colorDark="rgba(0, 0, 0, .6);filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#99000000', EndColorStr='#99000000');";
+					 _htOption.colorLight="rgba(255, 255, 255, .7);filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#B2FFFFFF', EndColorStr='#B2FFFFFF');";
+					 
+					// _htOption.colorDark="rgba(0, 0, 0, .6)";
+					// _htOption.colorLight='rgba(255, 255, 255, .7)';
+				}else{
+					_htOption.colorLight='transparent';
+				}
+				
+				
+				var backgroundImageEle='<div style="display:inline-block; z-index:-10;position:absolute;"><img src="'+_htOption.backgroundImage+'" widht="'+(_htOption.width+_htOption.quietZone*2)+'" height="'+(_htOption.height+_htOption.quietZone*2)+'" style="opacity:'+_htOption.backgroundImageAlpha+';filter:alpha(opacity='+(_htOption.backgroundImageAlpha*100)+'); "/></div>';
+				aHTML.push(backgroundImageEle);
+			}
+			
+			if(_htOption.quietZone){
+				divStyle='padding:'+_htOption.quietZone+'px; display:inline-block; width:'+(_htOption.width+_htOption.quietZone*2)+'px;';
+			}
+			aHTML.push('<div style="font-size:0;'+divStyle+'">');
+			
+			aHTML.push('<table  style="font-size:0;border:0;border-collapse:collapse; margin-top:0;" border="0" cellspacing="0" cellspadding="0">');
+			aHTML.push('<tr height="'+_htOption.titleHeight+'" align="center"><td style="border:0;border-collapse:collapse;margin:0;padding:0" colspan="' + nCount + '">')
 			if (_htOption.title) {
 				var c = _htOption.titleColor;
 				var f = _htOption.titleFont;
-				aHTML.push('<div style="width:100%; margin-top:' + _htOption.titleTop + 'px"></div>');
-
-				aHTML.push('<div style="width:100%;color:' + c + ';font:' + f + ';background:' + _htOption.titleBackgroundColor + '">' +
+				aHTML.push('<div style="width:100%;margin-top:' + _htOption.titleTop + 'px;color:' + c + ';font:' + f + ';background:' + _htOption.titleBackgroundColor + '">' +
 					_htOption.title + '</div>');
 			}
 			if (_htOption.subTitle) {
-				aHTML.push('<div style="width:100%;margin-top:' + (_htOption.subTitleTop - _htOption.titleTop) + 'px"></div>');
-				aHTML.push('<div style="width:100%;color:' + _htOption.subTitleColor + '; font:' + _htOption.subTitleFont +
+				aHTML.push('<div style="width:100%;margin-top:' + (_htOption.subTitleTop - _htOption.titleTop) + 'px;color:' + _htOption.subTitleColor + '; font:' + _htOption.subTitleFont +
 					'">' + _htOption.subTitle + '</div>');
 			}
 			aHTML.push('</td></tr>')
 			for (var row = 0; row < nCount; row++) {
-				aHTML.push('<tr>');
+				aHTML.push('<tr style="border:0; padding:0; margin:0;" height="7">');
 
 				for (var col = 0; col < nCount; col++) {
 
@@ -1112,24 +1145,34 @@ var QRCode;
 						var type = eye.type;
 
 						// PX_XX, PX, colorDark, colorLight
-						var eyeColorDark = _htOption[type] || _htOption[type.substring(0, 2)] || _htOption.colorDark;
-						aHTML.push('<td style="border:0;border-collapse:collapse;padding:0;margin:0;width:' + nWidth + 'px;height:' +
-							nHeight + 'px;background-color:' + (bIsDark ? eyeColorDark : _htOption.colorLight) +
-							';"></td>');
+						var eyeColorDark = _htOption[type] || _htOption[type.substring(0, 2)] || nonRequiredColorDark;
+						aHTML.push('<td style="border:0;border-collapse:collapse;padding:0;margin:0;width:' + nWidth + 'px;height:' + nHeight + 'px;">'+
+						'<span style="width:' + nWidth + 'px;height:' + nHeight + 'px;background-color:' + (bIsDark ? eyeColorDark : nonRequiredcolorLight) +';"></span></td>');
 
 					} else {
 
 						// Timing Pattern 
 						var nowDarkColor = _htOption.colorDark;
 						if (row == 6) {
-							nowDarkColor = _htOption.timing_H || _htOption.timing || _htOption.colorDark;
+							nowDarkColor = _htOption.timing_H || _htOption.timing || nonRequiredColorDark;
+								aHTML.push('<td style="border:0;border-collapse:collapse;padding:0;margin:0;width:' + nWidth + 'px;height:' +
+								nHeight + 'px;background-color:' + (bIsDark ? nowDarkColor : nonRequiredcolorLight) +
+								';"></td>');
 						} else if (col == 6) {
-							nowDarkColor = _htOption.timing_V || _htOption.timing || _htOption.colorDark;
+							nowDarkColor = _htOption.timing_V || _htOption.timing || nonRequiredColorDark;
+							
+								aHTML.push('<td style="border:0;border-collapse:collapse;padding:0;margin:0;width:' + nWidth + 'px;height:' +
+								nHeight + 'px;background-color:' + (bIsDark ? nowDarkColor : nonRequiredcolorLight) +
+								';"></td>');
+							
+						}else{
+							aHTML.push('<td style="border:0;border-collapse:collapse;padding:0;margin:0;width:' + nWidth + 'px;height:' +
+								nHeight + 'px;">'+
+								'<div style="display:inline-block;width:' + drawWidth + 'px;height:' + drawHeight + 'px;background-color:' + (bIsDark ? nowDarkColor : _htOption.colorLight) +
+								';"></div></td>');
 						}
 
-						aHTML.push('<td style="border:0;border-collapse:collapse;padding:0;margin:0;width:' + nWidth + 'px;height:' +
-							nHeight + 'px;background-color:' + (bIsDark ? nowDarkColor : _htOption.colorLight) +
-							';"></td>');
+					
 
 
 					}
@@ -1141,39 +1184,39 @@ var QRCode;
 			}
 
 
+			aHTML.push('</table>');
+			aHTML.push('</div>');
+			
 			if (_htOption.logo) {
-
 				var img = new Image();
-				img.crossOrigin="Anonymous";
+				//img.crossOrigin="Anonymous";
 				img.src = _htOption.logo;
-
-				aHTML.push(
-					'<tr height="0" ><td align="center" style="border:0;border-collapse:collapse;margin:0;padding:0" colspan="' +
-					nCount + '">');
+				
 				var imgW = _htOption.width / 3.5;
 				var imgH = _htOption.height / 3.5;
 				if (imgW != imgH) {
 					imgW = imgH;
 				}
-
+				
 				if (_htOption.logoWidth) {
 					imgW = _htOption.logoWidth;
 				}
 				if (_htOption.logoHeight) {
 					imgH = _htOption.logoHeight;
 				}
-
-				var imgDivStyle = 'position:relative; z-index:1;display:inline;top:-' + ((_htOption.height) / 2 - imgH / 8) +
-					'px;';
+				
+				var imgDivStyle = 'position:relative; z-index:1;display:inline-block;top:-' + ((_htOption.height -_htOption.titleHeight) / 2 + imgH / 2 +_htOption.quietZone) +'px;text-align:center; width:'+imgW+'px; height:'+imgH+'px;';
 				if (!_htOption.logoBackgroundTransparent) {
 					imgDivStyle += 'background:' + _htOption.logoBackgroundColor;
 				}
 				aHTML.push('<div style="' + imgDivStyle + '"><img  src="' + _htOption.logo + '" width="' + imgW + '" height="' +
-					imgH + '"  style="z-index:1;"/></div>')
-				aHTML.push("</td></tr>");
+					imgH + '"  style="" /></div>')
 			}
-
-			aHTML.push('</table>');
+			
+			
+			
+			if(_htOption.onRender){_htOption.onRender()}
+			
 			_el.innerHTML = aHTML.join('');
 			// Fix the margin values as real size.
 			var elTable = _el.childNodes[0];
@@ -1182,7 +1225,7 @@ var QRCode;
 			if (nLeftMarginTable > 0 && nTopMarginTable > 0) {
 				elTable.style.margin = nTopMarginTable + "px " + nLeftMarginTable + "px";
 			}
-
+			
 
 		};
 
@@ -1196,7 +1239,7 @@ var QRCode;
 		return Drawing;
 	})() : (function() { // Drawing in Canvas
 		function _onMakeImage() {
-			this._elImage.crossOrigin='Anonymous';
+			//this._elImage.crossOrigin='Anonymous';
 			this._elImage.src = this._elCanvas.toDataURL("image/png");
 			this._elImage.style.display = "inline";
 			this._elCanvas.style.display = "none";
@@ -1318,9 +1361,11 @@ var QRCode;
 			this._htOption.width = nWidth*nCount; 
 			this._htOption.height = nHeight*nCount + _htOption.titleHeight;
 			
+			this._htOption.quietZone = Math.round(this._htOption.quietZone);
 			
-			this._elCanvas.width = this._htOption.width;
-			this._elCanvas.height = this._htOption.height;
+			
+			this._elCanvas.width = this._htOption.width + this._htOption.quietZone*2;
+			this._elCanvas.height = this._htOption.height + this._htOption.quietZone*2;
 			
 			
 			_elImage.style.display = "none";
@@ -1332,14 +1377,14 @@ var QRCode;
 				
 				// backgroundImage
 				var bgImg = new Image();
-				bgImg.crossOrigin='Anonymous';
+				//bgImg.crossOrigin='Anonymous';
 				bgImg.src = _htOption.backgroundImage;
 				bgImg.onload = function() {
 					_oContext.globalAlpha = 1;
 					
 					_oContext.globalAlpha = _htOption.backgroundImageAlpha;
 					
-					_oContext.drawImage(bgImg, 0, _htOption.titleHeight, _htOption.width, _htOption.height - _htOption.titleHeight);
+					_oContext.drawImage(bgImg, 0, _htOption.titleHeight , _htOption.width+ _htOption.quietZone*2, _htOption.height + _htOption.quietZone*2 - _htOption.titleHeight);
 					_oContext.globalAlpha = 1;
 					
 					
@@ -1351,11 +1396,11 @@ var QRCode;
 			}
 
 			function drawQrcode() {
-			
+				if(_htOption.onRender){_htOption.onRender()}
 				for (var row = 0; row < nCount; row++) {
 					for (var col = 0; col < nCount; col++) {
-						var nLeft = col * nWidth;
-						var nTop = row * nHeight;
+						var nLeft = col * nWidth + _htOption.quietZone;
+						var nTop = row * nHeight + _htOption.quietZone;
 			
 						var bIsDark = oQRCode.isDark(row, col);
 			
@@ -1444,7 +1489,7 @@ var QRCode;
 			
 				if (_htOption.logo) {
 					var img = new Image();
-					img.crossOrigin="Anonymous";
+					//img.crossOrigin="Anonymous";
 					img.src = _htOption.logo;
 					//				var img=document.createElement('img');
 					var _this = this;
@@ -1471,12 +1516,13 @@ var QRCode;
 							//}
 							_oContext.fillStyle = _htOption.logoBackgroundColor;
 			
-							_oContext.fillRect((_htOption.width - imgW) / 2 , (_htOption.height + _htOption.titleHeight - imgH) / 2, imgW , imgW );
+							_oContext.fillRect((_htOption.width+ _htOption.quietZone*2 - imgW) / 2 , (_htOption.height + _htOption.titleHeight+ _htOption.quietZone*2 - imgH) / 2, imgW , imgW );
 						}
 			
-						_oContext.drawImage(img, (_htOption.width - imgW) / 2, (_htOption.height + _htOption.titleHeight - imgH) / 2, imgW, imgH);
+						_oContext.drawImage(img, (_htOption.width+ _htOption.quietZone*2 - imgW) / 2, (_htOption.height + _htOption.titleHeight+ _htOption.quietZone*2 - imgH) / 2, imgW, imgH);
 			
 						_this._bIsPainted = true;
+						
 						_this.makeImage();
 					}
 			
@@ -1497,10 +1543,10 @@ var QRCode;
 						return;
 					}
 			
-			
 				} else {
 					this._bIsPainted = true;
 					this.makeImage();
+					
 				}
 				
 				
@@ -1636,10 +1682,13 @@ var QRCode;
 		this._htOption = {
 			width: 256,
 			height: 256,
+			quietZone: 0,
 			typeNumber: 4,
 			colorDark: "#000000",
 			colorLight: "#ffffff",
 			correctLevel: QRErrorCorrectLevel.H,
+			
+			dotScale: 1, // Must be greater than 0, less than or equal to 1. default is 1
 
 			title: "",
 			titleFont: "bold 16px Arial",
@@ -1683,8 +1732,8 @@ var QRCode;
 			backgroundImageAlpha: 1, // Background image transparency, value between 0 and 1. default is 1. 
 			autoColor: false,
 
-			// IE9+ Only
-			dotScale: 1 // Must be greater than 0, less than or equal to 1. default is 1
+			// ==== Event Handler
+			onRender: undefined
 
 		};
 
