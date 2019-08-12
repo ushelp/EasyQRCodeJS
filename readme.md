@@ -118,7 +118,7 @@ EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成
 	});
 	```
 
-- Node.js load(Use in [Electron](http://electronjs.org/ 'Electron'))
+- Node.js load(For Example, Use in [Electron](http://electronjs.org/ 'Electron'))
 
 	```JS
 	const QRCode = require('easyqrcodejs');
