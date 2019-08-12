@@ -1,9 +1,8 @@
 # EasyQRCodeJS
 
-EasyQRCodeJS is a feature-rich cross-browser pure JavaScript QRCode generation library. Support Dot style, Logo, Background image, Colorful, Title, etc.
+EasyQRCodeJS is a feature-rich cross-browser pure JavaScript QRCode generation library. Support for modular loading; Support Dot style, Logo, Background image, Colorful, Title and other settings. 
 
-EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成库。支持点状风格，Logo，背景图片，规则色彩控制，标题等。
-
+EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成库。支持模块化加载；支持点状风格，Logo，背景图片，规则色彩控制，标题等设置。
 
 ## Feature
 
@@ -28,7 +27,9 @@ EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成
 
     - Support for title, subtitle settings
 
-    - Has no dependencies.
+    - Has no dependencies
+
+    - Support AMD, CMD, CommonJS/Node.js JavaScript modules
     
     
 - **中文**
@@ -52,6 +53,8 @@ EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成
     - 支持标题，副标题设置
 	
     - 不依赖任何第三方
+	
+    - 支持 AMD，CMD, CommonJS/Node.js 模块加载
 
 
 ## Try It!
@@ -85,7 +88,6 @@ EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成
 
 ## Basic Usages
 ```HTML
-
 <div id="qrcode"></div>
 
 <script type="text/javascript">
@@ -99,6 +101,30 @@ EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成
 </script>
 ```
 
+- AMD load
+
+	```JS
+	require.config({
+		// 指定模块id 和其对应文件的相对路径
+		paths: {
+			QRCode: "<YOUR_PATH>/easy.qrcode.min"
+		}
+	});
+	
+	require(["QRCode"], function(QRCode){
+		
+		// Your code...
+		
+	});
+	```
+
+- Node.js load(Use in [Electron](http://electronjs.org/ 'Electron'))
+
+	```JS
+	const QRCode = require('easyqrcodejs');
+	
+	// Your code...
+	```
 ## QRCode API
 
 ### Object
