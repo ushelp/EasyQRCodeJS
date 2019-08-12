@@ -1,42 +1,20 @@
 # EasyQRCodeJS
 
-EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成库。
+EasyQRCodeJS is a feature-rich cross-browser pure JavaScript QRCode generation library. Support Dot style, Logo, Background image, Colorful, Title, etc.
 
-EasyQRCodeJS is a feature-rich cross-browser pure JavaScript QRCode generation library.
+EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成库。支持点状风格，Logo，背景图片，规则色彩控制，标题等。
 
 
 ## Feature
 
-- **中文**
-
-	- 跨浏览器，支持基于 HTML5 Canvas 和 Table 的二维码生成
-
-    - 支持点形风格的 Required Patterns
-
-	- 支持 Quiet Zone 设置
-	
-    - 支持自定义 Position Pattern 内填充和外边框颜色
-	
-    - 支持自定义 Alignment Pattern 内填充和外边框颜色
-
-    - 支持自定义 Timing Patterns 垂直，水平颜色
-
-    - 支持 Logo 图片（包括背景透明的 PNG 图片）
-
-    - 支持 Background Image 背景图片
-
-	- 支持标题，副标题设置
-	
-	- 不依赖任何第三方
-
 
 - **English**
 
-	- Cross-browser support for QR code generation based on HTML5 Canvas and Table
+    - Cross-browser support for QR code generation based on HTML5 Canvas and Table
 
     - Required Patterns that support dot style
  
-	- Support for Quiet Zone settings
+    - Support for Quiet Zone settings
 	
     - Support custom Position Pattern inner fill and outer border color
 
@@ -48,9 +26,33 @@ EasyQRCodeJS is a feature-rich cross-browser pure JavaScript QRCode generation l
 
     - Support Background Image
 
-	- Support for title, subtitle settings
+    - Support for title, subtitle settings
 
-	- Has no dependencies.
+    - Has no dependencies.
+    
+    
+- **中文**
+
+    - 跨浏览器，支持基于 HTML5 Canvas 和 Table 的二维码生成
+
+    - 支持点形风格的 Required Patterns
+
+    - 支持 Quiet Zone 设置
+	
+    - 支持自定义 Position Pattern 内填充和外边框颜色
+	
+    - 支持自定义 Alignment Pattern 内填充和外边框颜色
+
+    - 支持自定义 Timing Patterns 垂直，水平颜色
+
+    - 支持 Logo 图片（包括背景透明的 PNG 图片）
+
+    - 支持 Background Image 背景图片
+
+    - 支持标题，副标题设置
+	
+    - 不依赖任何第三方
+
 
 ## Try It!
 
