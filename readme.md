@@ -1,6 +1,6 @@
 # EasyQRCodeJS
 
-EasyQRCodeJS is a feature-rich cross-browser pure JavaScript QRCode generation library. Support for Javascript modules. Support Dot style, Logo, Background image, Colorful, Title and other settings. 
+EasyQRCodeJS is a feature-rich cross-browser pure JavaScript QRCode generation library. Support for Javascript modules. Support setting Dot style, Logo, Background image, Colorful, Title and more. 
 
 EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成库。支持 JavaScript 模块化加载。支持点状风格，Logo，背景图片，规则色彩控制，标题等设置。
 
