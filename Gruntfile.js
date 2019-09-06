@@ -12,7 +12,7 @@ module.exports = function(grunt) {
 `/**
  * EasyQRCodeJS
  * 
- * Cross-browser QRCode generator for pure javascript. Support Dot style, Logo, Background image, Colorful, Title, etc.
+ * Cross-browser QRCode generator for pure javascript. Support Dot style, Logo, Background image, Colorful, Title, etc.(Running with DOM on client side)
  * 
  * Version <%=pkg.version %>
  * 
@@ -20,14 +20,14 @@ module.exports = function(grunt) {
  * 
  * @see https://github.com/ushelp/EasyQRCodeJS 
  * @see http://www.easyproject.cn/easyqrcodejs/tryit.html
+ * @see https://github.com/ushelp/EasyQRCodeJS-NodeJS
  * 
  * Copyright 2017 Ray, EasyProject
  * Released under the MIT license
  * 
  * [Support AMD, CMD, CommonJS/Node.js]
  * 
- */
-`
+ */`
 			},
 			build: {
 				src: 'src/*.js',

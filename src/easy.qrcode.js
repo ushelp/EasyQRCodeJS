@@ -1,14 +1,15 @@
 /**
  * EasyQRCodeJS
  * 
- * Cross-browser QRCode generator for pure javascript. Support Dot style, Logo, Background image, Colorful, Title, etc.
+ * Cross-browser QRCode generator for pure javascript. Support Dot style, Logo, Background image, Colorful, Title, etc.(Running with DOM on client side)
  * 
- * Version 3.1.0
+ * Version 3.2.0
  * 
  * @author [ inthinkcolor@gmail.com ]
  * 
  * @see https://github.com/ushelp/EasyQRCodeJS 
  * @see http://www.easyproject.cn/easyqrcodejs/tryit.html
+ * @see https://github.com/ushelp/EasyQRCodeJS-NodeJS
  * 
  * Copyright 2017 Ray, EasyProject
  * Released under the MIT license
@@ -1263,8 +1264,8 @@
 
 
 
-			if (_htOption.onRender) {
-				_htOption.onRender()
+			if (_htOption.onRenderingStart) {
+				_htOption.onRenderingStart()
 			}
 
 			_el.innerHTML = aHTML.join('');
@@ -1427,8 +1428,7 @@
 
 				// backgroundImage
 				var bgImg = new Image();
-				//bgImg.crossOrigin='Anonymous';
-				bgImg.src = _htOption.backgroundImage;
+				
 				bgImg.onload = function() {
 					_oContext.globalAlpha = 1;
 
@@ -1439,16 +1439,18 @@
 					_oContext.globalAlpha = 1;
 
 
-					drawQrcode.call(t);
+					drawQrcode.call(t, oQRCode);
 				}
+				//bgImg.crossOrigin='Anonymous';
+				bgImg.src = _htOption.backgroundImage;
 				// DoSomething
 			} else {
-				drawQrcode.call(t);
+				drawQrcode.call(t, oQRCode);
 			}
 
-			function drawQrcode() {
-				if (_htOption.onRender) {
-					_htOption.onRender()
+			function drawQrcode(oQRCode) {
+				if (_htOption.onRenderingStart) {
+					_htOption.onRenderingStart()
 				}
 				for (var row = 0; row < nCount; row++) {
 					for (var col = 0; col < nCount; col++) {
@@ -1527,7 +1529,7 @@
 
 				if (_htOption.title) {
 					_oContext.fillStyle = _htOption.titleBackgroundColor;
-					_oContext.fillRect(0, 0, _htOption.width, _htOption.titleHeight);
+					_oContext.fillRect(0, 0, this._elCanvas.width, _htOption.titleHeight);
 
 					_oContext.font = _htOption.titleFont;
 					_oContext.fillStyle = _htOption.titleColor;
@@ -1545,9 +1547,7 @@
 
 				if (_htOption.logo) {
 					var img = new Image();
-					//img.crossOrigin="Anonymous";
-					img.src = _htOption.logo;
-					//				var img=document.createElement('img');
+					
 					var _this = this;
 
 					function genratorImg() {
@@ -1593,13 +1593,9 @@
 						console.error(e)
 					}
 
+					//img.crossOrigin="Anonymous";
+					img.src = _htOption.logo;
 
-
-					if (img.complete) {
-						img.onload = null;
-						genratorImg();
-						return;
-					}
 
 				} else {
 					this._bIsPainted = true;
@@ -1791,7 +1787,7 @@
 			autoColor: false,
 
 			// ==== Event Handler
-			onRender: undefined
+			onRenderingStart: undefined
 
 		};
 

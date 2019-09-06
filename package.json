@@ -1,6 +1,6 @@
 {
 	"name": "easyqrcodejs",
-	"version": "3.1.0",
+	"version": "3.2.0",
 	"description": "A feature-rich cross-browser QRCode generator for pure javascript. Support Dot style, Logo, Background image, Colorful, Title, etc.",
 	"main": "dist/easy.qrcode.min.js",
 	"scripts": {},
@@ -20,16 +20,15 @@
 		"qrcodejs",
 		"easyqrcode",
 		"easyqrcodejs",
-		"easy qrcode",
-		"easy qrcodejs",
-		"easy-qrcode",
-		"easy-qrcodejs",
-		"easy.qrcodejs",
-		"easy.qrcodejs",
 		"javascript qrcode",
+		"canvas",
+		"html5",
+		"javascript",
 		"qrcode logo",
 		"html5 qrcode",
-		"qrcode generator"
+		"qrcode generator",
+		"qrcode client",
+		"qrcode client side"
 	],
 	"bugs": {
 		"url": "https://github.com/ushelp/EasyQRCodeJS/issues "
