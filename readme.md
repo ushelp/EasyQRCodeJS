@@ -5,6 +5,25 @@ EasyQRCodeJS is a feature-rich cross-browser pure JavaScript QRCode generation l
 EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成库。支持 JavaScript 模块化加载。支持点状风格，Logo，背景图片，规则色彩控制，标题等设置。
 
 
+## Table of contents
+
+- [Choose what you need](#choose-what-you-need)
+- [Feature](#feature)
+- [Try It!](#try-it)
+- [Demo preview](#demo-preview)
+- [QR Code Structure](#qr-code-structure)
+- [Installation](#installation)
+- [Basic Usages](#basic-usages)
+    - [Method](#method)
+- [Angular Support](#angular-support)
+- [Vue.js Support](#vuejs-support)
+- [React Support](#react-support)
+- [Browser Compatibility](#browser-compatibility)
+- [License](#license)
+- [End](#end)
+
+
+
 ## Choose what you need
 
 | Project | Support |
@@ -38,6 +57,8 @@ EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成
     - Has no dependencies
 
     - Support AMD, CMD, CommonJS/Node.js JavaScript modules
+
+    - Angular, Vue.js, React Support
     
     
 - **中文**
@@ -63,6 +84,9 @@ EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成
     - 不依赖任何第三方
 	
     - 支持 AMD，CMD, CommonJS/Node.js JavaScript 模块加载规范
+
+    - Angular, Vue.js, React 支持
+
 
 
 ## Try It!
@@ -293,7 +317,152 @@ var qrcode = new QRCode(DOM_object, options_object);
 	```JS
 	qrcode.makeCode("https://github.com/ushelp/EasyQRCodeJS"); // make another code text.
 	```
+    
+    
+    
+## Angular Support
 
+1. Add dependency
+
+    ```Shell
+    ng add easyqrcodejs
+    ```
+
+2. [NAME].component.html
+
+    ```HTML
+    <!-- DOM Element-->
+    <div #qrcode></div>
+    ```
+
+3. [NAME].component.ts
+
+    ```JavaScript
+    import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+    import * as QRCode from 'easyqrcodejs';
+
+    @Component({
+      selector: 'app-root',
+      templateUrl: './app.component.html',
+      styleUrls: ['./app.component.css']
+    })
+    export class AppComponent implements AfterViewInit{
+        
+      // Your DOM Element
+      @ViewChild('qrcode', {static: false}) qrcode: ElementRef;
+
+      ngAfterViewInit(){
+
+        // Options
+        var options = {
+          text: "https://github.com/ushelp/EasyQRCodeJS"
+        }
+
+        // Create new QRCode Object
+        new QRCode(this.qrcode.nativeElement, options);
+
+      }
+
+      btnClick(){
+        // ....
+      }
+
+    }
+    ```
+    
+## Vue.js Support
+
+1. Add dependency
+
+    ```Shell
+    # install with `npm`
+    npm install --save easyqrcodejs
+    
+    # Alternatively you may use `yarn`:
+    yarn add easyqrcodejs
+    ```
+
+2. Template
+
+    ```HTML
+    <!-- DOM Element-->
+    <div ref="qrcode></div>
+    ```
+ 
+3. Script   
+    
+    ```JavaScript
+    <script>
+    import * as QRCode from 'easyqrcodejs'   
+     
+    export default {
+
+      mounted(){
+        // Options
+        var options = {
+          text: "https://github.com/ushelp/EasyQRCodeJS"
+        }
+        
+        // Create new QRCode Object
+        new QRCode(this.$refs.qrcode, options);
+      },
+      methods:{
+          btnClick(){
+
+          }
+      }
+    }
+    </script>
+    ```
+
+## React Support
+
+1. Add dependency
+
+    ```Shell
+    # install with `npm`
+    npm install --save easyqrcodejs
+    
+    # Alternatively you may use `yarn`:
+    yarn add easyqrcodejs
+    ```
+
+2. Script   
+    
+    ```JavaScript
+    import React from 'react';
+    import './App.css';
+    import * as QRCode from 'easyqrcodejs';
+
+    class App extends React.Component {
+
+        constructor(props) {
+            super(props);
+            this.qrcode = React.createRef();
+        }
+
+        componentDidMount() {
+            // Options
+            var options = {
+                text: "https://github.com/ushelp/EasyQRCodeJS"
+            }
+            // Create new QRCode Object
+            new QRCode( this.qrcode.current, options);
+        }
+        render() {
+            return ( 
+            <div className = "App">
+                <div ref={this.qrcode}></div> 
+            </div>
+            );
+        }
+    }
+
+    export default App;
+
+    </script>
+    ```
+ 
 ## Browser Compatibility
 IE6+, Chrome, Firefox, Safari, Opera, Mobile Safari, Android, Windows Mobile, ETC.
 
