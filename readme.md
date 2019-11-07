@@ -463,8 +463,6 @@ var qrcode = new QRCode(DOM_object, options_object);
     }
 
     export default App;
-
-    </script>
     ```
  
 ## Browser Compatibility
