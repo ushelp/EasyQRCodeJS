@@ -325,7 +325,11 @@ var qrcode = new QRCode(DOM_object, options_object);
 1. Add dependency
 
     ```Shell
-    ng add easyqrcodejs
+    # install with `npm`
+    npm install --save easyqrcodejs
+    
+    # Alternatively you may use `yarn`:
+    yarn add easyqrcodejs
     ```
 
 2. [NAME].component.html
