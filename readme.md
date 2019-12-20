@@ -175,12 +175,15 @@ var qrcode = new QRCode(DOM_object, options_object);
 			text: "https://github.com/ushelp/EasyQRCodeJS",
 			width: 256,
 			height: 256,
-			quietZone: 0,
 			colorDark : "#000000",
 			colorLight : "#ffffff",
 			correctLevel : QRCode.CorrectLevel.H, // L, M, Q, H
 			dotScale: 1 // Must be greater than 0, less than or equal to 1. default is 1
 			
+            quietZone: 0,
+            quietZoneColor: 'transparent',
+			*/
+
 			// ====== Logo
 			/*
 			logo:"../demo/logo.png", // Relative address, relative to `easy.qrcode.min.js`
@@ -253,11 +256,13 @@ var qrcode = new QRCode(DOM_object, options_object);
 	| **text** | Y | String |`''` |  Text | &nbsp; |
 	| **width** | N | Number | `256` |  Width |  &nbsp; |
 	| **height** | N | Number | `256` |  Height |  &nbsp; |
-	| **quietZone** | N | Number | `0` |  Quiet Zone size |  &nbsp; |
 	| **colorDark** | N | String | `#000000` | Dark CSS color |  &nbsp; |
 	| **colorLight** | N | String | `#ffffff` | Light CSS color |  &nbsp; |
 	| **correctLevel** | N | Enum | `QRCode.CorrectLevel.H` | `QRCode.CorrectLevel.H`<br/>`QRCode.CorrectLevel.Q` <br/> `QRCode.CorrectLevel.M` <br/> `QRCode.CorrectLevel.L`|  &nbsp; |
 	| **dotScale** | N | Number | `1.0` |Dot style required Patterns. Ranges: `0-1.0` | &nbsp; |
+	| Quiet Zone| --- | ---|---|---|---|
+    | **quietZone** | N | Number | `0` |  Quiet Zone size |  &nbsp; |
+    | **quietZoneColor** | N | String | `transparent` |  Background CSS color to Quiet Zone |  &nbsp; |
 	| Logo options| --- | ---|---|---|---|
 	| **logo** | N | String | `undefined` | Logo Image Path. If use relative address, relative to `easy.qrcode.min.js` |  &nbsp; |
 	| **logoWidth** | N | Number | `undefined` |  Height |  &nbsp; |

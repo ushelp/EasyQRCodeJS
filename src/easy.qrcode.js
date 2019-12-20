@@ -3,7 +3,7 @@
  * 
  * Cross-browser QRCode generator for pure javascript. Support Dot style, Logo, Background image, Colorful, Title, etc. Support Angular, Vue.js, React framework. (Running with DOM on client side)
  * 
- * Version 3.2.1
+ * Version 3.3.0
  * 
  * @author [ inthinkcolor@gmail.com ]
  * 
@@ -1148,12 +1148,13 @@
 
 			if (_htOption.quietZone) {
 				divStyle = 'padding:' + _htOption.quietZone + 'px; display:inline-block; width:' + (_htOption.width +
-					_htOption.quietZone * 2) + 'px;';
+					_htOption.quietZone * 2) + 'px; height:' + (_htOption.width +
+					_htOption.quietZone * 2) + 'px;background:'+_htOption.quietZoneColor+'; text-align:center;';
 			}
 			aHTML.push('<div style="font-size:0;' + divStyle + '">');
 
 			aHTML.push(
-				'<table  style="font-size:0;border:0;border-collapse:collapse; margin-top:0;" border="0" cellspacing="0" cellspadding="0">'
+				'<table  style="font-size:0;border:0;border-collapse:collapse; margin-top:0;" border="0" cellspacing="0" cellspadding="0" align="center" valign="middle">'
 			);
 			aHTML.push('<tr height="' + _htOption.titleHeight +
 				'" align="center"><td style="border:0;border-collapse:collapse;margin:0;padding:0" colspan="' + nCount +
@@ -1190,7 +1191,7 @@
 						aHTML.push('<td style="border:0;border-collapse:collapse;padding:0;margin:0;width:' + nWidth + 'px;height:' +
 							nHeight + 'px;">' +
 							'<span style="width:' + nWidth + 'px;height:' + nHeight + 'px;background-color:' + (bIsDark ?
-								eyeColorDark : nonRequiredcolorLight) + ';"></span></td>');
+								eyeColorDark : nonRequiredcolorLight) + ';display:inline-block"></span></td>');
 
 					} else {
 
@@ -1276,8 +1277,6 @@
 			if (nLeftMarginTable > 0 && nTopMarginTable > 0) {
 				elTable.style.margin = nTopMarginTable + "px " + nLeftMarginTable + "px";
 			}
-
-
 		};
 
 		/**
@@ -1423,6 +1422,19 @@
 			this.clear();
 
 			var t = this;
+            
+            function drawQuietZoneColor(){
+                // top
+                _oContext.lineWidth = 0;
+                _oContext.fillStyle =  _htOption.quietZoneColor;
+                _oContext.fillRect(0, 0, t._elCanvas.width, _htOption.quietZone);
+                // left
+                 _oContext.fillRect(0, _htOption.quietZone, _htOption.quietZone, t._elCanvas.height-_htOption.quietZone*2);
+                // right
+                 _oContext.fillRect(t._elCanvas.width-_htOption.quietZone,  _htOption.quietZone, _htOption.quietZone, t._elCanvas.height-_htOption.quietZone*2);
+                // bottom
+                 _oContext.fillRect(0, t._elCanvas.height-_htOption.quietZone, t._elCanvas.width, _htOption.quietZone);
+            }
 
 			if (_htOption.backgroundImage) {
 
@@ -1452,6 +1464,9 @@
 				if (_htOption.onRenderingStart) {
 					_htOption.onRenderingStart()
 				}
+                if(_htOption.quietZone>0 && _htOption.quietZoneColor){
+                    drawQuietZoneColor();
+                }
 				for (var row = 0; row < nCount; row++) {
 					for (var col = 0; col < nCount; col++) {
 						var nLeft = col * nWidth + _htOption.quietZone;
@@ -1528,29 +1543,23 @@
 				}
 
 				if (_htOption.title) {
+				    
 					_oContext.fillStyle = _htOption.titleBackgroundColor;
 					_oContext.fillRect(0, 0, this._elCanvas.width, _htOption.titleHeight);
-
+				
 					_oContext.font = _htOption.titleFont;
 					_oContext.fillStyle = _htOption.titleColor;
 					_oContext.textAlign = 'center';
-					_oContext.fillText(_htOption.title, _htOption.width / 2, 30);
+					_oContext.fillText(_htOption.title, this._elCanvas.width / 2, 30);
 				}
-
+				
 				if (_htOption.subTitle) {
 					_oContext.font = _htOption.subTitleFont;
 					_oContext.fillStyle = _htOption.subTitleColor;
-					_oContext.fillText(_htOption.subTitle, _htOption.width / 2, 60);
+					_oContext.fillText(_htOption.subTitle, this._elCanvas.width / 2, 60);
 				}
 
-
-
-				if (_htOption.logo) {
-					var img = new Image();
-					
-					var _this = this;
-
-					function genratorImg() {
+                    function genratorImg() {
 						var imgW = Math.round(_htOption.width / 3.5);
 						var imgH = Math.round(_htOption.height / 3.5);
 						if (imgW != imgH) {
@@ -1583,6 +1592,11 @@
 
 						_this.makeImage();
 					}
+                    
+				if (_htOption.logo) {
+					var img = new Image();
+					
+					var _this = this;
 
 
 					img.onload = function() {
@@ -1736,13 +1750,15 @@
 		this._htOption = {
 			width: 256,
 			height: 256,
-			quietZone: 0,
 			typeNumber: 4,
 			colorDark: "#000000",
 			colorLight: "#ffffff",
 			correctLevel: QRErrorCorrectLevel.H,
 
 			dotScale: 1, // Must be greater than 0, less than or equal to 1. default is 1
+            
+            quietZone: 0,
+            quietZoneColor: 'transparent', 
 
 			title: "",
 			titleFont: "bold 16px Arial",
