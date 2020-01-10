@@ -304,7 +304,7 @@ var qrcode = new QRCode(DOM_object, options_object);
 	| **subTitleColor** | N | String | `#4F4F4F` | CSS color |  &nbsp; |
 	| **subTitleTop** | N | Number | `0` | draws y coordinates. default is 0|  &nbsp; |
 	| Event Handler options| --- | ---|---|---|---|
-	| **onRenderingStart** | N | Function | `undefined` | Callback function when rendering start work. can use to hide loading state or handling.  |  &nbsp; |
+	| **onRenderingStart(qrCodeOptions)** | N | Function | `undefined` | Callback function when rendering start work. can use to hide loading state or handling.  |  &nbsp; |
 
 
 

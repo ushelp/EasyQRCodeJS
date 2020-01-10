@@ -3,7 +3,7 @@
  * 
  * Cross-browser QRCode generator for pure javascript. Support Dot style, Logo, Background image, Colorful, Title, etc. Support Angular, Vue.js, React framework. (Running with DOM on client side)
  * 
- * Version 3.3.0
+ * Version 3.4.0
  * 
  * @author [ inthinkcolor@gmail.com ]
  * 
@@ -1266,7 +1266,7 @@
 
 
 			if (_htOption.onRenderingStart) {
-				_htOption.onRenderingStart()
+				_htOption.onRenderingStart(_htOption)
 			}
 
 			_el.innerHTML = aHTML.join('');
@@ -1403,7 +1403,7 @@
 				_htOption.titleHeight = 0;
 			}
 
-
+            
 			var nCount = oQRCode.getModuleCount();
 			var nWidth = Math.round(_htOption.width / nCount);
 			var nHeight = Math.round((_htOption.height - _htOption.titleHeight) / nCount);
@@ -1416,7 +1416,8 @@
 
 			this._elCanvas.width = this._htOption.width + this._htOption.quietZone * 2;
 			this._elCanvas.height = this._htOption.height + this._htOption.quietZone * 2;
-
+             
+            
 
 			_elImage.style.display = "none";
 			this.clear();
@@ -1462,11 +1463,9 @@
 
 			function drawQrcode(oQRCode) {
 				if (_htOption.onRenderingStart) {
-					_htOption.onRenderingStart()
+					_htOption.onRenderingStart(_htOption)
 				}
-                if(_htOption.quietZone>0 && _htOption.quietZoneColor){
-                    drawQuietZoneColor();
-                }
+               
 				for (var row = 0; row < nCount; row++) {
 					for (var col = 0; col < nCount; col++) {
 						var nLeft = col * nWidth + _htOption.quietZone;
@@ -1545,18 +1544,18 @@
 				if (_htOption.title) {
 				    
 					_oContext.fillStyle = _htOption.titleBackgroundColor;
-					_oContext.fillRect(0, 0, this._elCanvas.width, _htOption.titleHeight);
+					_oContext.fillRect(0, 0, this._elCanvas.width, _htOption.titleHeight+_htOption.quietZone);
 				
 					_oContext.font = _htOption.titleFont;
 					_oContext.fillStyle = _htOption.titleColor;
 					_oContext.textAlign = 'center';
-					_oContext.fillText(_htOption.title, this._elCanvas.width / 2, 30);
+					_oContext.fillText(_htOption.title, this._elCanvas.width / 2, +_htOption.quietZone+30);
 				}
 				
 				if (_htOption.subTitle) {
 					_oContext.font = _htOption.subTitleFont;
 					_oContext.fillStyle = _htOption.subTitleColor;
-					_oContext.fillText(_htOption.subTitle, this._elCanvas.width / 2, 60);
+					_oContext.fillText(_htOption.subTitle, this._elCanvas.width / 2, +_htOption.quietZone+60);
 				}
 
                     function genratorImg() {
@@ -1587,7 +1586,9 @@
 
 						_oContext.drawImage(img, (_htOption.width + _htOption.quietZone * 2 - imgW) / 2, (_htOption.height +
 							_htOption.titleHeight + _htOption.quietZone * 2 - imgH) / 2, imgW, imgH);
-
+                        if(_htOption.quietZone>0 && _htOption.quietZoneColor){
+                            drawQuietZoneColor();
+                        }
 						_this._bIsPainted = true;
 
 						_this.makeImage();
@@ -1614,7 +1615,7 @@
 				} else {
 					this._bIsPainted = true;
 					this.makeImage();
-
+                    
 				}
 
 
