@@ -3,7 +3,7 @@
  * 
  * Cross-browser QRCode generator for pure javascript. Support Dot style, Logo, Background image, Colorful, Title, etc. Support Angular, Vue.js, React framework. (Running with DOM on client side)
  * 
- * Version 3.4.0
+ * Version 3.5.0
  * 
  * @author [ inthinkcolor@gmail.com ]
  * 
@@ -1681,7 +1681,10 @@
 	 * @param {Number} nCorrectLevel
 	 * @return {Number} type
 	 */
-	function _getTypeNumber(sText, nCorrectLevel) {
+	function _getTypeNumber(sText, _htOption) {
+        
+        var nCorrectLevel = _htOption.correctLevel;
+        
 		var nType = 1;
 		var length = _getUTF8Length(sText);
 
@@ -1714,6 +1717,15 @@
 			throw new Error("Too long data");
 		}
 
+       if(_htOption.version!=0){
+           if(nType<=_htOption.version){
+               nType=_htOption.version;
+               _htOption.runVersion = nType;
+           }else{
+               console.warn("QR Code version "+_htOption.version+" too small, run version use "+nType);
+               _htOption.runVersion = nType;
+           }
+       }
 		return nType;
 	}
 
@@ -1804,7 +1816,10 @@
 			autoColor: false,
 
 			// ==== Event Handler
-			onRenderingStart: undefined
+			onRenderingStart: undefined,
+            
+            // ==== Versions
+            version: 0 // The symbol versions of QR Code range from Version 1 to Version 40. default 0 means automatically choose the closest version based on the text length.
 
 		};
 
@@ -1820,7 +1835,12 @@
 				this._htOption[i] = vOption[i];
 			}
 		}
-
+        
+        if(this._htOption.version<0 || this._htOption.version>40){
+            console.warn("QR Code version '"+this._htOption.version+"' is invalidate, reset to 0")
+            this._htOption.version=0;
+        }
+        
 		if (this._htOption.dotScale < 0 || this._htOption.dotScale > 1) {
 			console.warn(this._htOption.dotScale +
 				" , is invalidate, dotScale must greater than 0, less than or equal to 1, now reset to 1. ")
@@ -1858,7 +1878,7 @@
 	 */
 	QRCode.prototype.makeCode = function(sText) {
 
-		this._oQRCode = new QRCodeModel(_getTypeNumber(sText, this._htOption.correctLevel), this._htOption.correctLevel);
+		this._oQRCode = new QRCodeModel(_getTypeNumber(sText, this._htOption), this._htOption.correctLevel);
 		this._oQRCode.addData(sText);
 		this._oQRCode.make();
 		this._el.title = sText;

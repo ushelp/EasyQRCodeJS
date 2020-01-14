@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>EasyQRCodeJS Demo</title>
-		<script src="../src/easy.qrcode.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../dist/easy.qrcode.min.js" type="text/javascript" charset="utf-8"></script>
 
 		<style type="text/css">
 			body{
@@ -132,7 +132,8 @@
 
 						//PI: '#f55066',
 
-						correctLevel: QRCode.CorrectLevel.H // L, M, Q, H
+						correctLevel: QRCode.CorrectLevel.H, // L, M, Q, H
+                        version: 5
 					}
 				},
 				{

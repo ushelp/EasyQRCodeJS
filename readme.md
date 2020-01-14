@@ -247,8 +247,13 @@ var qrcode = new QRCode(DOM_object, options_object);
 		   
 			// ===== Event Handler
 			/*
-			onRenderingStart: undefined
+			onRenderingStart: undefined,
 			*/
+		   
+			// ===== Versions
+			/*
+			version: 0 // The symbol versions of QR Code range from Version 1 to Version 40. default 0 means automatically choose the closest version based on the text length.
+			*/           
 	}
 	```
 
@@ -305,7 +310,8 @@ var qrcode = new QRCode(DOM_object, options_object);
 	| **subTitleTop** | N | Number | `0` | draws y coordinates. default is 0|  &nbsp; |
 	| Event Handler options| --- | ---|---|---|---|
 	| **onRenderingStart(qrCodeOptions)** | N | Function | `undefined` | Callback function when rendering start work. can use to hide loading state or handling.  |  &nbsp; |
-
+	| Version options| --- | ---|---|---|
+    | **version** | N | Number | `0` | The symbol versions of QR Code range from Version `1` to Version `40`. default 0 means automatically choose the closest version based on the text length. [Information capacity and versions of QR Codes](https://www.qrcode.com/en/about/version.html)  **NOTE**: If you set a value less than the minimum version available for text, the minimum version is automatically used. |  &nbsp; |
 
 
 
