@@ -1167,7 +1167,7 @@
                 var f = _htOption.titleFont;
                 aHTML.push('<div style="width:100%;margin-top:' + _htOption.titleTop + 'px;color:' + c + ';font:' + f +
                     ';background:' + _htOption.titleBackgroundColor + '">' +
-                    _htOption.title + "HELLO" + '</div>');
+                    _htOption.title + '</div>');
             }
             if (_htOption.subTitle) {
                 aHTML.push('<div style="width:100%;margin-top:' + (_htOption.subTitleTop - _htOption.titleTop) + 'px;color:' +
