@@ -1162,9 +1162,9 @@
 			if (_htOption.title) {
 				var c = _htOption.titleColor;
 				var f = _htOption.titleFont;
-				aHTML.push('<div style="width:100%;margin-top:' + _htOption.titleTop + 'px;color:' + c + ';font:' + f +
+				aHTML.push('<div style="width:100%;word-break:break-all;margin-top:' + _htOption.titleTop + 'px;color:' + c + ';font:' + f +
 					';background:' + _htOption.titleBackgroundColor + '">' +
-					_htOption.title + '</div>');
+					_htOption.title + "HELLO" + '</div>');
 			}
 			if (_htOption.subTitle) {
 				aHTML.push('<div style="width:100%;margin-top:' + (_htOption.subTitleTop - _htOption.titleTop) + 'px;color:' +
