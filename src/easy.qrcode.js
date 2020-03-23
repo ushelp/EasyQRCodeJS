@@ -1237,7 +1237,7 @@
 
 			if (_htOption.logo) {
 				var img = new Image();
-				//img.crossOrigin="Anonymous";
+				// img.crossOrigin="Anonymous";
 				img.src = _htOption.logo;
 
 				var imgW = _htOption.width / 3.5;
@@ -1289,7 +1289,7 @@
 		return Drawing;
 	})() : (function() { // Drawing in Canvas
 		function _onMakeImage() {
-			//this._elImage.crossOrigin='Anonymous';
+			// this._elImage.crossOrigin='Anonymous';
 			this._elImage.src = this._elCanvas.toDataURL("image/png");
 			this._elImage.style.display = "inline";
 			this._elCanvas.style.display = "none";
@@ -1454,7 +1454,7 @@
 
 					drawQrcode.call(t, oQRCode);
 				}
-				//bgImg.crossOrigin='Anonymous';
+				// bgImg.crossOrigin='Anonymous';
 				bgImg.src = _htOption.backgroundImage;
 				// DoSomething
 			} else {
@@ -1549,13 +1549,12 @@
 					_oContext.font = _htOption.titleFont;
 					_oContext.fillStyle = _htOption.titleColor;
 					_oContext.textAlign = 'center';
-					_oContext.fillText(_htOption.title, this._elCanvas.width / 2, +_htOption.quietZone+30);
 				}
 				
 				if (_htOption.subTitle) {
 					_oContext.font = _htOption.subTitleFont;
 					_oContext.fillStyle = _htOption.subTitleColor;
-					_oContext.fillText(_htOption.subTitle, this._elCanvas.width / 2, +_htOption.quietZone+60);
+					_oContext.fillText(_htOption.subTitle, this._elCanvas.width / 2, +_htOption.quietZone+_htOption.subTitleTop);
 				}
 
                     function genratorImg() {
@@ -1608,7 +1607,7 @@
 						console.error(e)
 					}
 
-					//img.crossOrigin="Anonymous";
+					// img.crossOrigin="Anonymous";
 					img.src = _htOption.logo;
 
 
@@ -1631,6 +1630,8 @@
 			if (this._bIsPainted) {
 				_safeSetDataURI.call(this, _onMakeImage);
 			}
+			
+			console.info(this._elCanvas.toDataURL())
 		};
 
 		/**
