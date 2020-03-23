@@ -1549,6 +1549,7 @@
 					_oContext.font = _htOption.titleFont;
 					_oContext.fillStyle = _htOption.titleColor;
 					_oContext.textAlign = 'center';
+					_oContext.fillText(_htOption.title, this._elCanvas.width / 2, +_htOption.quietZone+_htOption.titleTop);
 				}
 				
 				if (_htOption.subTitle) {
@@ -1784,7 +1785,7 @@
 			subTitle: "",
 			subTitleFont: "14px Arial",
 			subTitleColor: "#4F4F4F",
-			subTitleTop: 0, // draws y coordinates. default is 0
+			subTitleTop: 60, // draws y coordinates. default is 0
 
 			logo: undefined,
 			logoWidth: undefined,
