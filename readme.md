@@ -271,13 +271,13 @@ var qrcode = new QRCode(DOM_object, options_object);
     | **quietZone** | N | Number | `0` |  Quiet Zone size |  &nbsp; |
     | **quietZoneColor** | N | String | `transparent` |  Background CSS color to Quiet Zone |  &nbsp; |
 	| Logo options| --- | ---|---|---|---|
-	| **logo** | N | String | `undefined` | Logo Image Path. If use relative address, relative to `easy.qrcode.min.js` |  &nbsp; |
+	| **logo** | N | String | `undefined` | Logo Image Path or Base64 encoded image. If use relative address, relative to `easy.qrcode.min.js` |  &nbsp; |
 	| **logoWidth** | N | Number | `undefined` |  Height |  &nbsp; |
 	| **logoHeight** | N | Number | `undefined` |  Width |  &nbsp; |
 	| **logoBackgroundTransparent** | N | Boolean | `false` |  Whether the background transparent image(`PNG`) shows transparency. When `true`, `logoBackgroundColor` is invalid |  &nbsp; |
 	| **logoBackgroundColor** | N | String | `#ffffff` |  Set Background CSS Color when image background transparent. Valid when `logoBackgroundTransparent` is `false` |  &nbsp; |
 	| Backgroud Image options|  ---|--- |---|---|---|
-	| **backgroundImage** | N | String | `undefined` | Background Image Path. If use relative address, relative to `easy.qrcode.min.js` |  &nbsp; |
+	| **backgroundImage** | N | String | `undefined` | Background Image Path or Base64 encoded Image. If use relative address, relative to `easy.qrcode.min.js` |  &nbsp; |
 	| **backgroundImageAlpha** | N | Number | `1.0` |  Background image transparency. Ranges: `0-1.0`  |  &nbsp; |
 	| **autoColor** | N | Boolean | `false` |  Automatic color adjustment |  &nbsp; |
 	| Posotion Pattern Color options| --- | ---|---|---|---|
