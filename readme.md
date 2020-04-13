@@ -14,7 +14,9 @@ EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成
 - [QR Code Structure](#qr-code-structure)
 - [Installation](#installation)
 - [Basic Usages](#basic-usages)
-    - [Method](#method)
+- [QRCode API](#qrcode-api)
+  - [Object](#object)
+  - [Method](#method)
 - [Angular Support](#angular-support)
 - [Vue.js Support](#vuejs-support)
 - [React Support](#react-support)
@@ -22,7 +24,6 @@ EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成
 - [License](#license)
 - [EasyQRCodeJS-Premium](#easyqrcodejs-premium)
 - [End](#end)
-
 
 
 ## Choose what you need
