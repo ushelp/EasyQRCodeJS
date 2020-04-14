@@ -1408,19 +1408,23 @@
 			var nWidth = Math.round(_htOption.width / nCount);
 			var nHeight = Math.round((_htOption.height - _htOption.titleHeight) / nCount);
 
-			this._htOption.width = nWidth * nCount;
-			this._htOption.height = nHeight * nCount + _htOption.titleHeight;
+			_htOption.width = nWidth * nCount;
+			_htOption.height = nHeight * nCount + _htOption.titleHeight;
 
-			this._htOption.quietZone = Math.round(this._htOption.quietZone);
+			_htOption.quietZone = Math.round(_htOption.quietZone);
 
 
-			this._elCanvas.width = this._htOption.width + this._htOption.quietZone * 2;
-			this._elCanvas.height = this._htOption.height + this._htOption.quietZone * 2;
+			this._elCanvas.width = _htOption.width + _htOption.quietZone * 2;
+			this._elCanvas.height = _htOption.height + _htOption.quietZone * 2;
              
             
 
 			_elImage.style.display = "none";
 			this.clear();
+
+			_oContext.lineWidth = 0;
+			_oContext.fillStyle =  _htOption.colorLight;
+			_oContext.fillRect(0, 0, this._elCanvas.width, this._elCanvas.height);
 
 			var t = this;
             

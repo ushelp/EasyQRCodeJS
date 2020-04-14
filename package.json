@@ -1,6 +1,6 @@
 {
 	"name": "easyqrcodejs",
-	"version": "3.5.2",
+	"version": "3.5.4",
 	"description": "A feature-rich cross-browser QRCode generator for pure javascript. Support Dot style, Logo, Background image, Colorful, Title, etc. Support Angular, Vue.js, React framework.(Running with DOM on client side)",
 	"main": "dist/easy.qrcode.min.js",
 	"scripts": {},
