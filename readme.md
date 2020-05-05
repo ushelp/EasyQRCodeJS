@@ -250,12 +250,18 @@ var qrcode = new QRCode(DOM_object, options_object);
 			// ===== Event Handler
 			/*
 			onRenderingStart: undefined,
+			onRenderingEnd: undefined,
 			*/
 		   
 			// ===== Versions
 			/*
-			version: 0 // The symbol versions of QR Code range from Version 1 to Version 40. default 0 means automatically choose the closest version based on the text length.
-			*/           
+			version: 0, // The symbol versions of QR Code range from Version 1 to Version 40. default 0 means automatically choose the closest version based on the text length.
+			*/        
+		   
+			// ===== Tooltip
+			/*
+		   tooltip: false // Whether set the QRCode Text as the title attribute value of the QRCode div
+			*/ 
 	}
 	```
 
@@ -265,8 +271,8 @@ var qrcode = new QRCode(DOM_object, options_object);
 	| **text** | Y | String |`''` |  Text | &nbsp; |
 	| **width** | N | Number | `256` |  Width |  &nbsp; |
 	| **height** | N | Number | `256` |  Height |  &nbsp; |
-	| **colorDark** | N | String | `#000000` | Dark CSS color |  &nbsp; |
-	| **colorLight** | N | String | `#ffffff` | Light CSS color |  &nbsp; |
+	| **colorDark** | N | String | `#000000` | Dark CSS color, `transparent`|  &nbsp; |
+	| **colorLight** | N | String | `#ffffff` | Light CSS color, `transparent` |  &nbsp; |
 	| **correctLevel** | N | Enum | `QRCode.CorrectLevel.H` | `QRCode.CorrectLevel.H`<br/>`QRCode.CorrectLevel.Q` <br/> `QRCode.CorrectLevel.M` <br/> `QRCode.CorrectLevel.L`|  &nbsp; |
 	| **dotScale** | N | Number | `1.0` |Dot style required Patterns. Ranges: `0-1.0` | &nbsp; |
 	| Quiet Zone| --- | ---|---|---|---|
@@ -311,10 +317,12 @@ var qrcode = new QRCode(DOM_object, options_object);
 	| **subTitleColor** | N | String | `#4F4F4F` | CSS color |  &nbsp; |
 	| **subTitleTop** | N | Number | `0` | draws y coordinates. default is 0|  &nbsp; |
 	| Event Handler options| --- | ---|---|---|---|
-	| **onRenderingStart(qrCodeOptions)** | N | Function | `undefined` | Callback function when rendering start work. can use to hide loading state or handling.  |  &nbsp; |
+	| **onRenderingStart(qrCodeOptions)** | N | Function | `undefined` | Callback function when the rendering start. can use to hide loading state or handling.  |  &nbsp; |
+	| **onRenderingEnd(qrCodeOptions, base64DataURL)** | N | Function | `undefined` | Callback function when the rendering ends. `base64DataURL` parameter is the base64 data of QRCode image(if not support canvas return `null`).   |  &nbsp; |
 	| Version options| --- | ---|---|---|
     | **version** | N | Number | `0` | The symbol versions of QR Code range from Version `1` to Version `40`. default 0 means automatically choose the closest version based on the text length. [Information capacity and versions of QR Codes](https://www.qrcode.com/en/about/version.html)  **NOTE**: If you set a value less than the minimum version available for text, the minimum version is automatically used. |  &nbsp; |
-
+	| Tooltip options| --- | ---|---|---|
+    | **tooltip** | N | Boolean | `false` | Whether set the QRCode Text as the title attribute value of the QRCode div. |  &nbsp; |
 
 
 
@@ -333,7 +341,12 @@ var qrcode = new QRCode(DOM_object, options_object);
 	qrcode.makeCode("https://github.com/ushelp/EasyQRCodeJS"); // make another code text.
 	```
     
-    
+- resize(widht, height)
+
+	```JS
+	qrcode.resize(480, 480); // Resize the image 
+	```
+        
     
 ## Angular Support
 

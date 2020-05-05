@@ -1277,6 +1277,9 @@
 			if (nLeftMarginTable > 0 && nTopMarginTable > 0) {
 				elTable.style.margin = nTopMarginTable + "px " + nLeftMarginTable + "px";
 			}
+			if(this._htOption.onRenderingEnd){
+				this._htOption.onRenderingEnd(this._htOption, null);
+			}
 		};
 
 		/**
@@ -1290,9 +1293,23 @@
 	})() : (function() { // Drawing in Canvas
 		function _onMakeImage() {
 			// this._elImage.crossOrigin='Anonymous';
-			this._elImage.src = this._elCanvas.toDataURL("image/png");
-			this._elImage.style.display = "inline";
-			this._elCanvas.style.display = "none";
+			try{
+				var dataURL=this._elCanvas.toDataURL("image/png");
+				this._elImage.src =dataURL
+				this.dataURL=dataURL;
+				this._elImage.style.display = "inline";
+				this._elCanvas.style.display = "none";
+			}catch(e){
+				console.error(e)
+			}
+			
+			if(this._htOption.onRenderingEnd){
+				if(!this.dataURL){
+					console.error("Can not get base64 data, please check: 1. published the page and image to the server 2. The image request support CORS")
+				}
+				this._htOption.onRenderingEnd(this._htOption, this.dataURL);
+			}
+			
 		}
 
 		// Android 2.1 bug workaround
@@ -1384,6 +1401,7 @@
 			this._el.appendChild(this._elImage);
 
 			this._bSupportDataURI = null;
+			this.dataURL=null;
 		};
 
 		/**
@@ -1622,8 +1640,6 @@
                     
 				}
 
-
-
 			}
 
 		};
@@ -1635,8 +1651,6 @@
 			if (this._bIsPainted) {
 				_safeSetDataURI.call(this, _onMakeImage);
 			}
-			
-			console.info(this._elCanvas.toDataURL())
 		};
 
 		/**
@@ -1661,8 +1675,6 @@
 			this._bIsPainted = false;
 			this._el.innerHTML = '';
 		};
-
-
 
 		/**
 		 * @private
@@ -1740,31 +1752,7 @@
 		return replacedText.length + (replacedText.length != sText ? 3 : 0);
 	}
 
-	/**
-	 * @class QRCode
-	 * @constructor
-	 * @example 
-	 * new QRCode(document.getElementById("test"), "QRCode");
-	 *
-	 * @example
-	 * var oQRCode = new QRCode("test", {
-	 *    text : "QRCode",
-	 *    width : 128,
-	 *    height : 128
-	 * });
-	 * 
-	 * oQRCode.clear(); // Clear the QRCode.
-	 * oQRCode.makeCode("QRCode"); // Re-create the QRCode.
-	 *
-	 * @param {HTMLElement|String} el target element or 'id' attribute of element.
-	 * @param {Object|String} vOption
-	 * @param {String} vOption.text QRCode link data
-	 * @param {Number} [vOption.width=256]
-	 * @param {Number} [vOption.height=256]
-	 * @param {String} [vOption.colorDark="#000000"]
-	 * @param {String} [vOption.colorLight="#ffffff"]
-	 * @param {QRCode.CorrectLevel} [vOption.correctLevel=QRCode.CorrectLevel.H] [L|M|Q|H] 
-	 */
+
 	QRCode = function(el, vOption) {
 		this._htOption = {
 			width: 256,
@@ -1823,10 +1811,13 @@
 
 			// ==== Event Handler
 			onRenderingStart: undefined,
+			onRenderingEnd: undefined,
             
             // ==== Versions
-            version: 0 // The symbol versions of QR Code range from Version 1 to Version 40. default 0 means automatically choose the closest version based on the text length.
-
+            version: 0, // The symbol versions of QR Code range from Version 1 to Version 40. default 0 means automatically choose the closest version based on the text length.
+			
+			// ==== Tooltip
+			tooltip: false // Whether set the QRCode Text as the title attribute value of the image
 		};
 
 		if (typeof vOption === 'string') {
@@ -1883,11 +1874,13 @@
 	 * @param {String} sText link data
 	 */
 	QRCode.prototype.makeCode = function(sText) {
-
+	
 		this._oQRCode = new QRCodeModel(_getTypeNumber(sText, this._htOption), this._htOption.correctLevel);
 		this._oQRCode.addData(sText);
 		this._oQRCode.make();
-		this._el.title = sText;
+		if(this._htOption.tooltip){
+			this._el.title = sText;
+		}
 		this._oDrawing.draw(this._oQRCode);
 		//		this.makeImage();
 	};
@@ -1911,6 +1904,17 @@
 	QRCode.prototype.clear = function() {
 		this._oDrawing.remove();
 	};
+	
+	/**
+	 * Resize the QRCode
+	 */
+	QRCode.prototype.resize = function(width, height) {
+		this._htOption.width=width;
+		this._htOption.height=height;
+
+		this._oDrawing.draw(this._oQRCode);
+	};
+	
 
 
 	/**

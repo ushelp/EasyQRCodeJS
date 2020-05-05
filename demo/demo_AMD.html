@@ -545,7 +545,11 @@
 							correctLevel: QRCode.CorrectLevel.H, // L, M, Q, H
 				
 							
-							dotScale: 0.5
+							dotScale: 0.5,
+						
+							onRenderingEnd:function(options, dataURL){
+								console.info(dataURL);
+							}
 						}
 				
 					}
