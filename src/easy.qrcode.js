@@ -1240,27 +1240,27 @@
 				// img.crossOrigin="Anonymous";
 				img.src = _htOption.logo;
 
-				var imgW = _htOption.width / 3.5;
-				var imgH = _htOption.height / 3.5;
-				if (imgW != imgH) {
-					imgW = imgH;
+				var imgContainerW = _htOption.width / 3.5;
+				var imgContainerH = _htOption.height / 3.5;
+				if (imgContainerW !== imgContainerH) {
+					imgContainerW = imgContainerH;
 				}
 
 				if (_htOption.logoWidth) {
-					imgW = _htOption.logoWidth;
+					imgContainerW = _htOption.logoWidth;
 				}
 				if (_htOption.logoHeight) {
-					imgH = _htOption.logoHeight;
+					imgContainerH = _htOption.logoHeight;
 				}
 
 				var imgDivStyle = 'position:relative; z-index:1;display:inline-block;top:-' + ((_htOption.height - _htOption.titleHeight) /
-					2 + imgH / 2 + _htOption.quietZone) + 'px;text-align:center; width:' + imgW + 'px; height:' + imgH + 'px;';
+						2 + imgContainerH / 2 + _htOption.quietZone) + 'px;left:' + (_htOption.width + _htOption.quietZone * 2 - imgContainerW) /
+						2 + 'px;text-align:center; width:' + imgContainerW + 'px; height:' + imgContainerH + 'px;';
 				if (!_htOption.logoBackgroundTransparent) {
 					imgDivStyle += 'background:' + _htOption.logoBackgroundColor;
 				}
-				aHTML.push('<div style="' + imgDivStyle + '"><img  src="' + _htOption.logo + '" width="' + imgW +
-					'" height="' +
-					imgH + '"  style="" /></div>')
+				var imgStyle = 'display:inline-block; max-width:100%; max-height:100%;';
+				aHTML.push('<div style="' + imgDivStyle + '"><img src="' + _htOption.logo + '"  style="' + imgStyle + '" /></div>')
 			}
 
 
@@ -1580,51 +1580,52 @@
 					_oContext.fillText(_htOption.subTitle, this._elCanvas.width / 2, +_htOption.quietZone+_htOption.subTitleTop);
 				}
 
-                    function genratorImg() {
-						var imgW = Math.round(_htOption.width / 3.5);
-						var imgH = Math.round(_htOption.height / 3.5);
-						if (imgW != imgH) {
-							imgW = imgH;
-						}
-
-						if (_htOption.logoWidth) {
-							imgW = Math.round(_htOption.logoWidth);
-						}
-						if (_htOption.logoHeight) {
-							imgH = Math.round(_htOption.logoHeight);
-						}
-
-
-						// Did Not Use Transparent Logo Image
-						if (!_htOption.logoBackgroundTransparent) {
-							//if (!_htOption.logoBackgroundColor) {
-							//_htOption.logoBackgroundColor = '#ffffff';
-							//}
-							_oContext.fillStyle = _htOption.logoBackgroundColor;
-
-							_oContext.fillRect((_htOption.width + _htOption.quietZone * 2 - imgW) / 2, (_htOption.height + _htOption.titleHeight +
-								_htOption.quietZone * 2 - imgH) / 2, imgW, imgW);
-						}
-
-						_oContext.drawImage(img, (_htOption.width + _htOption.quietZone * 2 - imgW) / 2, (_htOption.height +
-							_htOption.titleHeight + _htOption.quietZone * 2 - imgH) / 2, imgW, imgH);
-                        if(_htOption.quietZone>0 && _htOption.quietZoneColor){
-                            drawQuietZoneColor();
-                        }
-						_this._bIsPainted = true;
-
-						_this.makeImage();
+				function genratorImg() {
+					var imgContainerW = Math.round(_htOption.width / 3.5);
+					var imgContainerH = Math.round(_htOption.height / 3.5);
+					if (imgContainerW !== imgContainerH) {
+						imgContainerW = imgContainerH;
 					}
-                    
+
+					if (_htOption.logoWidth) {
+						imgContainerW = Math.round(_htOption.logoWidth);
+					}
+					if (_htOption.logoHeight) {
+						imgContainerH = Math.round(_htOption.logoHeight);
+					}
+
+					var imgContainerX = (_htOption.width + _htOption.quietZone * 2 - imgContainerW) / 2;
+					var imgContainerY = (_htOption.height + _htOption.titleHeight + _htOption.quietZone * 2 - imgContainerH) / 2;
+
+					// Did Not Use Transparent Logo Image
+					if (!_htOption.logoBackgroundTransparent) {
+						//if (!_htOption.logoBackgroundColor) {
+						//_htOption.logoBackgroundColor = '#ffffff';
+						//}
+						_oContext.fillStyle = _htOption.logoBackgroundColor;
+
+						_oContext.fillRect(imgContainerX, imgContainerY, imgContainerW, imgContainerH);
+					}
+
+					var imgScale = Math.min(imgContainerW / this.naturalWidth, imgContainerH / this.naturalHeight);
+					var imgW = this.naturalWidth * imgScale;
+					var imgH = this.naturalHeight * imgScale;
+
+					_oContext.drawImage(img, imgContainerX + (imgContainerW - imgW)/2, imgContainerY + (imgContainerH - imgH)/2, imgW, imgH);
+					if(_htOption.quietZone>0 && _htOption.quietZoneColor){
+						drawQuietZoneColor();
+					}
+					_this._bIsPainted = true;
+
+					_this.makeImage();
+				}
+
 				if (_htOption.logo) {
 					var img = new Image();
 					
 					var _this = this;
 
-
-					img.onload = function() {
-						genratorImg();
-					}
+					img.onload = genratorImg;
 
 					img.onerror = function(e) {
 						console.error(e)
