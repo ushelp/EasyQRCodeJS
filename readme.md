@@ -20,6 +20,7 @@ EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成
 - [Angular Support](#angular-support)
 - [Vue.js Support](#vuejs-support)
 - [React Support](#react-support)
+- [Next.js Support](#nextjs-support)
 - [Browser Compatibility](#browser-compatibility)
 - [License](#license)
 - [EasyQRCodeJS-Premium:](#easyqrcodejs-premium)
@@ -60,7 +61,7 @@ EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成
 
     - Support AMD, CMD, CommonJS/Node.js JavaScript modules
 
-    - Angular, Vue.js, React Support
+    - Angular, Vue.js, React, Next.js Support
     
     
 - **中文**
@@ -87,7 +88,7 @@ EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成
 	
     - 支持 AMD，CMD, CommonJS/Node.js JavaScript 模块加载规范
 
-    - Angular, Vue.js, React 支持
+    - Angular, Vue.js, React, NEXT.js 支持
 
 
 
@@ -260,7 +261,7 @@ var qrcode = new QRCode(DOM_object, options_object);
 		   
 			// ===== Tooltip
 			/*
-		   tooltip: false // Whether set the QRCode Text as the title attribute value of the QRCode div
+			tooltip: false // Whether set the QRCode Text as the title attribute value of the QRCode div
 			*/ 
 	}
 	```
@@ -492,6 +493,67 @@ var qrcode = new QRCode(DOM_object, options_object);
 
     export default App;
     ```
+    
+## Next.js Support
+
+1. Add dependency
+
+    Add `easy.qrcode.min.js` to your static files folder called **`static`**(**`<`Next.js 9.1**)/**`public`**(**`>=`Next.js 9.1**) in the root directory.
+
+2. Script   
+    
+    ```JavaScript
+    import Layout from '../components/Layout';
+    // Import Head
+    import Head from "next/head";
+
+    class About extends React.Component {
+      constructor(props) {
+        super(props);
+        // QRCode DOM
+        this.qrcodeDOM = React.createRef();
+        // QRCode
+        this.qrcode=null;
+      }
+      
+      //QRCode generator
+      generate(color){
+          if(this.qrcode){
+              this.qrcode.clear();
+          }
+          var options = {
+              text: "https://github.com/ushelp/EasyQRCodeJS",
+              colorDark : color?color:'#000000'
+          };
+          this.qrcode=new QRCode(this.qrcodeDOM.current, options);
+      }
+      
+      // Gerenate QRCode on mount
+      componentDidMount() { 
+           this.generate()
+      }
+      
+      render() {
+        return (
+          <Layout>
+              <p>This is About page</p>
+              {/* DOM */}
+              <div ref={this.qrcodeDOM}></div>
+              {/* Gerenate QRCode on click */}
+              <button onClick={this.generate.bind(this, '#ff0000')}>QRCode Generate</button>
+              {/* Include EasyQRCodeJS library*/}
+              <Head>
+               <script type="text/javascript" src="/public/easy.qrcode.min.js"></script>
+             </Head>
+               <p>This is About page</p>
+          </Layout>
+        );
+      }
+    }
+
+    export default About;
+    ```    
+
  
 ## Browser Compatibility
 IE6+, Chrome, Firefox, Safari, Opera, Mobile Safari, Android, Windows Mobile, ETC.
