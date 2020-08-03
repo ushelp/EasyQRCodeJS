@@ -12,7 +12,7 @@ module.exports = function(grunt) {
 `/**
  * EasyQRCodeJS
  * 
- * Cross-browser QRCode generator for pure javascript. Support Dot style, Logo, Background image, Colorful, Title, etc. Support Angular, Vue.js, React, Next.js framework. (Running with DOM on client side)
+ * Cross-browser QRCode generator for pure javascript. Support Dot style, Logo, Background image, Colorful, Title etc. settings. Support Angular, Vue.js, React, Next.js framework. support binary mode.(Running with DOM on client side)
  * 
  * Version <%=pkg.version %>
  * 

@@ -1,8 +1,8 @@
 # EasyQRCodeJS
 
-EasyQRCodeJS is a feature-rich cross-browser pure JavaScript QRCode generation library. Support for Javascript modules. Support setting Dot style, Logo, Background image, Colorful, Title and more. 
+EasyQRCodeJS is a feature-rich cross-browser pure JavaScript QRCode generation library. Support Dot style, Logo, Background image, Colorful, Title etc. settings. Support Angular, Vue.js, React, Next.js framework. Support binary(hex) data mode.(Running with DOM on client side)
 
-EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成库。支持 JavaScript 模块化加载。支持点状风格，Logo，背景图片，规则色彩控制，标题等设置。
+EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成库。支持 JavaScript 模块化加载。支持点状风格，Logo，背景图片，规则色彩控制，标题等设置。支持 Angular, Vue.js, React, Next.js 等框架。支持二进制数据模式。(基于客户端 DOM 运行)
 
 
 ## Table of contents
@@ -62,6 +62,8 @@ EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成
     - Support AMD, CMD, CommonJS/Node.js JavaScript modules
 
     - Angular, Vue.js, React, Next.js Support
+
+    - Support binary(hex) data mode
     
     
 - **中文**
@@ -90,6 +92,7 @@ EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成
 
     - Angular, Vue.js, React, NEXT.js 支持
 
+    - 二进制数据模式支持
 
 
 ## Try It!
@@ -257,12 +260,17 @@ var qrcode = new QRCode(DOM_object, options_object);
 			// ===== Versions
 			/*
 			version: 0, // The symbol versions of QR Code range from Version 1 to Version 40. default 0 means automatically choose the closest version based on the text length.
-			*/        
+			*/     
+           
+            // ===== Binary(hex) data mode
+            /*
+            binary: false, // Whether it is binary mode, default is text mode. 
+			*/ 
 		   
 			// ===== Tooltip
 			/*
 			tooltip: false // Whether set the QRCode Text as the title attribute value of the QRCode div
-			*/ 
+            */
 	}
 	```
 
@@ -320,11 +328,12 @@ var qrcode = new QRCode(DOM_object, options_object);
 	| Event Handler options| --- | ---|---|---|---|
 	| **onRenderingStart(qrCodeOptions)** | N | Function | `undefined` | Callback function when the rendering start. can use to hide loading state or handling.  |  &nbsp; |
 	| **onRenderingEnd(qrCodeOptions, base64DataURL)** | N | Function | `undefined` | Callback function when the rendering ends. `base64DataURL` parameter is the base64 data of QRCode image(if not support canvas return `null`).   |  &nbsp; |
-	| Version options| --- | ---|---|---|
+	| Version options| --- | ---|---|---|---|
     | **version** | N | Number | `0` | The symbol versions of QR Code range from Version `1` to Version `40`. default 0 means automatically choose the closest version based on the text length. [Information capacity and versions of QR Codes](https://www.qrcode.com/en/about/version.html)  **NOTE**: If you set a value less than the minimum version available for text, the minimum version is automatically used. |  &nbsp; |
-	| Tooltip options| --- | ---|---|---|
+	| Tooltip options| --- | ---|---|---|---|
     | **tooltip** | N | Boolean | `false` | Whether set the QRCode Text as the title attribute value of the QRCode div. |  &nbsp; |
-
+	| Binary(hex) data model options| --- | ---|---|---|---|
+    | **binary** | N | Boolean | `false` | Whether it is binary mode, default is text mode.  |  &nbsp; |
 
 
 ### Method

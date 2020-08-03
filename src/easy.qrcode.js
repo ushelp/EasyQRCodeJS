@@ -1,9 +1,9 @@
 /**
  * EasyQRCodeJS
  * 
- * Cross-browser QRCode generator for pure javascript. Support Dot style, Logo, Background image, Colorful, Title, etc. Support Angular, Vue.js, React, Next.js framework. (Running with DOM on client side)
+ * Cross-browser QRCode generator for pure javascript. Support Dot style, Logo, Background image, Colorful, Title etc. settings. Support Angular, Vue.js, React, Next.js framework. Support binary(hex) data mode.(Running with DOM on client side)
  * 
- * Version 3.7.1
+ * Version 3.8.0
  * 
  * @author [ inthinkcolor@gmail.com ]
  * 
@@ -45,7 +45,7 @@
 
     var QRCode;
 
-    function QR8bitByte(data) {
+    function QR8bitByte(data, binary) {
         this.mode = QRMode.MODE_8BIT_BYTE;
         this.data = data;
         this.parsedData = [];
@@ -55,21 +55,26 @@
             var byteArray = [];
             var code = this.data.charCodeAt(i);
 
-            if (code > 0x10000) {
-                byteArray[0] = 0xF0 | ((code & 0x1C0000) >>> 18);
-                byteArray[1] = 0x80 | ((code & 0x3F000) >>> 12);
-                byteArray[2] = 0x80 | ((code & 0xFC0) >>> 6);
-                byteArray[3] = 0x80 | (code & 0x3F);
-            } else if (code > 0x800) {
-                byteArray[0] = 0xE0 | ((code & 0xF000) >>> 12);
-                byteArray[1] = 0x80 | ((code & 0xFC0) >>> 6);
-                byteArray[2] = 0x80 | (code & 0x3F);
-            } else if (code > 0x80) {
-                byteArray[0] = 0xC0 | ((code & 0x7C0) >>> 6);
-                byteArray[1] = 0x80 | (code & 0x3F);
-            } else {
+            if (binary) {
                 byteArray[0] = code;
+            } else {
+                if (code > 0x10000) {
+                    byteArray[0] = 0xF0 | ((code & 0x1C0000) >>> 18);
+                    byteArray[1] = 0x80 | ((code & 0x3F000) >>> 12);
+                    byteArray[2] = 0x80 | ((code & 0xFC0) >>> 6);
+                    byteArray[3] = 0x80 | (code & 0x3F);
+                } else if (code > 0x800) {
+                    byteArray[0] = 0xE0 | ((code & 0xF000) >>> 12);
+                    byteArray[1] = 0x80 | ((code & 0xFC0) >>> 6);
+                    byteArray[2] = 0x80 | (code & 0x3F);
+                } else if (code > 0x80) {
+                    byteArray[0] = 0xC0 | ((code & 0x7C0) >>> 6);
+                    byteArray[1] = 0x80 | (code & 0x3F);
+                } else {
+                    byteArray[0] = code;
+                }
             }
+
 
             this.parsedData.push(byteArray);
         }
@@ -104,8 +109,8 @@
     }
 
     QRCodeModel.prototype = {
-        addData: function(data) {
-            var newData = new QR8bitByte(data);
+        addData: function(data, binary) {
+            var newData = new QR8bitByte(data, binary);
             this.dataList.push(newData);
             this.dataCache = null;
         },
@@ -1829,7 +1834,7 @@
 
     function _getUTF8Length(sText) {
         var replacedText = encodeURI(sText).toString().replace(/\%[0-9a-fA-F]{2}/g, 'a');
-        return replacedText.length + (replacedText.length != sText ? 3 : 0);
+        return replacedText.length + (replacedText.length != sText.length ? 3 : 0);
     }
 
 
@@ -1897,7 +1902,11 @@
             version: 0, // The symbol versions of QR Code range from Version 1 to Version 40. default 0 means automatically choose the closest version based on the text length.
 
             // ==== Tooltip
-            tooltip: false // Whether set the QRCode Text as the title attribute value of the image
+            tooltip: false, // Whether set the QRCode Text as the title attribute value of the image
+
+            // ==== Binary(hex) data mode
+            binary: false // Whether it is binary mode, default is text mode. 
+
         };
 
         if (typeof vOption === 'string') {
@@ -1957,7 +1966,7 @@
     QRCode.prototype.makeCode = function(sText) {
 
         this._oQRCode = new QRCodeModel(_getTypeNumber(sText, this._htOption), this._htOption.correctLevel);
-        this._oQRCode.addData(sText);
+        this._oQRCode.addData(sText, this._htOption.binary);
         this._oQRCode.make();
         if (this._htOption.tooltip) {
             this._el.title = sText;
