@@ -262,11 +262,11 @@ var qrcode = new QRCode(DOM_object, options_object);
 			version: 0, // The symbol versions of QR Code range from Version 1 to Version 40. default 0 means automatically choose the closest version based on the text length.
 			*/     
            
-            // ===== Binary(hex) data mode
-            /*
-            binary: false, // Whether it is binary mode, default is text mode. 
+			// ===== Binary(hex) data mode
+			/*
+			binary: false, // Whether it is binary mode, default is text mode. 
 			*/ 
-		   
+			
 			// ===== Tooltip
 			/*
 			tooltip: false // Whether set the QRCode Text as the title attribute value of the QRCode div
