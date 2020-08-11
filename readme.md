@@ -13,6 +13,7 @@ EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成
 - [Demo preview](#demo-preview)
 - [QR Code Structure](#qr-code-structure)
 - [Installation](#installation)
+- [Load](#load)
 - [Basic Usages](#basic-usages)
 - [QRCode API](#qrcode-api)
   - [Object](#object)
@@ -116,10 +117,7 @@ EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成
 
 - Download install
 
-	```HTML
-	<script src="dist/easy.qrcode.min.js" type="text/javascript" charset="utf-8"></script>
-	
-	```
+    [https://github.com/ushelp/EasyQRCodeJS](https://github.com/ushelp/EasyQRCodeJS)
 
 - Npm install
 
@@ -127,6 +125,39 @@ EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成
 	npm install easyqrcodejs
 	```
 
+## Load
+
+- Script load
+
+	```HTML
+	<script src="<PATH>/easy.qrcode.min.js" type="text/javascript" charset="utf-8"></script>
+	
+	```
+    
+- AMD load
+
+	```JS
+	require.config({
+		paths: {
+			QRCode: "<PATH>/easy.qrcode.min"
+		}
+	});
+	
+	require(["QRCode"], function(QRCode){
+		
+		// Your code...
+		
+	});
+	```
+
+- Node.js load(For Example, Use in [Electron](http://electronjs.org/ 'Electron'))
+
+	```JS
+	const QRCode = require('<PATH>/easyqrcodejs');
+	
+	// Your code...
+	```
+	
 
 ## Basic Usages
 ```HTML
@@ -143,30 +174,6 @@ EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成
 </script>
 ```
 
-- AMD load
-
-	```JS
-	require.config({
-		paths: {
-			QRCode: "<YOUR_PATH>/easy.qrcode.min"
-		}
-	});
-	
-	require(["QRCode"], function(QRCode){
-		
-		// Your code...
-		
-	});
-	```
-
-- Node.js load(For Example, Use in [Electron](http://electronjs.org/ 'Electron'))
-
-	```JS
-	const QRCode = require('easyqrcodejs');
-	
-	// Your code...
-	```
-	
 	
 ## QRCode API
 
