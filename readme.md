@@ -207,7 +207,7 @@ var qrcode = new QRCode(DOM_object, options_object);
     /*
     logo:"../demo/logo.png", // Relative address, relative to `easy.qrcode.min.js`
     logo:"http://127.0.0.1:8020/easy-qrcodejs/demo/logo.png", 
-    logoWidth:80, // widht. default is automatic width
+    logoWidth:80, // width. default is automatic width
     logoHeight:80 // height. default is automatic height
     logoBackgroundColor:'#fffff', // Logo backgroud color, Invalid when `logBgTransparent` is true; default is '#ffffff'
     logoBackgroundTransparent:false, // Whether use transparent image, default is false
@@ -362,7 +362,7 @@ var qrcode = new QRCode(DOM_object, options_object);
 	qrcode.makeCode("https://github.com/ushelp/EasyQRCodeJS"); // make another code text.
 	```
     
-- resize(widht, height)
+- resize(width, height)
 
 	```JS
 	qrcode.resize(480, 480); // Resize the image 
