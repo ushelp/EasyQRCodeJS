@@ -482,37 +482,65 @@ var qrcode = new QRCode(DOM_object, options_object);
 
 2. Script   
     
-    ```JavaScript
-    import React from 'react';
-    import './App.css';
-    import * as QRCode from 'easyqrcodejs';
+    - JavaScript
+    
+        ```JavaScript
+        import React from 'react';
+        import './App.css';
+        import * as QRCode from 'easyqrcodejs';
 
-    class App extends React.Component {
+        class App extends React.Component {
 
-        constructor(props) {
-            super(props);
-            this.qrcode = React.createRef();
-        }
-
-        componentDidMount() {
-            // Options
-            var options = {
-                text: "https://github.com/ushelp/EasyQRCodeJS"
+            constructor(props) {
+                super(props);
+                this.qrcode = React.createRef();
             }
-            // Create new QRCode Object
-            new QRCode( this.qrcode.current, options);
-        }
-        render() {
-            return ( 
-            <div className = "App">
-                <div ref={this.qrcode}></div> 
-            </div>
-            );
-        }
-    }
 
-    export default App;
-    ```
+            componentDidMount() {
+                // Options
+                var options = {
+                    text: "https://github.com/ushelp/EasyQRCodeJS"
+                }
+                // Create new QRCode Object
+                new QRCode( this.qrcode.current, options);
+            }
+            render() {
+                return ( 
+                <div className = "App">
+                    <div ref={this.qrcode}></div> 
+                </div>
+                );
+            }
+        }
+
+        export default App;
+        ```
+        
+    - TypeScript
+
+        ```JavaScript
+        import React, { useEffect } from "react";
+        import QRCode from "easyqrcodejs";
+        
+        function App() {
+          const code = React.createRef<HTMLDivElement>();
+        
+          useEffect(() => {
+            new QRCode(code.current, { text: "https://github.com/ushelp/EasyQRCodeJS" });
+          }, [code]);
+        
+          return (
+            <div className="App">
+              <header className="App-header">
+             
+                <div ref={code}></div>
+              </header>
+            </div>
+          );
+        }
+        
+        export default App;
+        ```
     
 ## Next.js Support
 
