@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>EasyQRCodeJS Demo</title>
-		<script src="../src/easy.qrcode.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../dist/easy.qrcode.min.js" type="text/javascript" charset="utf-8"></script>
 
 		<style type="text/css">
 			body{
@@ -477,7 +477,7 @@
 
 				// All
 				{
-					title: "Title + SubTitle + Colorful",
+					title: "Title + SubTitle + Colorful - SVG",
 					config: {
 						text: "www.easyproject.cn/donation", // Content
 
@@ -539,7 +539,9 @@
 						
 						onRenderingEnd:function(options, dataURL){
 							console.info(dataURL);
-						}
+						},
+                        
+                        drawer: 'svg'
 					}
 
 				}

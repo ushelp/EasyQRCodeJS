@@ -1,9 +1,9 @@
 /**
  * EasyQRCodeJS
  * 
- * Cross-browser QRCode generator for pure javascript. Support Dot style, Logo, Background image, Colorful, Title etc. settings. Support Angular, Vue.js, React, Next.js framework. Support binary(hex) data mode.(Running with DOM on client side)
+ * Cross-browser QRCode generator for pure javascript. Support Canvas, SVG and Table drawing methods. Support Dot style, Logo, Background image, Colorful, Title etc. settings. Support Angular, Vue.js, React, Next.js framework. Support binary(hex) data mode.(Running with DOM on client side)
  * 
- * Version 3.8.3
+ * Version 4.0.0
  * 
  * @author [ inthinkcolor@gmail.com ]
  * 
@@ -1033,75 +1033,8 @@
         return android;
     }
 
-    var svgDrawer = (function() {
-
-        var Drawing = function(el, htOption) {
-            this._el = el;
-            this._htOption = htOption;
-        };
-
-        Drawing.prototype.draw = function(oQRCode) {
-            var _htOption = this._htOption;
-            var _el = this._el;
-            var nCount = oQRCode.getModuleCount();
-            var nWidth = Math.floor(_htOption.width / nCount);
-            var nHeight = Math.floor(_htOption.height / nCount);
-
-            this.clear();
-
-            function makeSVG(tag, attrs) {
-                var el = document.createElementNS('http://www.w3.org/2000/svg', tag);
-                for (var k in attrs)
-                    if (attrs.hasOwnProperty(k)) el.setAttribute(k, attrs[k]);
-                return el;
-            }
-
-            var svg = makeSVG("svg", {
-                'viewBox': '0 0 ' + String(nCount) + " " + String(nCount),
-                'width': '100%',
-                'height': '100%',
-                'fill': _htOption.colorLight
-            });
-            svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink",
-                "http://www.w3.org/1999/xlink");
-            _el.appendChild(svg);
-
-            svg.appendChild(makeSVG("rect", {
-                "fill": _htOption.colorLight,
-                "width": "100%",
-                "height": "100%"
-            }));
-            svg.appendChild(makeSVG("rect", {
-                "fill": _htOption.colorDark,
-                "width": "1",
-                "height": "1",
-                "id": "template"
-            }));
-
-            for (var row = 0; row < nCount; row++) {
-                for (var col = 0; col < nCount; col++) {
-                    if (oQRCode.isDark(row, col)) {
-                        var child = makeSVG("use", {
-                            "x": String(col),
-                            "y": String(row)
-                        });
-                        child.setAttributeNS("http://www.w3.org/1999/xlink", "href", "#template")
-                        svg.appendChild(child);
-                    }
-                }
-            }
-        };
-        Drawing.prototype.clear = function() {
-            while (this._el.hasChildNodes())
-                this._el.removeChild(this._el.lastChild);
-        };
-        return Drawing;
-    })();
-
-    var useSVG = document.documentElement.tagName.toLowerCase() === "svg";
-
     // Drawing in DOM by using Table tag
-    var Drawing = useSVG ? svgDrawer : !_isSupportCanvas() ? (function() {
+    var Drawing = !_isSupportCanvas() ? (function() {
         var Drawing = function(el, htOption) {
             this._el = el;
             this._htOption = htOption;
@@ -1336,17 +1269,26 @@
         return Drawing;
     })() : (function() { // Drawing in Canvas
         function _onMakeImage() {
-            // this._elImage.crossOrigin='Anonymous';
-            try {
-                var dataURL = this._elCanvas.toDataURL("image/png");
-                this._elImage.src = dataURL
-                this.dataURL = dataURL;
-                this._elImage.style.display = "inline";
-                this._elCanvas.style.display = "none";
-            } catch (e) {
-                console.error(e)
-            }
 
+
+            if (this._htOption.drawer == 'svg') {
+                var svgData = this._oContext.getSerializedSvg(true);
+                this.dataURL = svgData;
+                this._el.innerHTML = svgData;
+            } else {
+                // canvas
+                // this._elImage.crossOrigin='Anonymous';
+                try {
+                    var dataURL = this._elCanvas.toDataURL("image/png");
+                    this._elImage.src = dataURL
+                    this.dataURL = dataURL;
+                    this._elImage.style.display = "inline";
+                    this._elCanvas.style.display = "none";
+                } catch (e) {
+                    console.error(e)
+                }
+
+            }
             if (this._htOption.onRenderingEnd) {
                 if (!this.dataURL) {
                     console.error(
@@ -1355,6 +1297,7 @@
                 }
                 this._htOption.onRenderingEnd(this._htOption, this.dataURL);
             }
+
 
         }
 
@@ -1432,19 +1375,22 @@
         var Drawing = function(el, htOption) {
             this._bIsPainted = false;
             this._android = _getAndroid();
-
-            this._htOption = htOption;
-            this._elCanvas = document.createElement("canvas");
-            //this._elCanvas.width = htOption.width;
-            //this._elCanvas.height = htOption.height;
-            el.appendChild(this._elCanvas);
             this._el = el;
-            this._oContext = this._elCanvas.getContext("2d");
-            this._bIsPainted = false;
-            this._elImage = document.createElement("img");
-            this._elImage.alt = "Scan me!";
-            this._elImage.style.display = "none";
-            this._el.appendChild(this._elImage);
+            this._htOption = htOption;
+
+            if (this._htOption.drawer == 'svg') {
+                this._oContext = {};
+                this._elCanvas = {};
+            } else {
+                // canvas
+                this._elCanvas = document.createElement("canvas");
+                this._el.appendChild(this._elCanvas);
+                this._oContext = this._elCanvas.getContext("2d");
+                this._elImage = document.createElement("img");
+                this._elImage.alt = "Scan me!";
+                this._elImage.style.display = "none";
+                this._el.appendChild(this._elImage);
+            }
 
             this._bSupportDataURI = null;
             this.dataURL = null;
@@ -1458,7 +1404,6 @@
         Drawing.prototype.draw = function(oQRCode) {
 
             var _elImage = this._elImage;
-            var _oContext = this._oContext;
             var _htOption = this._htOption;
 
 
@@ -1481,11 +1426,14 @@
             this._elCanvas.width = _htOption.width + _htOption.quietZone * 2;
             this._elCanvas.height = _htOption.height + _htOption.quietZone * 2;
 
-
-
-            _elImage.style.display = "none";
+            if (this._htOption.drawer == 'canvas') {
+                _elImage.style.display = "none";
+            } else {
+                this._oContext = new C2S(this._elCanvas.width, this._elCanvas.height);
+            }
             this.clear();
 
+            var _oContext = this._oContext;
             _oContext.lineWidth = 0;
             _oContext.fillStyle = _htOption.colorLight;
             _oContext.fillRect(0, 0, this._elCanvas.width, this._elCanvas.height);
@@ -1905,8 +1853,10 @@
             tooltip: false, // Whether set the QRCode Text as the title attribute value of the image
 
             // ==== Binary(hex) data mode
-            binary: false // Whether it is binary mode, default is text mode. 
+            binary: false, // Whether it is binary mode, default is text mode. 
 
+            // ==== Drawing method
+            drawer: 'canvas' // Drawing method: canvas, svg(Chrome, FF, IE9+)
         };
 
         if (typeof vOption === 'string') {
@@ -1944,8 +1894,8 @@
             el = document.getElementById(el);
         }
 
-        if (this._htOption.useSVG) {
-            Drawing = svgDrawer;
+        if (!this._htOption.drawer || (this._htOption.drawer != 'svg' && this._htOption.drawer != 'canvas')) {
+            this._htOption.drawer = 'canvas';
         }
 
         this._android = _getAndroid();

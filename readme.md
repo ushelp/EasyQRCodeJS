@@ -1,8 +1,8 @@
 # EasyQRCodeJS
 
-EasyQRCodeJS is a feature-rich cross-browser pure JavaScript QRCode generation library. Support Dot style, Logo, Background image, Colorful, Title etc. settings. Support Angular, Vue.js, React, Next.js framework. Support binary(hex) data mode.(Running with DOM on client side)
+EasyQRCodeJS is a feature-rich cross-browser pure JavaScript QRCode generation library. Support Canvas, SVG and Table drawing methods. Support Dot style, Logo, Background image, Colorful, Title etc. settings. Support Angular, Vue.js, React, Next.js framework. Support binary(hex) data mode.(Running with DOM on client side)
 
-EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成库。支持 JavaScript 模块化加载。支持点状风格，Logo，背景图片，规则色彩控制，标题等设置。支持 Angular, Vue.js, React, Next.js 等框架。支持二进制数据模式。(基于客户端 DOM 运行)
+EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成库。支持 Canvas, SVG, Table 等绘制方式。支持 JavaScript 模块化加载。支持点状风格，Logo，背景图片，规则色彩控制，标题等设置。支持 Angular, Vue.js, React, Next.js 等框架。支持二进制数据模式。(基于客户端 DOM 运行)
 
 
 ## Table of contents
@@ -35,14 +35,14 @@ EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成
 | --- | --- |
 | [EasyQRCodeJS](https://github.com/ushelp/EasyQRCodeJS) | **Running with DOM on CLIENT-SIDE .** Browser(IE6+, Chrome, Firefox, Safari, Opera, Mobile Safari, Android, Windows Mobile, ETC.), Electron, NW.js, ETC.  |
 | [EasyQRCodeJS-NodeJS](https://github.com/ushelp/EasyQRCodeJS-NodeJS) | **Running without DOM on SERVER-SIDE**. Save image to file or get data url text.  NodeJS, Electron, NW.js, ETC.|
-| [EasyQRCode-React-Native](https://github.com/ushelp/EasyQRCode-React-Native) | **A QRCode generator for React Native**. Generate QRCode image or get base64 data url text.|
+| [EasyQRCode-React-Native](https://github.com/ushelp/EasyQRCode-React-Native) | **A QRCode generator for React Native**. Generate QRCode image(PNG/JPEG/SVG/Base64 data url).|
 
 
 ## Feature
 
 - **English**
 
-    - Cross-browser support for QR code generation based on HTML5 Canvas and Table
+    - Cross-browser support for QR code generation based on HTML5 Canvas, SVG and Table
 
     - Required Patterns that support dot style
  
@@ -72,7 +72,7 @@ EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成
     
 - **中文**
 
-    - 跨浏览器，支持基于 HTML5 Canvas 和 Table 的二维码生成
+    - 跨浏览器，支持基于 HTML5 Canvas, SVG 和 Table 的二维码生成
 
     - 支持点形风格的 Required Patterns
 
@@ -280,8 +280,14 @@ var qrcode = new QRCode(DOM_object, options_object);
     
     // ===== Tooltip
     /*
-    tooltip: false // Whether set the QRCode Text as the title attribute value of the QRCode div
+    tooltip: false, // Whether set the QRCode Text as the title attribute value of the QRCode div
     */
+   
+    // =====  Drawing method
+    /*
+    drawer: 'canvas', // Which drawing method to use. 'canvas', 'svg'. default is 'canvas'
+    */   
+
 }
 ```
 
@@ -338,13 +344,15 @@ var qrcode = new QRCode(DOM_object, options_object);
 | **subTitleTop** | N | Number | `0` | draws y coordinates. default is 0|  &nbsp; |
 | Event Handler options| --- | ---|---|---|---|
 | **onRenderingStart(qrCodeOptions)** | N | Function | `undefined` | Callback function when the rendering start. can use to hide loading state or handling.  |  &nbsp; |
-| **onRenderingEnd(qrCodeOptions, base64DataURL)** | N | Function | `undefined` | Callback function when the rendering ends. `base64DataURL` parameter is the base64 data of QRCode image(if not support canvas return `null`).   |  &nbsp; |
+| **onRenderingEnd(qrCodeOptions, dataURL)** | N | Function | `undefined` | Callback function when the rendering ends. `dataURL` parameter is the base64 data(`canvas` drawer) or SVG serialized text(`svg` drawer) of QRCode image(if not support canvas return `null`).   |  &nbsp; |
 | Version options| --- | ---|---|---|---|
 | **version** | N | Number | `0` | The symbol versions of QR Code range from Version `1` to Version `40`. default 0 means automatically choose the closest version based on the text length. [Information capacity and versions of QR Codes](https://www.qrcode.com/en/about/version.html)  **NOTE**: If you set a value less than the minimum version available for text, the minimum version is automatically used. |  &nbsp; |
 | Tooltip options| --- | ---|---|---|---|
 | **tooltip** | N | Boolean | `false` | Whether set the QRCode Text as the title attribute value of the QRCode div. |  &nbsp; |
 | Binary(hex) data model options| --- | ---|---|---|---|
 | **binary** | N | Boolean | `false` | Whether it is binary mode, default is text mode.  |  &nbsp; |
+| Drawing method options| --- | ---|---|---|---|
+| **drawer** | N | String | `canvas` | Which drawing method to use. `canvas`, `svg`. | Chrome, FF, IE9+. |
 
 
 ### Method
