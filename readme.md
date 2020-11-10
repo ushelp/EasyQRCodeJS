@@ -395,7 +395,7 @@ var qrcode = new QRCode(DOM_object, options_object);
     <!-- DOM Element-->
     <div #qrcode></div>
     ```
-2. Activate `esModuleInterop` in your `tsconfig.json` `compilerOptions`
+2. Activate `esModuleInterop` in your `tsconfig.json`
     ```
     "esModuleInterop": true,
     ```
@@ -404,7 +404,7 @@ var qrcode = new QRCode(DOM_object, options_object);
 
     ```JavaScript
     import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
-    import { QRCode } from 'easyqrcodejs';
+    import QRCode from 'easyqrcodejs';
 
     @Component({
       selector: 'app-root',
