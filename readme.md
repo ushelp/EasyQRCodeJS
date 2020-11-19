@@ -208,7 +208,7 @@ var qrcode = new QRCode(DOM_object, options_object);
     logo:"../demo/logo.png", // Relative address, relative to `easy.qrcode.min.js`
     logo:"http://127.0.0.1:8020/easy-qrcodejs/demo/logo.png", 
     logoWidth:80, // width. default is automatic width
-    logoHeight:80 // height. default is automatic height
+    logoHeight:80, // height. default is automatic height
     logoBackgroundColor:'#fffff', // Logo backgroud color, Invalid when `logBgTransparent` is true; default is '#ffffff'
     logoBackgroundTransparent:false, // Whether use transparent image, default is false
     */
@@ -285,7 +285,7 @@ var qrcode = new QRCode(DOM_object, options_object);
    
     // =====  Drawing method
     /*
-    drawer: 'canvas', // Which drawing method to use. 'canvas', 'svg'. default is 'canvas'
+    drawer: 'canvas' // Which drawing method to use. 'canvas', 'svg'. default is 'canvas'
     */   
 
 }
