@@ -780,7 +780,8 @@
             x : x,
             y : y,
             width : width,
-            height : height
+            height : height,
+            "shape-rendering":"crispEdges"
         }, true);
         parent = this.__closestGroupOrSvg();
         parent.appendChild(rect);

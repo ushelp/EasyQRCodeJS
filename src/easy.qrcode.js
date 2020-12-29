@@ -3,7 +3,7 @@
  * 
  * Cross-browser QRCode generator for pure javascript. Support Canvas, SVG and Table drawing methods. Support Dot style, Logo, Background image, Colorful, Title etc. settings. Support Angular, Vue.js, React, Next.js framework. Support binary(hex) data mode.(Running with DOM on client side)
  * 
- * Version 4.1.0
+ * Version 4.2.1
  * 
  * @author [ inthinkcolor@gmail.com ]
  * 
@@ -1284,15 +1284,15 @@
             } else {
                 // canvas
                 // this._elImage.crossOrigin='Anonymous';
-                if (_htOption.crossOrigin != null) {
-                    this._elImage.crossOrigin = _htOption.crossOrigin;
-                }
                 try {
+                    // if (this._htOption.crossOrigin != null) {
+                    //     this._elImage.crossOrigin = this._htOption.crossOrigin;
+                    // }
                     var dataURL = this._elCanvas.toDataURL("image/png");
-                    this._elImage.src = dataURL;
+                    // this._elImage.src = dataURL;
                     this.dataURL = dataURL;
-                    this._elImage.style.display = "inline";
-                    this._elCanvas.style.display = "none";
+                    // this._elImage.style.display = "inline";
+                    // this._elCanvas.style.display = "none";
                 } catch (e) {
                     console.error(e)
                 }
@@ -1395,10 +1395,10 @@
                 this._elCanvas = document.createElement("canvas");
                 this._el.appendChild(this._elCanvas);
                 this._oContext = this._elCanvas.getContext("2d");
-                this._elImage = document.createElement("img");
-                this._elImage.alt = "Scan me!";
-                this._elImage.style.display = "none";
-                this._el.appendChild(this._elImage);
+                // this._elImage = document.createElement("img");
+                // this._elImage.alt = "Scan me!";
+                // this._elImage.style.display = "none";
+                // this._el.appendChild(this._elImage);
             }
 
             this._bSupportDataURI = null;
@@ -1412,7 +1412,7 @@
          */
         Drawing.prototype.draw = function(oQRCode) {
 
-            var _elImage = this._elImage;
+            // var _elImage = this._elImage;
             var _htOption = this._htOption;
 
 
@@ -1435,9 +1435,9 @@
             this._elCanvas.width = _htOption.width + _htOption.quietZone * 2;
             this._elCanvas.height = _htOption.height + _htOption.quietZone * 2;
 
-            if (this._htOption.drawer == 'canvas') {
-                _elImage.style.display = "none";
-            } else {
+            if (this._htOption.drawer != 'canvas') {
+                // _elImage.style.display = "none";
+                // } else {
                 this._oContext = new C2S(this._elCanvas.width, this._elCanvas.height);
             }
             this.clear();
@@ -1565,6 +1565,11 @@
 
                             if (row == 6) {
                                 // Timing Pattern 
+                                var timingHColorDark = _htOption.timing_H || _htOption.timing ||
+                                    _htOption.colorDark;
+                                _oContext.fillStyle = bIsDark ? timingHColorDark : _htOption.colorLight;
+                                _oContext.strokeStyle = _oContext.fillStyle;
+
                                 nowDotScale = _htOption.dotScaleTiming_H;
 
                                 _oContext.fillRect(nLeft + nWidth * (1 - nowDotScale) / 2, _htOption.titleHeight +
@@ -1573,6 +1578,11 @@
                                     nowDotScale);
                             } else if (col == 6) {
                                 // Timing Pattern 
+                                var timingVColorDark = _htOption.timing_V || _htOption.timing ||
+                                    _htOption.colorDark;
+                                _oContext.fillStyle = bIsDark ? timingVColorDark : _htOption.colorLight;
+                                _oContext.strokeStyle = _oContext.fillStyle;
+                                
                                 nowDotScale = _htOption.dotScaleTiming_V;
 
                                 _oContext.fillRect(nLeft + nWidth * (1 - nowDotScale) / 2, _htOption.titleHeight +
