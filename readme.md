@@ -295,6 +295,11 @@ var qrcode = new QRCode(DOM_object, options_object);
     tooltip: false, // Whether set the QRCode Text as the title attribute value of the QRCode div
     */
    
+    // ==== CORS
+    /*
+    crossOrigin: null, // String which specifies the CORS setting to use when retrieving the image. null means that the crossOrigin attribute is not set.
+    */
+   
     // =====  Drawing method
     /*
     drawer: 'canvas' // Which drawing method to use. 'canvas', 'svg'. default is 'canvas'
@@ -372,8 +377,11 @@ var qrcode = new QRCode(DOM_object, options_object);
 | **tooltip** | N | Boolean | `false` | Whether set the QRCode Text as the title attribute value of the QRCode div. |  &nbsp; |
 | Binary(hex) data model options| --- | ---|---|---|---|
 | **binary** | N | Boolean | `false` | Whether it is binary mode, default is text mode.  |  &nbsp; |
+| CORS options| --- | ---|---|---|---|
+| **crossOrigin** | N | String | `null` | String which specifies the CORS setting to use when retrieving the image. null means that the crossOrigin attribute is not set. `'anonymous'`, `null`. | &nbsp;  |
 | Drawing method options| --- | ---|---|---|---|
 | **drawer** | N | String | `canvas` | Which drawing method to use. `canvas`, `svg`. | Chrome, FF, IE9+. |
+
 
 
 ### Method

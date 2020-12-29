@@ -1207,7 +1207,13 @@
             aHTML.push('</div>');
 
             if (_htOption.logo) {
+                // Logo Image
                 var img = new Image();
+
+                if (_htOption.crossOrigin != null) {
+                    img.crossOrigin = _htOption.crossOrigin;
+                }
+
                 // img.crossOrigin="Anonymous";
                 img.src = _htOption.logo;
 
@@ -1278,9 +1284,12 @@
             } else {
                 // canvas
                 // this._elImage.crossOrigin='Anonymous';
+                if (_htOption.crossOrigin != null) {
+                    this._elImage.crossOrigin = _htOption.crossOrigin;
+                }
                 try {
                     var dataURL = this._elCanvas.toDataURL("image/png");
-                    this._elImage.src = dataURL
+                    this._elImage.src = dataURL;
                     this.dataURL = dataURL;
                     this._elImage.style.display = "inline";
                     this._elCanvas.style.display = "none";
@@ -1458,7 +1467,7 @@
 
             if (_htOption.backgroundImage) {
 
-                // backgroundImage
+                // Background Image
                 var bgImg = new Image();
 
                 bgImg.onload = function() {
@@ -1475,6 +1484,9 @@
                     drawQrcode.call(t, oQRCode);
                 }
                 // bgImg.crossOrigin='Anonymous';
+                if (_htOption.crossOrigin != null) {
+                    bgImg.crossOrigin = _htOption.crossOrigin;
+                }
                 bgImg.src = _htOption.backgroundImage;
                 // DoSomething
             } else {
@@ -1667,6 +1679,7 @@
 
 
                 if (_htOption.logo) {
+                    // Logo Image
                     var img = new Image();
 
                     var _this = this;
@@ -1681,6 +1694,9 @@
                     }
 
                     // img.crossOrigin="Anonymous";
+                    if (_htOption.crossOrigin != null) {
+                        img.crossOrigin = _htOption.crossOrigin;
+                    }
                     img.src = _htOption.logo;
 
 
@@ -1881,7 +1897,11 @@
             binary: false, // Whether it is binary mode, default is text mode. 
 
             // ==== Drawing method
-            drawer: 'canvas' // Drawing method: canvas, svg(Chrome, FF, IE9+)
+            drawer: 'canvas', // Drawing method: canvas, svg(Chrome, FF, IE9+)
+
+
+            // ==== CORS
+            crossOrigin: null // String which specifies the CORS setting to use when retrieving the image. null means that the crossOrigin attribute is not set.
         };
 
         if (typeof vOption === 'string') {
