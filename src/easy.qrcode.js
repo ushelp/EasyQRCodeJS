@@ -3,7 +3,7 @@
  * 
  * Cross-browser QRCode generator for pure javascript. Support Canvas, SVG and Table drawing methods. Support Dot style, Logo, Background image, Colorful, Title etc. settings. Support Angular, Vue.js, React, Next.js framework. Support binary(hex) data mode.(Running with DOM on client side)
  * 
- * Version 4.2.1
+ * Version 4.3.0
  * 
  * @author [ inthinkcolor@gmail.com ]
  * 
@@ -1301,7 +1301,7 @@
             if (this._htOption.onRenderingEnd) {
                 if (!this.dataURL) {
                     console.error(
-                        "Can not get base64 data, please check: 1. published the page and image to the server 2. The image request support CORS"
+                        "Can not get base64 data, please check: 1. Published the page and image to the server 2. The image request support CORS 3. Configured `crossOrigin:'anonymous'` option"
                     )
                 }
                 this._htOption.onRenderingEnd(this._htOption, this.dataURL);
@@ -1508,6 +1508,52 @@
                         var eye = oQRCode.getEye(row, col); // { isDark: true/false, type: PO_TL, PI_TL, PO_TR, PI_TR, PO_BL, PI_BL };
 
                         var nowDotScale = _htOption.dotScale;
+
+                        _oContext.lineWidth = 0;
+                        // Color handler
+                        var dColor;
+                        var lColor;
+                        if (eye) {
+                            dColor = _htOption[eye.type] || _htOption[eye.type.substring(
+                                    0, 2)] ||
+                                _htOption.colorDark;
+                            lColor = _htOption.colorLight;
+                        } else {
+                            if (_htOption.backgroundImage) {
+
+                                lColor = "rgba(0,0,0,0)";
+                                if (row == 6) {
+                                    dColor = _htOption.timing_H || _htOption.timing || _htOption.colorDark;
+                                } else if (col == 6) {
+                                    dColor = _htOption.timing_V || _htOption.timing ||
+                                        _htOption.colorDark;
+                                } else {
+
+                                    if (_htOption.autoColor) {
+                                        dColor = _htOption.autoColorDark;
+                                        lColor = _htOption.autoColorLight;
+                                    } else {
+                                        dColor = _htOption.colorDark;
+                                    }
+                                }
+
+                            } else {
+                                if (row == 6) {
+                                    dColor = _htOption.timing_H || _htOption.timing || _htOption.colorDark;
+                                } else if (col == 6) {
+                                    dColor = _htOption.timing_V || _htOption.timing ||
+                                        _htOption.colorDark;
+                                } else {
+                                    dColor = _htOption.colorDark;
+                                }
+                                lColor = _htOption.colorLight;
+                            }
+                        }
+                        _oContext.strokeStyle = bIsDark ? dColor :
+                            lColor;
+                        _oContext.fillStyle = bIsDark ? dColor :
+                            lColor;
+
                         if (eye) {
                             if (eye.type == 'AO') {
                                 nowDotScale = _htOption.dotScaleAO;
@@ -1519,17 +1565,6 @@
 
                             // Is eye
                             bIsDark = eye.isDark;
-                            var type = eye.type;
-
-                            // PX_XX, PX, colorDark, colorLight
-                            var eyeColorDark = _htOption[type] || _htOption[type.substring(0, 2)] ||
-                                _htOption.colorDark;
-
-                            _oContext.lineWidth = 0;
-                            _oContext.strokeStyle = bIsDark ? eyeColorDark : _htOption.colorLight;
-                            _oContext.fillStyle = bIsDark ? eyeColorDark : _htOption.colorLight;
-
-                            // _oContext.fillRect(nLeft, _htOption.titleHeight + nTop, nWidth, nHeight);
 
 
                             _oContext.fillRect(nLeft + nWidth * (1 - nowDotScale) / 2, _htOption.titleHeight +
@@ -1538,37 +1573,9 @@
                                 nowDotScale);
 
                         } else {
-                            _oContext.lineWidth = 0;
-                            _oContext.strokeStyle = bIsDark ? _htOption.colorDark : _htOption.colorLight;
-                            _oContext.fillStyle = bIsDark ? _htOption.colorDark : _htOption.colorLight;
-
-                            if (_htOption.backgroundImage) {
-
-                                if (_htOption.autoColor) {
-                                    _oContext.strokeStyle = bIsDark ? "rgba(0, 0, 0, .6)" :
-                                        "rgba(255, 255, 255, .7)";
-                                    _oContext.fillStyle = bIsDark ? "rgba(0, 0, 0, .6)" :
-                                        "rgba(255, 255, 255, .7)";
-                                } else {
-                                    _oContext.strokeStyle = bIsDark ? _htOption.colorDark :
-                                        "rgba(0,0,0,0)";
-                                    _oContext.fillStyle = bIsDark ? _htOption.colorDark :
-                                        "rgba(0,0,0,0)";
-                                    _oContext.strokeStyle = _oContext.fillStyle;
-                                }
-
-                            } else {
-                                _oContext.strokeStyle = _oContext.fillStyle;
-
-
-                            }
 
                             if (row == 6) {
                                 // Timing Pattern 
-                                var timingHColorDark = _htOption.timing_H || _htOption.timing ||
-                                    _htOption.colorDark;
-                                _oContext.fillStyle = bIsDark ? timingHColorDark : _htOption.colorLight;
-                                _oContext.strokeStyle = _oContext.fillStyle;
 
                                 nowDotScale = _htOption.dotScaleTiming_H;
 
@@ -1578,11 +1585,6 @@
                                     nowDotScale);
                             } else if (col == 6) {
                                 // Timing Pattern 
-                                var timingVColorDark = _htOption.timing_V || _htOption.timing ||
-                                    _htOption.colorDark;
-                                _oContext.fillStyle = bIsDark ? timingVColorDark : _htOption.colorLight;
-                                _oContext.strokeStyle = _oContext.fillStyle;
-                                
                                 nowDotScale = _htOption.dotScaleTiming_V;
 
                                 _oContext.fillRect(nLeft + nWidth * (1 - nowDotScale) / 2, _htOption.titleHeight +
@@ -1891,7 +1893,9 @@
             // ==== Backgroud Image
             backgroundImage: undefined, // Background Image
             backgroundImageAlpha: 1, // Background image transparency, value between 0 and 1. default is 1. 
-            autoColor: false,
+            autoColor: false, // Automatic color adjustment(for data block)
+            autoColorDark: "rgba(0, 0, 0, .6)", // Automatic color: dark CSS color
+            autoColorLight: "rgba(255, 255, 255, .7)", // Automatic color: light CSS color
 
             // ==== Event Handler
             onRenderingStart: undefined,
@@ -1908,7 +1912,6 @@
 
             // ==== Drawing method
             drawer: 'canvas', // Drawing method: canvas, svg(Chrome, FF, IE9+)
-
 
             // ==== CORS
             crossOrigin: null // String which specifies the CORS setting to use when retrieving the image. null means that the crossOrigin attribute is not set.
@@ -2016,7 +2019,12 @@
         this._android = _getAndroid();
         this._el = el;
         this._oQRCode = null;
-        this._oDrawing = new Drawing(this._el, this._htOption);
+        
+        var _htOptionClone={};
+        for(var i in this._htOption){
+            _htOptionClone[i] = this._htOption[i];
+        }
+        this._oDrawing = new Drawing(this._el, _htOptionClone);
 
         if (this._htOption.text) {
             this.makeCode(this._htOption.text);

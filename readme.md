@@ -196,8 +196,8 @@ var qrcode = new QRCode(DOM_object, options_object);
     colorLight : "#ffffff",
     correctLevel : QRCode.CorrectLevel.H, // L, M, Q, H
     
-     // ====== dotScale
-     /*
+    // ====== dotScale
+    /*
     dotScale: 1, // For body block, must be greater than 0, less than or equal to 1. default is 1
     
     dotScaleTiming: 1, // Dafault for timing block , must be greater than 0, less than or equal to 1. default is 1
@@ -229,7 +229,9 @@ var qrcode = new QRCode(DOM_object, options_object);
     /*
     backgroundImage: '', // Background Image
     backgroundImageAlpha: 1, // Background image transparency, value between 0 and 1. default is 1. 
-    autoColor: false,
+    autoColor: false, // Automatic color adjustment(for data block)
+    autoColorDark: "rgba(0, 0, 0, .6)", // Automatic color: dark CSS color
+    autoColorLight: "rgba(255, 255, 255, .7)", // Automatic color: light CSS color
     */
     
     // ====== Colorful
@@ -315,7 +317,7 @@ var qrcode = new QRCode(DOM_object, options_object);
 | **width** | N | Number | `256` |  Width |  &nbsp; |
 | **height** | N | Number | `256` |  Height |  &nbsp; |
 | **colorDark** | N | String | `#000000` | Dark CSS color, `rgba(0,0,0,0)`|  &nbsp; |
-| **colorLight** | N | String | `#ffffff` | Light CSS color, `rgba(0,0,0,0)` |  &nbsp; |
+| **colorLight** | N | String | `#ffffff` | Light CSS color, `rgba(255,255,255,0)` |  &nbsp; |
 | **correctLevel** | N | Enum | `QRCode.CorrectLevel.H` | `QRCode.CorrectLevel.H`<br/>`QRCode.CorrectLevel.Q` <br/> `QRCode.CorrectLevel.M` <br/> `QRCode.CorrectLevel.L`|  &nbsp; |
 | Dot style| --- | ---|---|---|---|
 | **dotScale** | N | Number | `1.0` |Dot style scale. Ranges: `0-1.0` | &nbsp; |
@@ -339,7 +341,9 @@ var qrcode = new QRCode(DOM_object, options_object);
 | Backgroud Image options|  ---|--- |---|---|---|
 | **backgroundImage** | N | String | `undefined` | Background Image Path or Base64 encoded Image. If use relative address, relative to `easy.qrcode.min.js` |  &nbsp; |
 | **backgroundImageAlpha** | N | Number | `1.0` |  Background image transparency. Ranges: `0-1.0`  |  &nbsp; |
-| **autoColor** | N | Boolean | `false` |  Automatic color adjustment |  &nbsp; |
+| **autoColor** | N | Boolean | `false` |  Automatic color adjustment(for data block) |  &nbsp; |
+| **autoColorDark** | N | String | `rgba(0, 0, 0, .6)` |  Automatic color: dark CSS color  |  &nbsp; |
+| **autoColorLight** | N | String | `rgba(255, 255, 255, .7)` |  Automatic color: light CSS color |  &nbsp; |
 | Posotion Pattern Color options| --- | ---|---|---|---|
 | **PO** | N | String | `undefined` | Global Posotion Outer CSS color. if not set, the defaut is `colorDark` |  &nbsp; |
 | **PI** | N | String | `undefined` | Global Posotion Inner CSS color. if not set, the defaut is `colorDark` |  &nbsp; |
