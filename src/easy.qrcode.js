@@ -3,7 +3,7 @@
  * 
  * Cross-browser QRCode generator for pure javascript. Support Canvas, SVG and Table drawing methods. Support Dot style, Logo, Background image, Colorful, Title etc. settings. Support Angular, Vue.js, React, Next.js framework. Support binary(hex) data mode.(Running with DOM on client side)
  * 
- * Version 4.3.0
+ * Version 4.3.1
  * 
  * @author [ inthinkcolor@gmail.com ]
  * 
@@ -1450,19 +1450,24 @@
             var t = this;
 
             function drawQuietZoneColor() {
-                // top
-                _oContext.lineWidth = 0;
-                _oContext.fillStyle = _htOption.quietZoneColor;
-                _oContext.fillRect(0, 0, t._elCanvas.width, _htOption.quietZone);
-                // left
-                _oContext.fillRect(0, _htOption.quietZone, _htOption.quietZone, t._elCanvas.height -
-                    _htOption.quietZone * 2);
-                // right
-                _oContext.fillRect(t._elCanvas.width - _htOption.quietZone, _htOption.quietZone,
-                    _htOption.quietZone, t._elCanvas.height - _htOption.quietZone * 2);
-                // bottom
-                _oContext.fillRect(0, t._elCanvas.height - _htOption.quietZone, t._elCanvas.width,
-                    _htOption.quietZone);
+
+                if (_htOption.quietZone > 0 && _htOption.quietZoneColor) {
+                    // top
+                    _oContext.lineWidth = 0;
+                    _oContext.fillStyle = _htOption.quietZoneColor;
+
+                    console.log(_oContext.fillStyle);
+                    _oContext.fillRect(0, 0, t._elCanvas.width, _htOption.quietZone);
+                    // left
+                    _oContext.fillRect(0, _htOption.quietZone, _htOption.quietZone, t._elCanvas.height -
+                        _htOption.quietZone * 2);
+                    // right
+                    _oContext.fillRect(t._elCanvas.width - _htOption.quietZone, _htOption.quietZone,
+                        _htOption.quietZone, t._elCanvas.height - _htOption.quietZone * 2);
+                    // bottom
+                    _oContext.fillRect(0, t._elCanvas.height - _htOption.quietZone, t._elCanvas.width,
+                        _htOption.quietZone);
+                }
             }
 
             if (_htOption.backgroundImage) {
@@ -1681,9 +1686,7 @@
 
                     _oContext.drawImage(img, imgContainerX + (imgContainerW - imgW) / 2, imgContainerY +
                         (imgContainerH - imgH) / 2, imgW, imgH);
-                    if (_htOption.quietZone > 0 && _htOption.quietZoneColor) {
-                        drawQuietZoneColor();
-                    }
+                    drawQuietZoneColor();
                     _this._bIsPainted = true;
 
                     _this.makeImage();
@@ -1713,6 +1716,7 @@
 
 
                 } else {
+                    drawQuietZoneColor();
                     this._bIsPainted = true;
                     this.makeImage();
 
@@ -2019,9 +2023,9 @@
         this._android = _getAndroid();
         this._el = el;
         this._oQRCode = null;
-        
-        var _htOptionClone={};
-        for(var i in this._htOption){
+
+        var _htOptionClone = {};
+        for (var i in this._htOption) {
             _htOptionClone[i] = this._htOption[i];
         }
         this._oDrawing = new Drawing(this._el, _htOptionClone);
