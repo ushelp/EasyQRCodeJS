@@ -658,24 +658,26 @@ When use canvas drawer, Canvas toDataURL function does not allow load cross doma
 
 - Option 1:
 
- Configure the `crossOrigin` attribute([crossorigin](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin)) for the image. Make sure that CORS is configured on the Server side.
+  Configure the `crossOrigin` attribute([crossorigin](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin)) for the image. Make sure that CORS is configured on the Server side.
 
- ```JS
-{
-   ...
-   // String which specifies the CORS setting to use when retrieving the image. null means that the crossOrigin attribute is not set. 'anonymous', null.
-   crossOrigin : 'anonymous',
-   ... 
-}
-```
+  ```JS
+  {
+     // ...
+   
+     // String which specifies the CORS setting to use when retrieving the image. null means that the crossOrigin attribute is not set. 'anonymous', null.
+     crossOrigin : 'anonymous',
+   
+     // ... 
+  }
+  ```
 
 - Option 2:
 
- Put your image under the same domain with your page.
+  Put your image under the same domain with your page.
 
 - Option 3: 
 
- Use base64 image.
+  Use base64 image.
 
 
  
