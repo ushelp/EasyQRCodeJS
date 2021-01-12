@@ -24,6 +24,8 @@ EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成
 - [React Support](#react-support)
 - [Next.js Support](#nextjs-support)
 - [Browser Compatibility](#browser-compatibility)
+- [FQA](#fqa)
+  - [Q1. Tainted canvases may not be exported.](#q1-tainted-canvases-may-not-be-exported)
 - [License](#license)
 - [EasyQRCodeJS-Premium:](#easyqrcodejs-premium)
 - [End](#end)
@@ -646,6 +648,35 @@ var qrcode = new QRCode(DOM_object, options_object);
 
     export default About;
     ```    
+
+
+## FQA
+
+### Q1. Tainted canvases may not be exported.
+
+When use canvas drawer, Canvas toDataURL function does not allow load cross domain image. there are three options to slove this problem:
+
+- Option 1:
+
+ Configure the `crossOrigin` attribute([crossorigin](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin)) for the image. Make sure that CORS is configured on the Server side.
+
+    ```JS
+    {
+       ...
+       // String which specifies the CORS setting to use when retrieving the image. null means that the crossOrigin attribute is not set. 'anonymous', null.
+       crossOrigin : 'anonymous',
+       ... 
+    }
+    ```
+
+- Option 2:
+
+ Put your image under the same domain with your page.
+
+- Option 3: 
+
+ Use base64 image.
+
 
  
 ## Browser Compatibility
