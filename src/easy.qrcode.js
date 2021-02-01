@@ -1456,7 +1456,6 @@
                     _oContext.lineWidth = 0;
                     _oContext.fillStyle = _htOption.quietZoneColor;
 
-                    console.log(_oContext.fillStyle);
                     _oContext.fillRect(0, 0, t._elCanvas.width, _htOption.quietZone);
                     // left
                     _oContext.fillRect(0, _htOption.quietZone, _htOption.quietZone, t._elCanvas.height -
