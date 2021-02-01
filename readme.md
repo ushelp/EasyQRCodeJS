@@ -486,7 +486,7 @@ var qrcode = new QRCode(DOM_object, options_object);
 
     ```HTML
     <!-- DOM Element-->
-    <div ref="qrcode></div>
+    <div ref="qrcode"></div>
     ```
  
 3. Script   
