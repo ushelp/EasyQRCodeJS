@@ -3,7 +3,7 @@
  * 
  * Cross-browser QRCode generator for pure javascript. Support Canvas, SVG and Table drawing methods. Support Dot style, Logo, Background image, Colorful, Title etc. settings. Support Angular, Vue.js, React, Next.js framework. Support binary(hex) data mode.(Running with DOM on client side)
  * 
- * Version 4.3.1
+ * Version 4.3.3
  * 
  * @author [ inthinkcolor@gmail.com ]
  * 
@@ -1527,12 +1527,23 @@
 
                                 lColor = "rgba(0,0,0,0)";
                                 if (row == 6) {
-                                    dColor = _htOption.timing_H || _htOption.timing || _htOption.colorDark;
+                                    // dColor = _htOption.timing_H || _htOption.timing || _htOption.colorDark;
+                                    if (_htOption.autoColor) {
+                                        dColor = _htOption.timing_H || _htOption.timing || _htOption.autoColorDark;
+                                        lColor = _htOption.timing_H || _htOption.timing || _htOption.autoColorLight;
+                                    } else {
+                                        dColor = _htOption.timing_H || _htOption.timing || _htOption.colorDark;
+                                    }
                                 } else if (col == 6) {
-                                    dColor = _htOption.timing_V || _htOption.timing ||
-                                        _htOption.colorDark;
+                                    // dColor = _htOption.timing_V || _htOption.timing || _htOption.colorDark;
+                                    if (_htOption.autoColor) {
+                                        dColor = _htOption.timing_V || _htOption.timing || _htOption.autoColorDark;
+                                        lColor = _htOption.timing_V || _htOption.timing || _htOption.autoColorLight;
+                                    } else {
+                                        dColor = _htOption.timing_V || _htOption.timing ||
+                                            _htOption.colorDark;
+                                    }
                                 } else {
-
                                     if (_htOption.autoColor) {
                                         dColor = _htOption.autoColorDark;
                                         lColor = _htOption.autoColorLight;
@@ -1563,8 +1574,15 @@
                                 nowDotScale = _htOption.dotScaleAO;
                             } else if (eye.type == 'AI') {
                                 nowDotScale = _htOption.dotScaleAI;
+                            }
+
+                            if (_htOption.backgroundImage && _htOption.autoColor) {
+                                dColor = ((eye.type == 'AO') ? _htOption.AI : _htOption.AO) ||
+                                    _htOption.autoColorDark;
+                                lColor = _htOption.autoColorLight;
                             } else {
-                                nowDotScale = 1;
+                                dColor = ((eye.type == 'AO') ? _htOption.AI : _htOption.AO) ||
+                                    dColor;
                             }
 
                             // Is eye
