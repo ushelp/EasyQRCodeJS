@@ -1210,9 +1210,7 @@
                 // Logo Image
                 var img = new Image();
 
-                if (_htOption.crossOrigin != null) {
-                    img.crossOrigin = _htOption.crossOrigin;
-                }
+                img.crossOrigin = _htOption.crossOrigin;
 
                 // img.crossOrigin="Anonymous";
                 img.src = _htOption.logo;
@@ -1488,9 +1486,7 @@
                     drawQrcode.call(t, oQRCode);
                 }
                 // bgImg.crossOrigin='Anonymous';
-                if (_htOption.crossOrigin != null) {
-                    bgImg.crossOrigin = _htOption.crossOrigin;
-                }
+                bgImg.crossOrigin = _htOption.crossOrigin;
                 bgImg.src = _htOption.backgroundImage;
                 // DoSomething
             } else {
@@ -1728,9 +1724,7 @@
                     }
 
                     // img.crossOrigin="Anonymous";
-                    if (_htOption.crossOrigin != null) {
-                        img.crossOrigin = _htOption.crossOrigin;
-                    }
+                    img.crossOrigin = _htOption.crossOrigin;
                     img.src = _htOption.logo;
 
 
@@ -1937,7 +1931,7 @@
             drawer: 'canvas', // Drawing method: canvas, svg(Chrome, FF, IE9+)
 
             // ==== CORS
-            crossOrigin: null // String which specifies the CORS setting to use when retrieving the image. null means that the crossOrigin attribute is not set.
+            crossOrigin: '' // String which specifies the CORS setting to use when retrieving the image. Set as an empty string which will result in default HTML behavior
         };
 
         if (typeof vOption === 'string') {
