@@ -263,7 +263,7 @@ var qrcode = new QRCode(DOM_object, options_object);
     // ====== Title
     /*
     title: 'QR Title', // content 
-    titleFont: "bold 18px Arial", //font. default is "bold 16px Arial"
+    titleFont: "normal normal bold 18px Arial", //font. default is "bold 16px Arial"
     titleColor: "#004284", // color. default is "#000"
     titleBackgroundColor: "#fff", // background color. default is "#fff"
     titleHeight: 70, // height, including subTitle. default is 0
@@ -273,7 +273,7 @@ var qrcode = new QRCode(DOM_object, options_object);
     // ====== SubTitle
     /*
     subTitle: 'QR subTitle', // content
-    subTitleFont: "14px Arial", // font. default is "14px Arial"
+    subTitleFont: "normal normal normal 14px Arial", // font. default is "14px Arial"
     subTitleColor: "#004284", // color. default is "4F4F4F"
     subTitleTop: 40, // draws y coordinates. default is 0
     */
@@ -364,14 +364,14 @@ var qrcode = new QRCode(DOM_object, options_object);
 | **timing_V** | N | String | `undefined` | Vertical timing CSS color |  &nbsp; |
 | Title options| --- | ---|---|---|---|
 | **title** | N | String | `''` |  |  &nbsp; |
-| **titleFont** | N | String | `bold 16px Arial` | CSS Font |  &nbsp; |
+| **titleFont** | N | String | `normal normal bold 16px Arial` | CSS Font |  &nbsp; |
 | **titleColor** | N | String | `#000000` | CSS color |  &nbsp; |
 | **titleBackgroundColor** | N | String | `#ffffff` | CSS color|  &nbsp; |
 | **titleHeight** | N | Number | `0` | Title Height, Include subTitle |  &nbsp; |
 | **titleTop** | N | Number | `30` | draws y coordinates.|  &nbsp; |
 | SubTitle options| --- | ---|---|---|---|
 | **subTitle** | N | String | `''` |  |  &nbsp; |
-| **subTitleFont** | N | String | `14px Arial` | CSS Font |  &nbsp; |
+| **subTitleFont** | N | String | `normal normal normal 14px Arial` | CSS Font |  &nbsp; |
 | **subTitleColor** | N | String | `#4F4F4F` | CSS color |  &nbsp; |
 | **subTitleTop** | N | Number | `0` | draws y coordinates. default is 0|  &nbsp; |
 | Event Handler options| --- | ---|---|---|---|
