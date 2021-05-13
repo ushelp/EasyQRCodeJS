@@ -1,34 +1,37 @@
 # EasyQRCodeJS
 
-EasyQRCodeJS is a feature-rich cross-browser pure JavaScript QRCode generation library. Support Canvas, SVG and Table drawing methods. Support Dot style, Logo, Background image, Colorful, Title etc. settings. Support Angular, Vue.js, React, Next.js framework. Support binary(hex) data mode.(Running with DOM on client side)
+EasyQRCodeJS is a feature-rich cross-browser pure JavaScript QRCode generation library. Support Canvas, SVG and Table drawing methods. Support Dot style, Logo, Background image, Colorful, Title etc. settings. Support Angular, Vue.js, React, Next.js, Svelte framework. Support binary(hex) data mode.(Running with DOM on client side)
 
-EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成库。支持 Canvas, SVG, Table 等绘制方式。支持 JavaScript 模块化加载。支持点状风格，Logo，背景图片，规则色彩控制，标题等设置。支持 Angular, Vue.js, React, Next.js 等框架。支持二进制数据模式。(基于客户端 DOM 运行)
+EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成库。支持 Canvas, SVG, Table 等绘制方式。支持 JavaScript 模块化加载。支持点状风格，Logo，背景图片，规则色彩控制，标题等设置。支持 Angular, Vue.js, React, Next.js, Svelte 等框架。支持二进制数据模式。(基于客户端 DOM 运行)
 
 
 ## Table of contents
 
-- [Choose what you need](#choose-what-you-need)
-- [Feature](#feature)
-- [Try It!](#try-it)
-- [Demo preview](#demo-preview)
-- [QR Code Structure](#qr-code-structure)
-- [Installation](#installation)
-- [Load](#load)
-- [Basic Usages](#basic-usages)
-- [QRCode API](#qrcode-api)
-  - [Object](#object)
-  - [Options](#options)
-  - [Method](#method)
-- [Angular Support](#angular-support)
-- [Vue.js Support](#vuejs-support)
-- [React Support](#react-support)
-- [Next.js Support](#nextjs-support)
-- [Browser Compatibility](#browser-compatibility)
-- [FQA](#fqa)
-  - [Q1. Tainted canvases may not be exported.](#q1-tainted-canvases-may-not-be-exported)
-- [License](#license)
-- [EasyQRCodeJS-Premium:](#easyqrcodejs-premium)
-- [End](#end)
+- [EasyQRCodeJS](#easyqrcodejs)
+  - [Table of contents](#table-of-contents)
+  - [Choose what you need](#choose-what-you-need)
+  - [Feature](#feature)
+  - [Try It!](#try-it)
+  - [Demo preview](#demo-preview)
+  - [QR Code Structure](#qr-code-structure)
+  - [Installation](#installation)
+  - [Load](#load)
+  - [Basic Usages](#basic-usages)
+  - [QRCode API](#qrcode-api)
+    - [Object](#object)
+    - [Options](#options)
+    - [Method](#method)
+  - [Angular Support](#angular-support)
+  - [Vue.js Support](#vuejs-support)
+  - [React Support](#react-support)
+  - [Next.js Support](#nextjs-support)
+  - [Svelte Support](#svelte-support)
+  - [FQA](#fqa)
+    - [Q1. Tainted canvases may not be exported.](#q1-tainted-canvases-may-not-be-exported)
+  - [Browser Compatibility](#browser-compatibility)
+  - [License](#license)
+  - [EasyQRCodeJS-Premium](#easyqrcodejs-premium)
+  - [End](#end)
 
 
 ## Choose what you need
@@ -66,7 +69,7 @@ EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成
 
     - Support AMD, CMD, CommonJS/Node.js JavaScript modules
 
-    - Angular, Vue.js, React, Next.js Support
+    - Angular, Vue.js, React, Next.js, Svelte Support
 
     - Support binary(hex) data mode
     
@@ -96,7 +99,7 @@ EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成
 	
     - 支持 AMD，CMD, CommonJS/Node.js JavaScript 模块加载规范
 
-    - Angular, Vue.js, React, NEXT.js 支持
+    - Angular, Vue.js, React, NEXT.js, Svelte 支持
 
     - 二进制数据模式支持
 
@@ -650,6 +653,84 @@ var qrcode = new QRCode(DOM_object, options_object);
     ```    
 
 
+## Svelte Support
+
+1. Add dependency
+
+    ```Shell
+    # install with `npm`
+    npm install --save-dev easyqrcodejs
+    
+    # Alternatively you may use `yarn`:
+    yarn add easyqrcodejs --dev
+    ```
+
+2. Component template
+    
+    QR.svelte:
+
+    ```HTML
+    <script>
+     import { onMount } from 'svelte';
+     import * as QRCode from 'easyqrcodejs';
+
+   	  export let text;
+      let node;
+
+      onMount(() => {
+        const options = {
+          text: codeValue,
+          // ... your other options
+          width: 100,
+          height: 100,
+          quietZone: 10,
+        };
+        new QRCode(node, options);
+      });
+    </script>
+
+    <div bind:this={node}></div>
+
+    <style>
+     div {
+       /* make QR-wrapper squared */
+        width: 100%;
+        position: relative;
+        padding: 50%;
+        z-index: 1;
+      }
+      div :global(canvas) {
+        /* fit QR to wrapper */
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    </style>
+    ```
+ 
+3. Layout   
+    
+    index.svelte:
+
+    ```HTML
+    <script>
+      import QR from './QR.svelte';
+    </script>
+
+    <div class="qr-container">
+      <QR text="Your awesome text here..." />
+    </div>
+
+    <style>
+      .qr-container {
+        /* your styles for container here */
+      }
+    </style>
+    ```
+
+
 ## FQA
 
 ### Q1. Tainted canvases may not be exported.
@@ -680,7 +761,7 @@ When use canvas drawer, Canvas toDataURL function does not allow load cross doma
   Use base64 image.
 
 
- 
+
 ## Browser Compatibility
 IE6+, Chrome, Firefox, Safari, Opera, Mobile Safari, Android, Windows Mobile, ETC.
 
