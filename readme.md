@@ -222,12 +222,14 @@ var qrcode = new QRCode(DOM_object, options_object);
 
     // ====== Logo
     /*
-    logo:"../demo/logo.png", // Relative address, relative to `easy.qrcode.min.js`
-    logo:"http://127.0.0.1:8020/easy-qrcodejs/demo/logo.png", 
-    logoWidth:80, // width. default is automatic width
-    logoHeight:80, // height. default is automatic height
-    logoBackgroundColor:'#fffff', // Logo backgroud color, Invalid when `logBgTransparent` is true; default is '#ffffff'
-    logoBackgroundTransparent:false, // Whether use transparent image, default is false
+    logo: "../demo/logo.png", // Relative address, relative to `easy.qrcode.min.js`
+    logo: "http://127.0.0.1:8020/easy-qrcodejs/demo/logo.png", 
+    logoWidth: 80, // fixed logo width. default is `width/3.5`
+    logoHeight: 80, // fixed logo height. default is `heigth/3.5`
+    logoMaxWidth: undefined, // Maximum logo width. if set will ignore `logoWidth` value
+    logoMaxHeight: undefined, // Maximum logo height. if set will ignore `logoHeight` value
+    logoBackgroundColor: '#fffff', // Logo backgroud color, Invalid when `logBgTransparent` is true; default is '#ffffff'
+    logoBackgroundTransparent: false, // Whether use transparent image, default is false
     */
 
     // ====== Backgroud Image
@@ -339,8 +341,10 @@ var qrcode = new QRCode(DOM_object, options_object);
 | **quietZoneColor** | N | String | `rgba(0,0,0,0)` |  Background CSS color to Quiet Zone |  &nbsp; |
 | Logo options| --- | ---|---|---|---|
 | **logo** | N | String | `undefined` | Logo Image Path or Base64 encoded image. If use relative address, relative to `easy.qrcode.min.js` |  &nbsp; |
-| **logoWidth** | N | Number | `undefined` |  Height |  &nbsp; |
-| **logoHeight** | N | Number | `undefined` |  Width |  &nbsp; |
+| **logoWidth** | N | Number | `width/3.5` |  Fixed logo width. |  &nbsp; |
+| **logoHeight** | N | Number | `height/3.5` |  fixed logo height. |  &nbsp; |
+| **maxLogoWidth** | N | Number | `undefined` |  Maximum logo width. if set will ignore `logoWidth` value. |  &nbsp; |
+| **maxLogoHeight** | N | Number | `undefined` |  Maximum logo height. if set will ignore `logoHeight` value. |  &nbsp; |
 | **logoBackgroundTransparent** | N | Boolean | `false` |  Whether the background transparent image(`PNG`) shows transparency. When `true`, `logoBackgroundColor` is invalid |  &nbsp; |
 | **logoBackgroundColor** | N | String | `#ffffff` |  Set Background CSS Color when image background transparent. Valid when `logoBackgroundTransparent` is `false` |  &nbsp; |
 | Backgroud Image options|  ---|--- |---|---|---|

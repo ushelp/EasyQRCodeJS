@@ -1,9 +1,9 @@
 /**
  * EasyQRCodeJS
  * 
- * Cross-browser QRCode generator for pure javascript. Support Canvas, SVG and Table drawing methods. Support Dot style, Logo, Background image, Colorful, Title etc. settings. Support Angular, Vue.js, React, Next.js framework. Support binary(hex) data mode.(Running with DOM on client side)
+ * Cross-browser QRCode generator for pure javascript. Support Canvas, SVG and Table drawing methods. Support Dot style, Logo, Background image, Colorful, Title etc. settings. Support Angular, Vue.js, React, Next.js, Svelte framework. Support binary(hex) data mode.(Running with DOM on client side)
  * 
- * Version 4.3.5
+ * Version 4.4.0
  * 
  * @author [ inthinkcolor@gmail.com ]
  * 
@@ -125,7 +125,9 @@
                 throw new Error(row + "," + col);
             }
 
-            var block = this.modules[row][col]; // [isDark(ture/false), EyeOuterOrInner(O/I), Position(TL/TR/BL/A) ]
+            var block = this.modules[row][
+                col
+            ]; // [isDark(ture/false), EyeOuterOrInner(O/I), Position(TL/TR/BL/A) ]
 
             if (block[1]) {
                 var type = 'P' + block[1] + '_' + block[2]; //PO_TL, PI_TL, PO_TR, PI_TR, PO_BL, PI_BL
@@ -153,7 +155,9 @@
             for (var row = 0; row < this.moduleCount; row++) {
                 this.modules[row] = new Array(this.moduleCount);
                 for (var col = 0; col < this.moduleCount; col++) {
-                    this.modules[row][col] = []; // [isDark(ture/false), EyeOuterOrInner(O/I), Position(TL/TR/BL) ]
+                    this.modules[row][
+                        col
+                    ] = []; // [isDark(ture/false), EyeOuterOrInner(O/I), Position(TL/TR/BL) ]
                 }
             }
             this.setupPositionProbePattern(0, 0, 'TL'); // TopLeft, TL
@@ -166,7 +170,8 @@
                 this.setupTypeNumber(test);
             }
             if (this.dataCache == null) {
-                this.dataCache = QRCodeModel.createData(this.typeNumber, this.errorCorrectLevel, this.dataList);
+                this.dataCache = QRCodeModel.createData(this.typeNumber, this.errorCorrectLevel, this
+                    .dataList);
             }
             this.mapData(this.dataCache, maskPattern);
         },
@@ -175,7 +180,8 @@
                 if (row + r <= -1 || this.moduleCount <= row + r) continue;
                 for (var c = -1; c <= 7; c++) {
                     if (col + c <= -1 || this.moduleCount <= col + c) continue;
-                    if ((0 <= r && r <= 6 && (c == 0 || c == 6)) || (0 <= c && c <= 6 && (r == 0 || r == 6)) ||
+                    if ((0 <= r && r <= 6 && (c == 0 || c == 6)) || (0 <= c && c <= 6 && (r == 0 || r ==
+                            6)) ||
                         (2 <= r && r <= 4 &&
                             2 <= c && c <= 4)) {
                         this.modules[row + r][col + c][0] = true;
@@ -690,8 +696,9 @@
         QRMath.EXP_TABLE[i] = 1 << i;
     }
     for (var i = 8; i < 256; i++) {
-        QRMath.EXP_TABLE[i] = QRMath.EXP_TABLE[i - 4] ^ QRMath.EXP_TABLE[i - 5] ^ QRMath.EXP_TABLE[i - 6] ^ QRMath.EXP_TABLE[
-            i - 8];
+        QRMath.EXP_TABLE[i] = QRMath.EXP_TABLE[i - 4] ^ QRMath.EXP_TABLE[i - 5] ^ QRMath.EXP_TABLE[i - 6] ^ QRMath
+            .EXP_TABLE[
+                i - 8];
     }
     for (var i = 0; i < 255; i++) {
         QRMath.LOG_TABLE[QRMath.EXP_TABLE[i]] = i;
@@ -1089,7 +1096,8 @@
                     '<div style="display:inline-block; z-index:-10;position:absolute;"><img src="' +
                     _htOption.backgroundImage + '" widht="' + (_htOption.width + _htOption.quietZone *
                         2) + '" height="' + (
-                        _htOption.height + _htOption.quietZone * 2) + '" style="opacity:' + _htOption.backgroundImageAlpha +
+                        _htOption.height + _htOption.quietZone * 2) + '" style="opacity:' + _htOption
+                    .backgroundImageAlpha +
                     ';filter:alpha(opacity=' + (_htOption.backgroundImageAlpha * 100) + '); "/></div>';
                 aHTML.push(backgroundImageEle);
             }
@@ -1121,7 +1129,8 @@
                     _htOption.title + '</div>');
             }
             if (_htOption.subTitle) {
-                aHTML.push('<div style="width:100%;margin-top:' + (_htOption.subTitleTop - _htOption.titleTop) +
+                aHTML.push('<div style="width:100%;margin-top:' + (_htOption.subTitleTop - _htOption
+                        .titleTop) +
                     'px;color:' +
                     _htOption.subTitleColor + '; font:' + _htOption.subTitleFont +
                     '">' + _htOption.subTitle + '</div>');
@@ -1134,7 +1143,8 @@
 
                     var bIsDark = oQRCode.isDark(row, col);
 
-                    var eye = oQRCode.getEye(row, col); // { isDark: true/false, type: PO_TL, PI_TL, PO_TR, PI_TR, PO_BL, PI_BL };
+                    var eye = oQRCode.getEye(row,
+                        col); // { isDark: true/false, type: PO_TL, PI_TL, PO_TR, PI_TR, PO_BL, PI_BL };
 
                     if (eye) {
                         // Is eye
@@ -1187,7 +1197,8 @@
                                 nHeight + 'px;">' +
                                 '<div style="display:inline-block;width:' + drawWidth +
                                 'px;height:' + drawHeight +
-                                'px;background-color:' + (bIsDark ? nowDarkColor : _htOption.colorLight) +
+                                'px;background-color:' + (bIsDark ? nowDarkColor : _htOption
+                                    .colorLight) +
                                 ';"></div></td>');
                         }
 
@@ -1509,7 +1520,9 @@
 
                         var bIsDark = oQRCode.isDark(row, col);
 
-                        var eye = oQRCode.getEye(row, col); // { isDark: true/false, type: PO_TL, PI_TL, PO_TR, PI_TR, PO_BL, PI_BL };
+                        var eye = oQRCode.getEye(row,
+                            col
+                        ); // { isDark: true/false, type: PO_TL, PI_TL, PO_TR, PI_TR, PO_BL, PI_BL };
 
                         var nowDotScale = _htOption.dotScale;
 
@@ -1529,16 +1542,21 @@
                                 if (row == 6) {
                                     // dColor = _htOption.timing_H || _htOption.timing || _htOption.colorDark;
                                     if (_htOption.autoColor) {
-                                        dColor = _htOption.timing_H || _htOption.timing || _htOption.autoColorDark;
-                                        lColor = _htOption.timing_H || _htOption.timing || _htOption.autoColorLight;
+                                        dColor = _htOption.timing_H || _htOption.timing || _htOption
+                                            .autoColorDark;
+                                        lColor = _htOption.timing_H || _htOption.timing || _htOption
+                                            .autoColorLight;
                                     } else {
-                                        dColor = _htOption.timing_H || _htOption.timing || _htOption.colorDark;
+                                        dColor = _htOption.timing_H || _htOption.timing || _htOption
+                                            .colorDark;
                                     }
                                 } else if (col == 6) {
                                     // dColor = _htOption.timing_V || _htOption.timing || _htOption.colorDark;
                                     if (_htOption.autoColor) {
-                                        dColor = _htOption.timing_V || _htOption.timing || _htOption.autoColorDark;
-                                        lColor = _htOption.timing_V || _htOption.timing || _htOption.autoColorLight;
+                                        dColor = _htOption.timing_V || _htOption.timing || _htOption
+                                            .autoColorDark;
+                                        lColor = _htOption.timing_V || _htOption.timing || _htOption
+                                            .autoColorLight;
                                     } else {
                                         dColor = _htOption.timing_V || _htOption.timing ||
                                             _htOption.colorDark;
@@ -1554,7 +1572,8 @@
 
                             } else {
                                 if (row == 6) {
-                                    dColor = _htOption.timing_H || _htOption.timing || _htOption.colorDark;
+                                    dColor = _htOption.timing_H || _htOption.timing || _htOption
+                                        .colorDark;
                                 } else if (col == 6) {
                                     dColor = _htOption.timing_V || _htOption.timing ||
                                         _htOption.colorDark;
@@ -1574,7 +1593,7 @@
                                 nowDotScale = _htOption.dotScaleAO;
                             } else if (eye.type == 'AI') {
                                 nowDotScale = _htOption.dotScaleAI;
-                            } else{
+                            } else {
                                 nowDotScale = 1;
                             }
 
@@ -1591,7 +1610,8 @@
                             bIsDark = eye.isDark;
 
 
-                            _oContext.fillRect(nLeft + nWidth * (1 - nowDotScale) / 2, _htOption.titleHeight +
+                            _oContext.fillRect(nLeft + nWidth * (1 - nowDotScale) / 2, _htOption
+                                .titleHeight +
                                 nTop + nHeight * (1 -
                                     nowDotScale) / 2, nWidth * nowDotScale, nHeight *
                                 nowDotScale);
@@ -1603,7 +1623,8 @@
 
                                 nowDotScale = _htOption.dotScaleTiming_H;
 
-                                _oContext.fillRect(nLeft + nWidth * (1 - nowDotScale) / 2, _htOption.titleHeight +
+                                _oContext.fillRect(nLeft + nWidth * (1 - nowDotScale) / 2, _htOption
+                                    .titleHeight +
                                     nTop + nHeight * (1 -
                                         nowDotScale) / 2, nWidth * nowDotScale, nHeight *
                                     nowDotScale);
@@ -1611,7 +1632,8 @@
                                 // Timing Pattern 
                                 nowDotScale = _htOption.dotScaleTiming_V;
 
-                                _oContext.fillRect(nLeft + nWidth * (1 - nowDotScale) / 2, _htOption.titleHeight +
+                                _oContext.fillRect(nLeft + nWidth * (1 - nowDotScale) / 2, _htOption
+                                    .titleHeight +
                                     nTop + nHeight * (1 -
                                         nowDotScale) / 2, nWidth * nowDotScale, nHeight *
                                     nowDotScale);
@@ -1644,7 +1666,8 @@
                 if (_htOption.title) {
 
                     _oContext.fillStyle = _htOption.titleBackgroundColor;
-                    _oContext.fillRect(0, 0, this._elCanvas.width, _htOption.titleHeight + _htOption.quietZone);
+                    _oContext.fillRect(0, 0, this._elCanvas.width, _htOption.titleHeight + _htOption
+                        .quietZone);
 
                     _oContext.font = _htOption.titleFont;
                     _oContext.fillStyle = _htOption.titleColor;
@@ -1656,7 +1679,8 @@
                 if (_htOption.subTitle) {
                     _oContext.font = _htOption.subTitleFont;
                     _oContext.fillStyle = _htOption.subTitleColor;
-                    _oContext.fillText(_htOption.subTitle, this._elCanvas.width / 2, +_htOption.quietZone +
+                    _oContext.fillText(_htOption.subTitle, this._elCanvas.width / 2, +_htOption
+                        .quietZone +
                         _htOption.subTitleTop);
                 }
 
@@ -1667,26 +1691,18 @@
                         imgContainerW = imgContainerH;
                     }
 
-                    if (_htOption.logoWidth) {
+                    if (_htOption.logoMaxWidth) {
+                        imgContainerW = Math.round(_htOption.logoMaxWidth);
+                    } else if (_htOption.logoWidth) {
                         imgContainerW = Math.round(_htOption.logoWidth);
                     }
-                    if (_htOption.logoHeight) {
+
+                    if (_htOption.logoMaxHeight) {
+                        imgContainerH = Math.round(_htOption.logoMaxHeight);
+                    } else if (_htOption.logoHeight) {
                         imgContainerH = Math.round(_htOption.logoHeight);
                     }
-
-                    var imgContainerX = (_htOption.width + _htOption.quietZone * 2 - imgContainerW) / 2;
-                    var imgContainerY = (_htOption.height + _htOption.titleHeight + _htOption.quietZone *
-                        2 - imgContainerH) / 2;
-
-                    // Did Not Use Transparent Logo Image
-                    if (!_htOption.logoBackgroundTransparent) {
-                        //if (!_htOption.logoBackgroundColor) {
-                        //_htOption.logoBackgroundColor = '#ffffff';
-                        //}
-                        _oContext.fillStyle = _htOption.logoBackgroundColor;
-
-                        _oContext.fillRect(imgContainerX, imgContainerY, imgContainerW, imgContainerH);
-                    }
+                    
                     var nw;
                     var nh;
                     if (typeof img.naturalWidth == "undefined") {
@@ -1698,11 +1714,49 @@
                         nw = img.naturalWidth;
                         nh = img.naturalHeight;
                     }
+                    
+                    if (_htOption.logoMaxWidth || _htOption.logoMaxHeight) {
+                        if (_htOption.logoMaxWidth && nw <= imgContainerW) {
+                            imgContainerW = nw;
+                        }
+                    
+                        if (_htOption.logoMaxHeight && nh <= imgContainerH) {
+                            imgContainerH = nh;
+                        }
+                        if (nw <= imgContainerW && nh <= imgContainerH) {
+                            imgContainerW = nw;
+                            imgContainerH = nh;
+                        }
+                    }
+                    
+                    var imgContainerX = (_htOption.width + _htOption.quietZone * 2 - imgContainerW) / 2;
+                    var imgContainerY = (_htOption.height + _htOption.titleHeight + _htOption
+                        .quietZone *
+                        2 - imgContainerH) / 2;
 
                     var imgScale = Math.min(imgContainerW / nw, imgContainerH / nh);
                     var imgW = nw * imgScale;
                     var imgH = nh * imgScale;
 
+                    if (_htOption.logoMaxWidth || _htOption.logoMaxHeight) {
+                        imgContainerW = imgW;
+                        imgContainerH = imgH;
+                        imgContainerX = (_htOption.width + _htOption.quietZone * 2 - imgContainerW) / 2;
+                        imgContainerY = (_htOption.height + _htOption.titleHeight + _htOption
+                            .quietZone *
+                            2 - imgContainerH) / 2;
+
+                    }
+
+                    // Did Not Use Transparent Logo Image
+                    if (!_htOption.logoBackgroundTransparent) {
+                        //if (!_htOption.logoBackgroundColor) {
+                        //_htOption.logoBackgroundColor = '#ffffff';
+                        //}
+                        _oContext.fillStyle = _htOption.logoBackgroundColor;
+
+                        _oContext.fillRect(imgContainerX, imgContainerY, imgContainerW, imgContainerH);
+                    }
                     _oContext.drawImage(img, imgContainerX + (imgContainerW - imgW) / 2, imgContainerY +
                         (imgContainerH - imgH) / 2, imgW, imgH);
                     drawQuietZoneColor();
@@ -1891,6 +1945,8 @@
             logo: undefined,
             logoWidth: undefined,
             logoHeight: undefined,
+            logoMaxWidth: undefined,
+            logoMaxHeight: undefined,
             logoBackgroundColor: '#ffffff',
             logoBackgroundTransparent: false,
 

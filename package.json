@@ -1,7 +1,7 @@
 {
 	"name": "easyqrcodejs",
-	"version": "4.3.5",
-	"description": "Cross-browser QRCode generator for pure javascript. Support Canvas, SVG and Table drawing methods. Support Dot style, Logo, Background image, Colorful, Title etc. settings. Support Angular, Vue.js, React, Next.js framework. Support binary(hex) data mode.(Running with DOM on client side)",
+	"version": "4.4.0",
+	"description": "Cross-browser QRCode generator for pure javascript. Support Canvas, SVG and Table drawing methods. Support Dot style, Logo, Background image, Colorful, Title etc. settings. Support Angular, Vue.js, React, Next.js, Svelte framework. Support binary(hex) data mode.(Running with DOM on client side)",
 	"main": "dist/easy.qrcode.min.js",
 	"scripts": {},
 	"homepage": "https://github.com/ushelp/EasyQRCodeJS#readme",
