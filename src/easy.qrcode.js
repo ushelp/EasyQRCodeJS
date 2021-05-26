@@ -3,7 +3,7 @@
  * 
  * Cross-browser QRCode generator for pure javascript. Support Canvas, SVG and Table drawing methods. Support Dot style, Logo, Background image, Colorful, Title etc. settings. Support Angular, Vue.js, React, Next.js, Svelte framework. Support binary(hex) data mode.(Running with DOM on client side)
  * 
- * Version 4.4.0
+ * Version 4.4.1
  * 
  * @author [ inthinkcolor@gmail.com ]
  * 
@@ -1436,13 +1436,18 @@
             var nCount = oQRCode.getModuleCount();
             var nWidth = Math.round(_htOption.width / nCount);
             var nHeight = Math.round((_htOption.height - _htOption.titleHeight) / nCount);
+            if(nWidth<=1){
+                nWidth=1;
+            }
+            if(nHeight<=1){
+                nHeight=1;
+            }
 
             _htOption.width = nWidth * nCount;
             _htOption.height = nHeight * nCount + _htOption.titleHeight;
-
+            
             _htOption.quietZone = Math.round(_htOption.quietZone);
-
-
+            
             this._elCanvas.width = _htOption.width + _htOption.quietZone * 2;
             this._elCanvas.height = _htOption.height + _htOption.quietZone * 2;
 
@@ -1459,6 +1464,8 @@
             _oContext.fillRect(0, 0, this._elCanvas.width, this._elCanvas.height);
 
             var t = this;
+  
+
 
             function drawQuietZoneColor() {
 
@@ -1702,7 +1709,7 @@
                     } else if (_htOption.logoHeight) {
                         imgContainerH = Math.round(_htOption.logoHeight);
                     }
-                    
+
                     var nw;
                     var nh;
                     if (typeof img.naturalWidth == "undefined") {
@@ -1714,12 +1721,12 @@
                         nw = img.naturalWidth;
                         nh = img.naturalHeight;
                     }
-                    
+
                     if (_htOption.logoMaxWidth || _htOption.logoMaxHeight) {
                         if (_htOption.logoMaxWidth && nw <= imgContainerW) {
                             imgContainerW = nw;
                         }
-                    
+
                         if (_htOption.logoMaxHeight && nh <= imgContainerH) {
                             imgContainerH = nh;
                         }
@@ -1728,7 +1735,7 @@
                             imgContainerH = nh;
                         }
                     }
-                    
+
                     var imgContainerX = (_htOption.width + _htOption.quietZone * 2 - imgContainerW) / 2;
                     var imgContainerY = (_htOption.height + _htOption.titleHeight + _htOption
                         .quietZone *
