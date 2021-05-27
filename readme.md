@@ -343,8 +343,8 @@ var qrcode = new QRCode(DOM_object, options_object);
 | **logo** | N | String | `undefined` | Logo Image Path or Base64 encoded image. If use relative address, relative to `easy.qrcode.min.js` |  &nbsp; |
 | **logoWidth** | N | Number | `width/3.5` |  Fixed logo width. |  &nbsp; |
 | **logoHeight** | N | Number | `height/3.5` |  fixed logo height. |  &nbsp; |
-| **maxLogoWidth** | N | Number | `undefined` |  Maximum logo width. if set will ignore `logoWidth` value. |  &nbsp; |
-| **maxLogoHeight** | N | Number | `undefined` |  Maximum logo height. if set will ignore `logoHeight` value. |  &nbsp; |
+| **logoMaxWidth** | N | Number | `undefined` |  Maximum logo width. if set will ignore `logoWidth` value. |  &nbsp; |
+| **logoMaxHeight** | N | Number | `undefined` |  Maximum logo height. if set will ignore `logoHeight` value. |  &nbsp; |
 | **logoBackgroundTransparent** | N | Boolean | `false` |  Whether the background transparent image(`PNG`) shows transparency. When `true`, `logoBackgroundColor` is invalid |  &nbsp; |
 | **logoBackgroundColor** | N | String | `#ffffff` |  Set Background CSS Color when image background transparent. Valid when `logoBackgroundTransparent` is `false` |  &nbsp; |
 | Backgroud Image options|  ---|--- |---|---|---|

@@ -3,7 +3,7 @@
  * 
  * Cross-browser QRCode generator for pure javascript. Support Canvas, SVG and Table drawing methods. Support Dot style, Logo, Background image, Colorful, Title etc. settings. Support Angular, Vue.js, React, Next.js, Svelte framework. Support binary(hex) data mode.(Running with DOM on client side)
  * 
- * Version 4.4.1
+ * Version 4.4.2
  * 
  * @author [ inthinkcolor@gmail.com ]
  * 
@@ -1058,6 +1058,12 @@
             var nCount = oQRCode.getModuleCount();
             var nWidth = Math.round(_htOption.width / nCount);
             var nHeight = Math.round((_htOption.height - _htOption.titleHeight) / nCount);
+            if(nWidth<=1){
+                nWidth=1;
+            }
+            if(nHeight<=1){
+                nHeight=1;
+            }
 
             this._htOption.width = nWidth * nCount;
             this._htOption.height = nHeight * nCount + _htOption.titleHeight;
@@ -1426,12 +1432,10 @@
             // var _elImage = this._elImage;
             var _htOption = this._htOption;
 
-
             if (!_htOption.title && !_htOption.subTitle) {
                 _htOption.height -= _htOption.titleHeight;
                 _htOption.titleHeight = 0;
             }
-
 
             var nCount = oQRCode.getModuleCount();
             var nWidth = Math.round(_htOption.width / nCount);
