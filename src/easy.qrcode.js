@@ -3,7 +3,7 @@
  * 
  * Cross-browser QRCode generator for pure javascript. Support Canvas, SVG and Table drawing methods. Support Dot style, Logo, Background image, Colorful, Title etc. settings. Support Angular, Vue.js, React, Next.js, Svelte framework. Support binary(hex) data mode.(Running with DOM on client side)
  * 
- * Version 4.4.3
+ * Version 4.4.4
  * 
  * @author [ inthinkcolor@gmail.com ]
  * 
@@ -1513,6 +1513,7 @@
                 if (_htOption.crossOrigin != null) {
                     bgImg.crossOrigin = _htOption.crossOrigin;
                 }
+                bgImg.originalSrc = _htOption.backgroundImage;
                 bgImg.src = _htOption.backgroundImage;
                 // DoSomething
             } else {
@@ -1796,8 +1797,8 @@
                     if (_htOption.crossOrigin != null) {
                         img.crossOrigin = _htOption.crossOrigin;
                     }
+                    img.originalSrc = _htOption.logo;
                     img.src = _htOption.logo;
-
 
                 } else {
                     drawQuietZoneColor();

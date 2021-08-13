@@ -1148,7 +1148,8 @@
             }
             svgImage.setAttribute("transform", translateDirective);
             svgImage.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href",
-                image.nodeName === "CANVAS" ? image.toDataURL() : image.getAttribute("src"));
+                // image.nodeName === "CANVAS" ? image.toDataURL() : image.getAttribute("src"));
+                image.nodeName === "CANVAS" ? image.toDataURL() : image.originalSrc);
             parent.appendChild(svgImage);
         }
     };
