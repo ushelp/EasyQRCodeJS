@@ -1428,7 +1428,6 @@
          * @param {QRCode} oQRCode 
          */
         Drawing.prototype.draw = function(oQRCode) {
-
             // var _elImage = this._elImage;
             var _htOption = this._htOption;
 
@@ -2162,9 +2161,8 @@
      * Resize the QRCode
      */
     QRCode.prototype.resize = function(width, height) {
-        this._htOption.width = width;
-        this._htOption.height = height;
-
+        this._oDrawing._htOption.width = width;
+        this._oDrawing._htOption.height = height;
         this._oDrawing.draw(this._oQRCode);
     };
 
