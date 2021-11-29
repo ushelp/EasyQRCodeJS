@@ -3,7 +3,7 @@
  * 
  * Cross-browser QRCode generator for pure javascript. Support Canvas, SVG and Table drawing methods. Support Dot style, Logo, Background image, Colorful, Title etc. settings. Support Angular, Vue.js, React, Next.js, Svelte framework. Support binary(hex) data mode.(Running with DOM on client side)
  * 
- * Version 4.4.6
+ * Version 4.4.7
  * 
  * @author [ inthinkcolor@gmail.com ]
  * 
@@ -45,7 +45,7 @@
 
     var QRCode;
 
-    function QR8bitByte(data, binary) {
+    function QR8bitByte(data, binary, utf8WithoutBOM) {
         this.mode = QRMode.MODE_8BIT_BYTE;
         this.data = data;
         this.parsedData = [];
@@ -80,8 +80,7 @@
         }
 
         this.parsedData = Array.prototype.concat.apply([], this.parsedData);
-
-        if (this.parsedData.length != this.data.length) {
+        if (!utf8WithoutBOM && this.parsedData.length != this.data.length) {
             this.parsedData.unshift(191);
             this.parsedData.unshift(187);
             this.parsedData.unshift(239);
@@ -109,8 +108,8 @@
     }
 
     QRCodeModel.prototype = {
-        addData: function(data, binary) {
-            var newData = new QR8bitByte(data, binary);
+        addData: function(data, binary, utf8WithoutBOM) {
+            var newData = new QR8bitByte(data, binary, utf8WithoutBOM);
             this.dataList.push(newData);
             this.dataCache = null;
         },
@@ -2003,7 +2002,10 @@
             drawer: 'canvas', // Drawing method: canvas, svg(Chrome, FF, IE9+)
 
             // ==== CORS
-            crossOrigin: null // String which specifies the CORS setting to use when retrieving the image. null means that the crossOrigin attribute is not set.
+            crossOrigin: null, // String which specifies the CORS setting to use when retrieving the image. null means that the crossOrigin attribute is not set.
+
+            // UTF-8 without BOM
+            utf8WithoutBOM: true
         };
 
         if (typeof vOption === 'string') {
@@ -2128,7 +2130,7 @@
     QRCode.prototype.makeCode = function(sText) {
 
         this._oQRCode = new QRCodeModel(_getTypeNumber(sText, this._htOption), this._htOption.correctLevel);
-        this._oQRCode.addData(sText, this._htOption.binary);
+        this._oQRCode.addData(sText, this._htOption.binary, this._htOption.utf8WithoutBOM);
         this._oQRCode.make();
         if (this._htOption.tooltip) {
             this._el.title = sText;

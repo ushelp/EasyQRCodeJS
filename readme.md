@@ -311,7 +311,12 @@ var qrcode = new QRCode(DOM_object, options_object);
    
     // =====  Drawing method
     /*
-    drawer: 'canvas' // Which drawing method to use. 'canvas', 'svg'. default is 'canvas'
+    drawer: 'canvas', // Which drawing method to use. 'canvas', 'svg'. default is 'canvas'
+    */   
+   
+    // =====  UTF-8 without BOM
+    /*
+    utf8WithoutBOM: true
     */   
 
 }
@@ -392,8 +397,11 @@ var qrcode = new QRCode(DOM_object, options_object);
 | **binary** | N | Boolean | `false` | Whether it is binary mode, default is text mode.  |  &nbsp; |
 | CORS options| --- | ---|---|---|---|
 | **crossOrigin** | N | String | `null` | String which specifies the CORS setting to use when retrieving the image. null means that the crossOrigin attribute is not set. `'anonymous'`, `null`. | &nbsp;  |
+| UTF-8 options| --- | ---|---|---|---|
+| **utf8WithoutBOM** | N | Boolean | `true` | Use UTF-8 without BOM. set to `false` value will use BOM in UFT-8.| &nbsp; |
 | Drawing method options| --- | ---|---|---|---|
 | **drawer** | N | String | `canvas` | Which drawing method to use. `canvas`, `svg`. | Chrome, FF, IE9+. |
+
 
 
 
