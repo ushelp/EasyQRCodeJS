@@ -3,7 +3,7 @@
  * 
  * Cross-browser QRCode generator for pure javascript. Support Canvas, SVG and Table drawing methods. Support Dot style, Logo, Background image, Colorful, Title etc. settings. Support Angular, Vue.js, React, Next.js, Svelte framework. Support binary(hex) data mode.(Running with DOM on client side)
  * 
- * Version 4.4.7
+ * Version 4.4.8
  * 
  * @author [ inthinkcolor@gmail.com ]
  * 
@@ -1498,10 +1498,10 @@
                     _oContext.globalAlpha = 1;
 
                     _oContext.globalAlpha = _htOption.backgroundImageAlpha;
-
-                    _oContext.drawImage(bgImg, 0, _htOption.titleHeight, _htOption.width +
-                        _htOption.quietZone * 2, _htOption.height +
-                        _htOption.quietZone * 2 - _htOption.titleHeight);
+                    var imageSmoothingQuality = _oContext.imageSmoothingQuality;
+                    _oContext.imageSmoothingQuality = "high";
+                    _oContext.drawImage(bgImg, 0, _htOption.titleHeight, _htOption.width + _htOption.quietZone * 2, _htOption.height + _htOption.quietZone * 2 - _htOption.titleHeight);
+                    _oContext.imageSmoothingQuality = imageSmoothingQuality;
                     _oContext.globalAlpha = 1;
 
 
@@ -1767,8 +1767,10 @@
 
                         _oContext.fillRect(imgContainerX, imgContainerY, imgContainerW, imgContainerH);
                     }
-                    _oContext.drawImage(img, imgContainerX + (imgContainerW - imgW) / 2, imgContainerY +
-                        (imgContainerH - imgH) / 2, imgW, imgH);
+                    var imageSmoothingQuality = _oContext.imageSmoothingQuality;
+                    _oContext.imageSmoothingQuality = "high";
+                    _oContext.drawImage(img, imgContainerX + (imgContainerW - imgW) / 2, imgContainerY + (imgContainerH - imgH) / 2, imgW, imgH);
+                    _oContext.imageSmoothingQuality = imageSmoothingQuality;
                     drawQuietZoneColor();
                     _this._bIsPainted = true;
 
