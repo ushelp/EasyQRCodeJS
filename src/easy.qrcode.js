@@ -3,7 +3,7 @@
  * 
  * Cross-browser QRCode generator for pure javascript. Support Canvas, SVG and Table drawing methods. Support Dot style, Logo, Background image, Colorful, Title etc. settings. Support Angular, Vue.js, React, Next.js, Svelte framework. Support binary(hex) data mode.(Running with DOM on client side)
  * 
- * Version 4.4.9
+ * Version 4.4.10
  * 
  * @author [ inthinkcolor@gmail.com ]
  * 
@@ -1557,8 +1557,7 @@
                                     if (_htOption.autoColor) {
                                         dColor = _htOption.timing_H || _htOption.timing || _htOption
                                             .autoColorDark;
-                                        lColor = _htOption.timing_H || _htOption.timing || _htOption
-                                            .autoColorLight;
+                                        lColor = _htOption.autoColorLight;
                                     } else {
                                         dColor = _htOption.timing_H || _htOption.timing || _htOption
                                             .colorDark;
@@ -1568,11 +1567,9 @@
                                     if (_htOption.autoColor) {
                                         dColor = _htOption.timing_V || _htOption.timing || _htOption
                                             .autoColorDark;
-                                        lColor = _htOption.timing_V || _htOption.timing || _htOption
-                                            .autoColorLight;
+                                        lColor = _htOption.autoColorLight;
                                     } else {
-                                        dColor = _htOption.timing_V || _htOption.timing ||
-                                            _htOption.colorDark;
+                                        dColor = _htOption.timing_V || _htOption.timing || _htOption.colorDark;
                                     }
                                 } else {
                                     if (_htOption.autoColor) {
