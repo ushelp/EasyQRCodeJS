@@ -684,9 +684,10 @@ var qrcode = new QRCode(DOM_object, options_object);
     ```HTML
     <script>
      import { onMount } from 'svelte';
-     import * as QRCode from 'easyqrcodejs';
+     import QRCode from 'easyqrcodejs'
+     // import * as QRCode from 'easyqrcodejs';
 
-   	  export let text;
+   	  export let codeValue;
       let node;
 
       onMount(() => {
