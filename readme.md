@@ -28,6 +28,7 @@ EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成
   - [Svelte Support](#svelte-support)
   - [FQA](#fqa)
     - [Q1. Tainted canvases may not be exported.](#q1-tainted-canvases-may-not-be-exported)
+    - [Q2. How to show the QRCode image only after rendering is done?](#q2-how-to-show-the-qrcode-image-only-after-rendering-is-done)
   - [Browser Compatibility](#browser-compatibility)
   - [License](#license)
   - [EasyQRCodeJS-Premium](#easyqrcodejs-premium)
@@ -774,6 +775,16 @@ When use canvas drawer, Canvas toDataURL function does not allow load cross doma
   Use base64 image.
 
 
+### Q2. How to show the QRCode image only after rendering is done?
+
+```JS
+onRenderingStart: function(qrCodeOptions) {
+    qrCodeOptions._element.style.display = 'none';
+},
+onRenderingEnd: function(qrCodeOptions) {
+    qrCodeOptions._element.style.display = 'block';
+},
+```
 
 ## Browser Compatibility
 IE6+, Chrome, Firefox, Safari, Opera, Mobile Safari, Android, Windows Mobile, ETC.
