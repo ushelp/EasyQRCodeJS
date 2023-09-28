@@ -50,7 +50,7 @@ EasyQRCodeJS 是使用 JavaScript 的一个强大的、跨浏览器的二维码�
 
     - Cross-browser support for QR code generation based on HTML5 Canvas, SVG and Table
 
-    - Downloading in the browser
+    - Download the QRCode image in the browser
 
     - Required Patterns that support dot style
  
