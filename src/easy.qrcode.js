@@ -3,7 +3,7 @@
  * 
  * Cross-browser QRCode generator for pure javascript. Support Canvas, SVG and Table drawing methods. Support Dot style, Logo, Background image, Colorful, Title etc. settings. Support Angular, Vue.js, React, Next.js, Svelte framework. Support binary(hex) data mode.(Running with DOM on client side)
  * 
- * Version 4.4.13
+ * Version 4.5.0
  * 
  * @author [ inthinkcolor@gmail.com ]
  * 
@@ -1312,8 +1312,8 @@
                 } catch (e) {
                     console.error(e)
                 }
-
             }
+
             if (this._htOption.onRenderingEnd) {
                 if (!this.dataURL) {
                     console.error(
@@ -2172,7 +2172,55 @@
         this._oDrawing.draw(this._oQRCode);
     };
 
+    /**
+     * Download the QRCode image
+     */
+    QRCode.prototype.download = function(fileName) {
+        var dataURL = this._oDrawing.dataURL;
+        var link = document.createElement("a");
 
+        if (this._htOption.drawer == "svg") {
+            fileName += ".svg"
+            var svgFileAsBlob = new Blob([dataURL], {
+                type: "text/plain"
+            });
+
+            if (navigator.msSaveBlob) { // MS
+                navigator.msSaveBlob(svgFileAsBlob, fileName)
+            } else {
+                link.download = fileName;
+                var reader = new FileReader();
+                reader.onload = function() {
+                    link.href = reader.result;
+                    link.click();
+                };
+                reader.readAsDataURL(svgFileAsBlob);
+            }
+
+        } else {
+            fileName += ".png"
+            if (navigator.msSaveBlob) { // MS
+                function dataURItoBlob(dataURI) {
+                    var byteString = atob(dataURI.split(",")[1]);
+                    var mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0]
+                    var ab = new ArrayBuffer(byteString.length)
+                    var ia = new Uint8Array(ab);
+                    for (i = 0; i < byteString.length; i++) {
+                        ia[i] = byteString.charCodeAt(i);
+                    }
+                    return new Blob([ab], {
+                        type: mimeString
+                    })
+                }
+                var blob = dataURItoBlob(dataURL);
+                navigator.msSaveBlob(blob, fileName)
+            } else {
+                link.download = fileName;
+                link.href = dataURL;
+                link.click();
+            }
+        }
+    }
 
     /**
      * No Conflict

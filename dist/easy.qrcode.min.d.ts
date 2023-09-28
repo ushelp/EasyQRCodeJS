@@ -12,6 +12,8 @@ declare class QRCode {
     makeCode(text: string): void;
     
     resize(width: number, height: number): void;
+    
+    download(filename: string): void;
 
     static CorrectLevel: {
         H: number;

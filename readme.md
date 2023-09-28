@@ -1,9 +1,8 @@
 # EasyQRCodeJS
 
-EasyQRCodeJS is a feature-rich cross-browser pure JavaScript QRCode generation library. Support Canvas, SVG and Table drawing methods. Support Dot style, Logo, Background image, Colorful, Title etc. settings. Support Angular, Vue.js, React, Next.js, Svelte framework. Support binary(hex) data mode.(Running with DOM on client side)
+EasyQRCodeJS is a powerful, cross-browser QR code generation library that uses JavaScript and runs on DOM-based client browsers. It can be downloaded directly in the browser. It supports Canvas, SVG, and Table drawing methods. It provides flexible configurations, including dot style, Logo, background image, color, title, and support for binary (HEX) data mode. It is also compatible with Angular, Vue.js, React, Next.js, and Svelte frameworks.
 
-EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成库。支持 Canvas, SVG, Table 等绘制方式。支持 JavaScript 模块化加载。支持点状风格，Logo，背景图片，规则色彩控制，标题等设置。支持 Angular, Vue.js, React, Next.js, Svelte 等框架。支持二进制数据模式。(基于客户端 DOM 运行)
-
+EasyQRCodeJS 是使用 JavaScript 的一个强大的、跨浏览器的二维码生成库。运行在基于 DOM 的客户端浏览器，并能够在浏览器中进行下载。它支持Canvas、SVG和Table绘图方法。提供灵活的配置，包括点样式、Logo、背景图片、彩色，标题和二进制（十六进制）数据模式支持。它还能与Angular、Vue.js、React、Next.js和Svelte框架兼容。
 
 ## Table of contents
 
@@ -21,6 +20,7 @@ EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成
     - [Object](#object)
     - [Options](#options)
     - [Method](#method)
+  - [Download the QRCode Image in the Browser](#download-the-qrcode-image-in-the-browser)
   - [Angular Support](#angular-support)
   - [Vue.js Support](#vuejs-support)
   - [React Support](#react-support)
@@ -49,6 +49,8 @@ EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成
 - **English**
 
     - Cross-browser support for QR code generation based on HTML5 Canvas, SVG and Table
+
+    - Downloading in the browser
 
     - Required Patterns that support dot style
  
@@ -79,6 +81,8 @@ EasyQRCodeJS 是一个功能丰富的跨浏览器的纯 JavaScript QRCode 生成
 - **中文**
 
     - 跨浏览器，支持基于 HTML5 Canvas, SVG 和 Table 的二维码生成
+
+    - 在浏览器中下载
 
     - 支持点形风格的 Required Patterns
 
@@ -426,7 +430,52 @@ var qrcode = new QRCode(DOM_object, options_object);
 	```JS
 	qrcode.resize(480, 480); // Resize the image 
 	```
-        
+    
+- download(fileName)
+
+	```JS
+	qrcode.download("easyQRCode"); // Download the image or svg file, the filename does not need to include extension, '.png' or '.svg' suffix will be added automatically 
+	```        
+
+## Download the QRCode Image in the Browser
+
+For a long time, I have not been included to add a download function to our features, because due to browser environment restrictions, it cannot guarantee to truly fully output the image seen by the user.
+
+On the other hand, I see many user demands related to downloading, and there are also different implementation methods, so I decide to provide a friendly and as fully-featured download implementation as possiable.
+
+However, saving Canvas or SVG images on the client side is subject to many restrictions in the browser environments. For example, if your EasyQRCode image used an external image and there is a cross domain issue, you may be able to see the exernal image in the browser, but actully these images may not be able to be read normally and saved to your download file. 
+
+Therefore, if your requirement is to save the QRCode as an image, you may consider using [EasyQRCodeJS-NodeJS](https://github.com/ushelp/EasyQRCodeJS-NodeJS) on the server side to gain more complete control.
+
+```html
+
+<!-- QRCode -->
+<div id="qrcode"></div>
+<!-- Download button -->
+<button onclick="downloadQRcode()">download</button>
+
+
+<script type="text/javascript">
+    var config = {
+        text: "www.easyproject.cn/donation",
+        //...
+        onRenderingEnd:function(options, dataURL){
+            // Display your download button after the EasyQRCode is rendered.
+        	document.getElementById("qrcode_download").style.display='block';
+        }
+    }
+    // Initiate EasyQRCode 
+    var qrcode = new QRCode(document.getElementById("qrcode"), config);
+
+    function downloadQRcode(){
+         // Download the png image or svg file
+         // The '.png' or '.svg' suffix will be added to filename automatically 
+         var fileName = 'EasyQRCode-file'
+         qrcode.download(fileName);   
+    }
+</script>
+```
+
     
 ## Angular Support
 

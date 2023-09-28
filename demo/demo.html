@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="utf-8" />
-		<title>EasyQRCodeJS Demo</title>
+		<title>Demo - EasyQRCodeJS</title>
 		<script src="../dist/easy.qrcode.min.js" type="text/javascript" charset="utf-8"></script>
 
 		<style type="text/css">
@@ -52,6 +52,10 @@
 				background-color: #0084C6;
 				line-height: 60px;
 			}
+            .download{
+                margin-top:20px;
+                display: none;
+            }
 		
 			#footer {
 				margin-top: 20px;
@@ -99,6 +103,9 @@
 			<div class="imgblock">
 				<div class="title">{title}</div>
 				<div class="qr" id="qrcode_{i}"></div>
+                <div class="download" id="qrcode_{i}_download">
+                    <button onclick="downloadQRcode('qrcode_{i}')">download</button>
+                </div>
 			</div>
 		</script>
 		<script type="text/javascript">
@@ -410,7 +417,7 @@
 				
 						// === Logo
 						logo: "https://avatars1.githubusercontent.com/u/4082017?s=160&v=4", // LOGO
-						//					logo:"http://127.0.0.1:8020/easy-qrcodejs/demo/logo.png",  
+                        crossOrigin:"anonymous",
 						//					logoWidth:80, 
 						//					logoHeight:80,
 						logoBackgroundColor: '#FFF8DC', // Logo backgroud color, Invalid when `logBgTransparent` is true; default is '#ffffff'
@@ -468,7 +475,11 @@
 						correctLevel: QRCode.CorrectLevel.H, //  L, M, Q, H
 
 						
-						dotScale: 0.4
+						dotScale: 0.4,
+                        onRenderingEnd:function(options, dataURL){
+                        	// console.info(dataURL);
+                            console.log(options);
+                        }
 					}
 
 				},
@@ -487,14 +498,14 @@
 						colorLight: "#FFFACD", // Light color
                         
                         // quietZone
-                        quietZone:0,
+                        quietZone:5,
 
 						// === Title
 						title: 'Title', // Title
 						titleFont: "normal normal bold 18px Arial", // Title font
 						titleColor: "#004284", // Title Color
 						titleBackgroundColor: "#fff", // Title Background
-						titleHeight: 70, // Title height, include subTitle
+						titleHeight:50, // Title height, include subTitle
 						titleTop: 25, // Title draw position(Y coordinate), default is 30
 
 
@@ -502,7 +513,7 @@
 						subTitle: 'subTitle', // Subtitle content
 						subTitleFont: "normal normal normal 14px Arial", // Subtitle font
 						subTitleColor: "#004284", // Subtitle color
-						subTitleTop: 40, // Subtitle drwa position(Y coordinate), default is 50
+						subTitleTop: 45, // Subtitle drwa position(Y coordinate), default is 50
 
 
 						// === Logo
@@ -540,7 +551,6 @@
 						onRenderingEnd:function(options, dataURL){
 							console.info(dataURL);
 						},
-                        
                         drawer: 'svg'
 					}
 
@@ -554,10 +564,23 @@
 			var container = document.getElementById('container');
 
 			for (var i = 0; i < demoParams.length; i++) {
-				var qrcodeHTML = qrcodeTpl.replace(/\{title\}/, demoParams[i].title).replace(/{i}/, i);
+				var qrcodeHTML = qrcodeTpl.replace(/\{title\}/, demoParams[i].title).replace(/{i}/g, i);
 				container.innerHTML+=qrcodeHTML;
 			}
+            
+            var allQRcodes={};
 			for (var i = 0; i < demoParams.length; i++) {
-				 var t=new QRCode(document.getElementById("qrcode_"+i), demoParams[i].config);
+				var qrcode = new QRCode(document.getElementById("qrcode_"+i), demoParams[i].config);
+                allQRcodes["qrcode_"+i] = qrcode;
+                var downloadDivs = document.getElementsByClassName("download");
+                for(var j=0; j<downloadDivs.length; j++){
+                    downloadDivs[j].style.display='block'
+                }
 			}
+            
+            function downloadQRcode(qrcodeId){
+                var qrcode = allQRcodes[qrcodeId];
+                qrcode.download(qrcodeId); 
+                
+            }
 		</script>
