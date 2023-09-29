@@ -452,7 +452,7 @@ Therefore, if your requirement is to save the QRCode as an image, you may consid
 <!-- QRCode -->
 <div id="qrcode"></div>
 <!-- Download button -->
-<button onclick="downloadQRcode()">download</button>
+<button id="qrcode_download" onclick="downloadQRcode()" style="display:none">download</button>
 
 
 <script type="text/javascript">
@@ -461,7 +461,7 @@ Therefore, if your requirement is to save the QRCode as an image, you may consid
         //...
         onRenderingEnd:function(options, dataURL){
             // Display your download button after the EasyQRCode is rendered.
-        	document.getElementById("qrcode_download").style.display='block';
+            document.getElementById("qrcode_download").style.display='block';
         }
     }
     // Initiate EasyQRCode 
