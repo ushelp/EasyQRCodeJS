@@ -49,7 +49,9 @@ EasyQRCodeJS 是使用 JavaScript 的一个强大的、跨浏览器的二维码�
 - **English**
 
     - Cross-browser support for QR code generation based on HTML5 Canvas, SVG and Table
-
+	
+	- Support unicode character set:  `😊❤️👍👨‍💻 Hello, こんにちは, こんにちは, Γεια, Привет, नमस्ते, สวัสดี, Привіт, سلام, Здравей, ສະບາຍດີ, Përshëndetje, Բարեւ, 你好` 
+	
     - Download the QRCode image in the browser
 
     - Required Patterns that support dot style
@@ -81,6 +83,8 @@ EasyQRCodeJS 是使用 JavaScript 的一个强大的、跨浏览器的二维码�
 - **中文**
 
     - 跨浏览器，支持基于 HTML5 Canvas, SVG 和 Table 的二维码生成
+	
+	- 支持 Unicode 字符集:  `😊❤️👍👨‍💻 Hello, こんにちは, こんにちは, Γεια, Привет, नमस्ते, สวัสดี, Привіт, سلام, Здравей, ສະບາຍດີ, Përshëndetje, Բարեւ, 你好`
 
     - 在浏览器中下载
 
