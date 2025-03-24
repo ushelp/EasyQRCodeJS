@@ -1,24 +1,24 @@
 // Type definitions for easy.qrcode.min.js
-// Project: [https://github.com/ushelp/EasyQRCodeJS/] 
-// Definitions by: Ray <inthinkcolor@gmail.com> 
+// Project: [https://github.com/ushelp/EasyQRCodeJS/]
+// Definitions by: Ray <inthinkcolor@gmail.com>
 
-export = QRCode
+export = QRCode;
 
 declare class QRCode {
-    constructor(element: any, vOption: any);
+  constructor(element: any, vOption: any);
 
-    clear(): void;
+  clear(): void;
 
-    makeCode(text: string): void;
-    
-    resize(width: number, height: number): void;
-    
-    download(filename: string): void;
+  makeCode(text: string): void;
 
-    static CorrectLevel: {
-        H: number;
-        L: number;
-        M: number;
-        Q: number;
-    };
+  resize(width: number, height: number): void;
+
+  download(filename: string): void;
+
+  static CorrectLevel: {
+    H: number;
+    L: number;
+    M: number;
+    Q: number;
+  };
 }

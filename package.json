@@ -1,45 +1,45 @@
 {
-	"name": "easyqrcodejs",
-	"version": "4.6.1",
-	"description": "Cross-browser QRCode generator for pure javascript. Support Canvas, SVG and Table drawing methods. Support Dot style, Logo, Background image, Colorful, Title etc. settings. Support Angular, Vue.js, React, Next.js, Svelte framework. Support binary(hex) data mode.(Running with DOM on client side)",
-	"main": "dist/easy.qrcode.min.js",
-	"scripts": {},
-	"homepage": "https://github.com/ushelp/EasyQRCodeJS#readme",
-	"author": "Ray <inthinkcolor@gmail.com>",
-	"directories": {
-		"dist": "dist",
-		"src": "src",
-		"demo": "demo"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/ushelp/EasyQRCodeJS.git"
-	},
-	"keywords": [
-		"qrcode",
-		"js qrcode",
-		"qrcodejs",
-		"easyqrcode",
-		"javascript qrcode",
-		"canvas",
-		"html5",
-		"next.js",
-		"javascript",
-		"qrcode logo",
-		"html5 qrcode",
-		"qrcode generator",
-		"qrcode client",
-		"qrcode client side"
-	],
-	"bugs": {
-		"url": "https://github.com/ushelp/EasyQRCodeJS/issues "
-	},
-	"license": "MIT",
-	"dependencies": {},
-	"devDependencies": {
-		"grunt": "^1.0.1",
-		"grunt-contrib-clean": "^1.0.0",
-		"grunt-contrib-copy": "^1.0.0",
-		"grunt-contrib-uglify": "^2.0.0"
-	}
+  "name": "easyqrcodejs",
+  "version": "4.6.2",
+  "description": "Cross-browser QRCode generator for pure javascript. Support Canvas, SVG and Table drawing methods. Support Dot style, Logo, Background image, Colorful, Title etc. settings. Support Angular, Vue.js, React, Next.js, Svelte framework. Support binary(hex) data mode.(Running with DOM on client side)",
+  "main": "dist/easy.qrcode.min.js",
+  "scripts": {},
+  "homepage": "https://github.com/ushelp/EasyQRCodeJS#readme",
+  "author": "Ray <inthinkcolor@gmail.com>",
+  "directories": {
+    "dist": "dist",
+    "src": "src",
+    "demo": "demo"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ushelp/EasyQRCodeJS.git"
+  },
+  "keywords": [
+    "qrcode",
+    "js qrcode",
+    "qrcodejs",
+    "easyqrcode",
+    "javascript qrcode",
+    "canvas",
+    "html5",
+    "next.js",
+    "javascript",
+    "qrcode logo",
+    "html5 qrcode",
+    "qrcode generator",
+    "qrcode client",
+    "qrcode client side"
+  ],
+  "bugs": {
+    "url": "https://github.com/ushelp/EasyQRCodeJS/issues "
+  },
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-uglify": "^2.0.0"
+  }
 }
